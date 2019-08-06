@@ -11,7 +11,8 @@ const routes: Routes = [
   { path: 'places', loadChildren: './places/places.module#PlacesPageModule' },
   { path: 'tabs', loadChildren: './tabs/tabs.module#TabsPageModule' },
   { path: 'recipe', loadChildren: './recipe/recipe.module#RecipePageModule' },
-  { path: 'gender', loadChildren: './gender/gender.module#GenderPageModule' },
+  { path: 'gender', loadChildren: './gender/gender.module#GenderPageModule' },  { path: 'signup', loadChildren: './signup/signup.module#SignupPageModule' },
+
 
 
 // const routes: Routes = [
