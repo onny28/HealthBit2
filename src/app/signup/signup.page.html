@@ -4,6 +4,37 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content padding>
+    <form  #form="ngForm" (ngSubmit)="register(form)">
+        <ion-grid>
+          <ion-row color="primary" justify-content-center>
+            <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+              <div text-center>
+                <img src="../../assets/logo.png" alt="">
+                <h3 class="font">CREATE ACCOUNT</h3>
+              </div>
+              <div padding>
+                <ion-item>
+                  <ion-input class="font" name="name" type="text" placeholder="Name" ngModel required></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-input class="font" name="email" type="email" placeholder="your@email.com" ngModel required></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-input class="font" name="password" type="password" placeholder="Password" ngModel required></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-input class="font" name="confirm" type="password" placeholder="Password again" ngModel required></ion-input>
+                </ion-item>
+              </div>
+              <div padding>
+                <ion-button  class="font" size="large" [routerLink]="['/home']" type="submit" expand="block">Sign Up</ion-button>
+              </div>
+              <div text-center>
+                <p class="font">Already has account. <a [routerLink]="['/login']">SIGN IN</a></p> 
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
 </ion-content>
