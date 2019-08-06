@@ -1,9 +1,33 @@
 <ion-header>
+    <ion-icon name="arrow-dropleft" [routerLink]="['/home']"></ion-icon>
   <ion-toolbar>
     <ion-title>record</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
 </ion-content>
+<ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="Service" [routerLink]="['/home']">
+        <ion-icon name="calendar"></ion-icon>
+        <ion-label>Service</ion-label>
+        <ion-badge>6</ion-badge>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="Record">
+        <ion-icon name="contacts"></ion-icon>
+        <ion-label>Record</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="Grocery Lists" [routerLink]="['/grocerylist']">
+        <ion-icon name="map"></ion-icon>
+        <ion-label>Grocery Lists</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="Setting" [routerLink]="['/setting']">
+        <ion-icon name="information-circle"></ion-icon>
+        <ion-label>Setting</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>

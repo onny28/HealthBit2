@@ -13,25 +13,25 @@
 
   <ion-tabs>
     <ion-tab-bar slot="bottom">
-      <ion-tab-button tab="schedule">
+      <ion-tab-button tab="Service">
         <ion-icon name="calendar"></ion-icon>
-        <ion-label>Schedule</ion-label>
+        <ion-label>Service</ion-label>
         <ion-badge>6</ion-badge>
       </ion-tab-button>
   
-      <ion-tab-button tab="speakers">
+      <ion-tab-button tab="Record" [routerLink]="['/record']">
         <ion-icon name="contacts"></ion-icon>
-        <ion-label>Speakers</ion-label>
+        <ion-label>Record</ion-label>
       </ion-tab-button>
   
-      <ion-tab-button tab="map">
+      <ion-tab-button tab="Grocery Lists" [routerLink]="['/grocerylist']">
         <ion-icon name="map"></ion-icon>
-        <ion-label>Map</ion-label>
+        <ion-label>Grocery Lists</ion-label>
       </ion-tab-button>
   
-      <ion-tab-button tab="about">
+      <ion-tab-button tab="Setting" [routerLink]="['/setting']">
         <ion-icon name="information-circle"></ion-icon>
-        <ion-label>About</ion-label>
+        <ion-label>Setting</ion-label>
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
