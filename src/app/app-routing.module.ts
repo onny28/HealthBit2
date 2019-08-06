@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'record', loadChildren: './record/record.module#RecordPageModule' },
   { path: 'grocerylist', loadChildren: './grocerylist/grocerylist.module#GrocerylistPageModule' },
   { path: 'setting', loadChildren: './setting/setting.module#SettingPageModule' },  { path: 'recipe', loadChildren: './recipe/recipe.module#RecipePageModule' },
+  { path: 'places', loadChildren: './places/places.module#PlacesPageModule' },
 
 ];
 
