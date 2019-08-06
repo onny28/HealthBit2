@@ -6,31 +6,8 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
+    click hhere to go to the recommended places
+    <ion-button color="light" [routerLink]="['/places']">recommended places</ion-button>
     <ion-button color="light" [routerLink]="['/recipe']">recipe</ion-button>
 </ion-content>
-
-  <ion-tabs>
-    <ion-tab-bar slot="bottom">
-      <ion-tab-button tab="Service">
-        <ion-icon name="calendar"></ion-icon>
-        <ion-label>Service</ion-label>
-        <ion-badge>6</ion-badge>
-      </ion-tab-button>
-  
-      <ion-tab-button tab="Record" [routerLink]="['/record']">
-        <ion-icon name="contacts"></ion-icon>
-        <ion-label>Record</ion-label>
-      </ion-tab-button>
-  
-      <ion-tab-button tab="Grocery Lists" [routerLink]="['/grocerylist']">
-        <ion-icon name="map"></ion-icon>
-        <ion-label>Grocery Lists</ion-label>
-      </ion-tab-button>
-  
-      <ion-tab-button tab="Setting" [routerLink]="['/setting']">
-        <ion-icon name="information-circle"></ion-icon>
-        <ion-label>Setting</ion-label>
-      </ion-tab-button>
-    </ion-tab-bar>
-  </ion-tabs>
 
