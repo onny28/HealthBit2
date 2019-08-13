@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+
+.font{
+    font-family: 'Quicksand', sans-serif;
+    font-style: bold;
+    text-align: center;
+}
+#main{
+    border: 2px solid #488aff;
+    width: 50%;
+    margin: 50px auto;
+}
+
+#box{
+    display: block;
+    border: 2px solid grey;
+    width: 180px;
+    height: 50px;
+    margin: auto;
+}
+
+.sharebox{
+    display: inline-block;
+    width: 180px;
+    height: 50px;
+    margin: 2.5%;
+}
+
+.box2{
+    border: 2px solid grey;
+}
+
+
+
+
+

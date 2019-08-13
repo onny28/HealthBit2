@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'gender', loadChildren: './gender/gender.module#GenderPageModule' },  { path: 'signup', loadChildren: './signup/signup.module#SignupPageModule' },
   { path: 'notification', loadChildren: './notification/notification.module#NotificationPageModule' },
   { path: 'display', loadChildren: './display/display.module#DisplayPageModule' },
+  { path: 'bmi', loadChildren: './bmi/bmi.module#BmiPageModule' },
 
 
 
