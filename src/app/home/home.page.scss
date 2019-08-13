@@ -5,3 +5,48 @@
     font-style: bold;
 }
 
+ion-content{
+    --background:url(../../assets//icon/login_background.png);
+    background-position: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100%; 
+    width: auto;
+  }
+
+  
+span{
+    display: inline-block;
+}
+
+.all{
+    width: 300px;
+    height: 350px;
+    margin-left: 250px;
+}
+
+#box1{
+    border: 2px solid palevioletred;
+}
+
+#box2{
+    border: 2px solid darkcyan;
+}
+
+#box1:hover{
+    transform: scale(1.25,1.25);
+    background-color: pink;
+}
+
+#box2:hover{
+    transform: scale(1.25,1.25);
+    background-color: lightblue;
+}
+
+p{
+    text-align: center;
+    text-justify: bold;
+    
+}
+
+  
