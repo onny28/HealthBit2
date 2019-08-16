@@ -3,4 +3,20 @@
 .font{
     font-family: 'Quicksand', sans-serif;
     font-style: bold;
+    color:white;
+}
+
+ion-toolbar{
+    // --ion-background-color: palevioletred;
+    --background:url(../../assets//icon/toolbar.png);
+}
+
+ion-content {
+    --background:url(../../assets//icon/toolbar.png); 
+}
+
+ion-searchbar {
+    --background: palevioletred;
+    --icon-colour: light;
+    --colour: light;
 }

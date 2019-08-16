@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-icon name="arrow-round-back" slot="start" [routerLink]="['/healthyplan']"></ion-icon>
+      <ion-title>dayseven</ion-title>
+      <ion-icon name="home" slot="end" [routerLink]="['/tabs']"></ion-icon>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+      <ion-card>
+          <ion-label>Breakfast</ion-label>
+          <ion-button [routerLink]="['/daysevenbreakfast']">view recipe</ion-button>
+        </ion-card>
+        
+        <ion-card>
+          <ion-label>Lunch</ion-label>
+          <ion-button [routerLink]="['/daysevenlunch']">view recipe</ion-button>
+          </ion-card>
+        
+          <ion-card>
+            <ion-label>Dinner</ion-label>
+            <ion-button [routerLink]="['/daysevendinner']">view recipe</ion-button>
+            </ion-card>
+  </ion-content>
