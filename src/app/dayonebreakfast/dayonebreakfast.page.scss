@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+
+.font{
+    font-family: 'Quicksand', sans-serif;
+    font-style: bold;
+}
 
 .container {
     position: relative;
@@ -8,4 +14,8 @@
   .container img {
     width: 100%;
     height: auto;
+  }
+
+  ion-slide {
+    height: calc(100vh - 140px);
   }

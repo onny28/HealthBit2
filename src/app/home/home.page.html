@@ -5,33 +5,21 @@
   </ion-toolbar>
 </ion-header>
 <ion-content> 
- 
-<!-- <ion-card>
-    <ion-item>
-      <ion-icon name="pin" slot="start"></ion-icon>
-      <img src="../../assets/icon/mealplan_button.png" alt="recipe">
-      <ion-button fill="outline" slot="center" [routerLink]="['/recipe']">recipe</ion-button>
-    </ion-item>
-    <ion-card-content>
-    </ion-card-content>
-  </ion-card> -->
-
-  <!-- <div class="container"> -->
     <span>
-    <ion-card class="container">
+    <ion-card>
       <img src="../../assets/icon/mealplan_button.png" alt="mealplan" style="width:100%">
       <button class="btn" [routerLink]="['/healthyplan']">Healthy Plan</button>
     </ion-card>
     </span>
   <span>
-    <ion-card class="container">
-        <img src="../../assets/icon/recipe_button.png" alt="recipe" style="width:100%">
+    <ion-card>
+        <img src="../../assets/icon/recipe_button.png" alt="recipe" style="width:100%" class="container">
         <button class="btn" [routerLink]="['/recipe']">Recipe</button>
       </ion-card>
     </span>
     <span>
-      <ion-card class="container">
-          <img src="../../assets/icon/location_button.png" alt="location" style="width:100%">
+      <ion-card>
+          <img src="../../assets/icon/location_button.png" alt="location" style="width:100%" class="container">
           <button class="btn" [routerLink]="['/places']">Location</button>
         </ion-card>
       </span>

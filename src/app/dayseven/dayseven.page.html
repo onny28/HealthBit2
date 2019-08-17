@@ -6,19 +6,36 @@
     </ion-toolbar>
   </ion-header>
   
-  <ion-content>
+ 
+<ion-content>
+
+    <ion-card>
+      <ion-card-header>
+      <ion-card-subtitle>Breakfast</ion-card-subtitle>
+      <ion-card-title>Food name</ion-card-title>
+      </ion-card-header>
+      <ion-card-content><ion-button color="warning" [routerLink]="['/daysevenbreakfast']" slot="end">view recipe</ion-button>
+      </ion-card-content>
+    </ion-card>
+    
+    <ion-card>
+        <ion-card-header>
+            <ion-card-subtitle>Lunch</ion-card-subtitle>
+            <ion-card-title>Food name</ion-card-title>
+            </ion-card-header>
+     <ion-card-content>
+      <ion-button color="warning" [routerLink]="['/daysevenlunch']">view recipe</ion-button>
+    </ion-card-content>
+      </ion-card>
+    
       <ion-card>
-          <ion-label>Breakfast</ion-label>
-          <ion-button [routerLink]="['/daysevenbreakfast']">view recipe</ion-button>
+          <ion-card-header>
+              <ion-card-subtitle>Dinner</ion-card-subtitle>
+              <ion-card-title>Food name</ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+        <ion-button color="warning" [routerLink]="['/daysevendinner']">view recipe</ion-button>
+      </ion-card-content>
         </ion-card>
-        
-        <ion-card>
-          <ion-label>Lunch</ion-label>
-          <ion-button [routerLink]="['/daysevenlunch']">view recipe</ion-button>
-          </ion-card>
-        
-          <ion-card>
-            <ion-label>Dinner</ion-label>
-            <ion-button [routerLink]="['/daysevendinner']">view recipe</ion-button>
-            </ion-card>
-  </ion-content>
+    </ion-content>
+    

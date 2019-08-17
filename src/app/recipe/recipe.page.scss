@@ -6,6 +6,10 @@
     color:white;
 }
 
+ion-title{
+    text-align: center;
+}
+
 ion-toolbar{
     // --ion-background-color: palevioletred;
     --background:url(../../assets//icon/toolbar.png);
@@ -15,8 +19,6 @@ ion-content {
     --background:url(../../assets//icon/toolbar.png); 
 }
 
-ion-searchbar {
-    --background: palevioletred;
-    --icon-colour: light;
-    --colour: light;
+ion-card{
+    height: 150px;
 }
