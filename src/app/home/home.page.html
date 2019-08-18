@@ -1,12 +1,26 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      HealthBit
     </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>     
-  <ion-button class="font" expand="block" [routerLink]="['/recipe']">RECIPE</ion-button>
-  <ion-button class="font" expand="block" [routerLink]="['/places']">RECOMMENDED PLACES</ion-button>
+<ion-content> 
+    <span>
+    <ion-card>
+      <img src="../../assets/icon/mealplan_button.png" alt="mealplan" style="width:100%">
+      <button class="btn" [routerLink]="['/healthyplan']">Healthy Plan</button>
+    </ion-card>
+    </span>
+  <span>
+    <ion-card>
+        <img src="../../assets/icon/recipe_button.png" alt="recipe" style="width:100%" class="container">
+        <button class="btn" [routerLink]="['/recipe']">Recipe</button>
+      </ion-card>
+    </span>
+    <span>
+      <ion-card>
+          <img src="../../assets/icon/location_button.png" alt="location" style="width:100%" class="container">
+          <button class="btn" [routerLink]="['/places']">Location</button>
+        </ion-card>
+      </span>
 </ion-content>
-

@@ -5,3 +5,113 @@
     font-style: bold;
 }
 
+ion-toolbar{
+    // --ion-background-color: palevioletred;
+    --background:url(../../assets//icon/toolbar.png);
+}
+
+
+ion-content{
+  // --ion-background-color: palevioletred;
+  --background:url(../../assets//icon/toolbar.png);
+  background-position: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+// ion-content{
+//     --background:url(../../assets//icon/mealplan_button.png);
+//     background-position: cover;
+//     background-repeat: no-repeat;
+//     background-position: center;
+//     height: auto; 
+//     width: auto;
+//   }
+
+// span{
+//     display: inline;
+//     padding: 5px;
+//     padding-bottom: 2px; 
+//     margin: auto;
+//     position: relative;
+//     text-align: center; 
+// }
+
+// .centered {
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+//   }
+
+// img{
+//     position: center;
+//     margin: auto;
+// }
+
+span{
+    display: inline-block;
+    width: auto;
+    position: center;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .container img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: rgba(122, 122, 122, 0.425);
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-style: bold;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: 1px solid rgb(223, 56, 111) ;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  .btn:hover {
+    background-color:rgb(223, 56, 111);
+    color: white;
+  }
+  
+
+// #box1{
+//     border: 2px solid palevioletred;
+// }
+
+// #box2{
+//     border: 2px solid darkcyan;
+// }
+
+// #box1:hover{
+//     transform: scale(1.25,1.25);
+//     background-color: pink;
+// }
+
+// #box2:hover{
+//     transform: scale(1.25,1.25);
+//     background-color: lightblue;
+// }
+
+// p{
+//     text-align: center;
+//     text-justify: bold;
+    
+// }
+
+  

@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-icon name="arrow-round-back" slot="start" [routerLink]="['/healthyplan']"></ion-icon>
+      <ion-title>daythree</ion-title>
+      <ion-icon name="home" slot="end" [routerLink]="['/tabs']"></ion-icon>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+
+      <ion-card>
+        <ion-card-header>
+        <ion-card-subtitle>Breakfast</ion-card-subtitle>
+        <ion-card-title>Food name</ion-card-title>
+        </ion-card-header>
+        <ion-card-content><ion-button color="warning" [routerLink]="['/daythreebreakfast']" slot="end">view recipe</ion-button>
+        </ion-card-content>
+      </ion-card>
+      
+      <ion-card>
+          <ion-card-header>
+              <ion-card-subtitle>Lunch</ion-card-subtitle>
+              <ion-card-title>Food name</ion-card-title>
+              </ion-card-header>
+       <ion-card-content>
+        <ion-button color="warning" [routerLink]="['/daythreelunch']">view recipe</ion-button>
+      </ion-card-content>
+        </ion-card>
+      
+        <ion-card>
+            <ion-card-header>
+                <ion-card-subtitle>Dinner</ion-card-subtitle>
+                <ion-card-title>Food name</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+          <ion-button color="warning" [routerLink]="['/daythreedinner']">view recipe</ion-button>
+        </ion-card-content>
+          </ion-card>
+      </ion-content>
+      

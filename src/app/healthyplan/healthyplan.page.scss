@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+
+.font{
+    font-family: 'Quicksand', sans-serif;
+    font-style: bold;
+}
+
+ion-toolbar{
+    // --ion-background-color: palevioletred;
+    --background:url(../../assets//icon/toolbar.png);
+}
+
+span{
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid black;
+}
+
+div{
+    width: 100%;
+    height: 200px;
+    border: 1px solid black;
+    text-align: center;
+}

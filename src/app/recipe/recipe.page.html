@@ -1,10 +1,36 @@
 <ion-header>
   <ion-toolbar>
-    <ion-icon name="arrow-dropleft" [routerLink]="['/tabs']"></ion-icon>
-    <ion-title class="font">RECIPE</ion-title>
+    <ion-icon name="arrow-back" slot="start" [routerLink]="['/tabs']"></ion-icon>
+    <ion-title class="font" text-align="center">RECIPE</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+    <ion-searchbar animated></ion-searchbar>
+    <ion-card>
+        <ion-card-header>
+        <ion-card-subtitle>Food name</ion-card-subtitle>
+        <ion-card-title>Category</ion-card-title>
+        </ion-card-header>
+        <ion-card-content><ion-button color="warning" [routerLink]="['/viewrecipepage']" >view recipe</ion-button>
+        </ion-card-content>
+      </ion-card>
+      
+      <ion-card>
+          <ion-card-header>
+          <ion-card-subtitle>Food name</ion-card-subtitle>
+          <ion-card-title>Category</ion-card-title>
+          </ion-card-header>
+          <ion-card-content><ion-button color="warning" >view recipe</ion-button>
+          </ion-card-content>
+        </ion-card>
+      
+        <ion-card>
+            <ion-card-header>
+            <ion-card-subtitle>Food name</ion-card-subtitle>
+            <ion-card-title>Category</ion-card-title>
+            </ion-card-header>
+            <ion-card-content><ion-button color="warning" slot="end">view recipe</ion-button>
+            </ion-card-content>
+          </ion-card>
 </ion-content>
