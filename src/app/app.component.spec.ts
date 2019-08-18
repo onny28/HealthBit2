@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed, async } from '@angular/core/testing';
 
 import { Platform } from '@ionic/angular';
@@ -6,6 +6,9 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { FormsModule,  ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 
 describe('AppComponent', () => {
 
@@ -18,8 +21,17 @@ describe('AppComponent', () => {
     platformSpy = jasmine.createSpyObj('Platform', { ready: platformReadySpy });
 
     TestBed.configureTestingModule({
+      // imports: [
+      //   RouterTestingModule,
+      //   BrowserModule,
+      //   FormsModule, 
+      //   ReactiveFormsModule
+      // ],
       declarations: [AppComponent],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA, 
+      ],
+
       providers: [
         { provide: StatusBar, useValue: statusBarSpy },
         { provide: SplashScreen, useValue: splashScreenSpy },

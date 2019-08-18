@@ -20,8 +20,8 @@ ion-button {
 }
 
 img{
-    width: 150px;
-    height: 160px;
+    width: 90px;
+    height: 100px;
 }
 
 .font{
@@ -29,11 +29,11 @@ img{
     font-style: bold;
 }
 
-@media (min-width: 240px) and (max-width: 768px) {
-    ion-grid {
-        // background: $white-color;
-    }
-    ion-col {
-        border: none;
-    }
-}
+// @media (min-width: 240px) and (max-width: 768px) {
+//     ion-grid {
+//         // background: $white-color;
+//     }
+//     ion-col {
+//         border: none;
+//     }
+// }
