@@ -46,15 +46,6 @@ const routes: Routes = [
   { path: 'daysevenlunch', loadChildren: './daysevenlunch/daysevenlunch.module#DaysevenlunchPageModule' },
   { path: 'daysevendinner', loadChildren: './daysevendinner/daysevendinner.module#DaysevendinnerPageModule' },
   { path: 'viewrecipepage', loadChildren: './viewrecipepage/viewrecipepage.module#ViewrecipepagePageModule' },
-];
-
-
-// const routes: Routes = [
-//   { path: '', redirectTo: 'login', pathMatch: 'full' },
-//   { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
-//   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
-//   { path: 'gender', loadChildren: './gender/gender.module#GenderPageModule' },
-
 
 
 
@@ -63,7 +54,8 @@ const routes: Routes = [
 //   { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
 //   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
 //   { path: 'gender', loadChildren: './gender/gender.module#GenderPageModule' },
-//  ];
+ ];
+
 
 @NgModule({
   imports: [
