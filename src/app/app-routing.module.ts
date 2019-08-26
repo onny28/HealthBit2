@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'setting', loadChildren: './setting/setting.module#SettingPageModule' },
   { path: 'places', loadChildren: './places/places.module#PlacesPageModule' },
   { path: 'tabs', loadChildren: './tabs/tabs.module#TabsPageModule' },
-  { path: 'recipe', loadChildren: './recipe/recipe.module#RecipePageModule' },
+  { path: 'recipes', loadChildren: './recipe/recipe.module#RecipePageModule' },
   { path: 'gender', loadChildren: './gender/gender.module#GenderPageModule' },
   { path: 'signup', loadChildren: './signup/signup.module#SignupPageModule' },
   { path: 'notification', loadChildren: './notification/notification.module#NotificationPageModule' },
@@ -45,7 +45,12 @@ const routes: Routes = [
   { path: 'daysevenbreakfast', loadChildren: './daysevenbreakfast/daysevenbreakfast.module#DaysevenbreakfastPageModule' },
   { path: 'daysevenlunch', loadChildren: './daysevenlunch/daysevenlunch.module#DaysevenlunchPageModule' },
   { path: 'daysevendinner', loadChildren: './daysevendinner/daysevendinner.module#DaysevendinnerPageModule' },
-  { path: 'viewrecipepage', loadChildren: './viewrecipepage/viewrecipepage.module#ViewrecipepagePageModule' },
+  { path: 'recipe', loadChildren: './viewrecipepage/viewrecipepage.module#ViewrecipepagePageModule' },
+  { path: 'recipe/:id ', loadChildren: './viewrecipepage/viewrecipepage.module#ViewrecipepagePageModule' },
+  { path: 'addrecipe', loadChildren: './addrecipe/addrecipe.module#AddrecipePageModule' },  { path: 'ingredients', loadChildren: './ingredients/ingredients.module#IngredientsPageModule' },
+
+
+
 
 
 
