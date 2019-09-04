@@ -11,25 +11,42 @@
         <img src="../../assets/icon/logo3.png" alt="">
         <h4 class="font">LOGIN</h4>
       </div>
-      <div padding>
+
+      
+      <div padding [formGroup]="validations_form"  (ngSubmit)="loginUser(validations_form.value)">
         <ion-item>
           <ion-label class="font" position="floating">Email</ion-label>
-          <ion-input class="font" type="email" [(ngModel)]="email" required></ion-input>
+          <ion-input class="font" type="email" [(ngModel)]="email" formControlName="email" required></ion-input>
         </ion-item>
+        <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.email">
+              <div class="validation-errors" *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </div>
 
         <ion-item>
           <ion-label class="font" position="floating">Password</ion-label>
-          <ion-input class="font" type="password" [(ngModel)]="password" required></ion-input>
+          <ion-input class="font" [type]="getType()" [(ngModel)]="password" formControlName="password" required></ion-input>
+          <ion-icon name="eye" (click)="toggleTextPassword()" slot="end"></ion-icon>
         </ion-item>
+        <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.password">
+              <div class="validation-errors" *ngIf="validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </div>
       </div>
+    
 
       <div padding>
-        <ion-button class="font" size="large" expand="block" (click)="login()">Sign In</ion-button>
+        <ion-button class="font" size="large" expand="block" type="submit"  [disabled]="!validations_form.valid" (click)="login()">Sign In</ion-button>
       </div>
 
       <div text-center>
-        <p class="font">No account? <a href="/signup">REGISTER</a></p>
-
+        <p class="font">No account? <a (click)="goToRegisterPage()">REGISTER</a></p>
       </div>
     </ion-col>
   </ion-row>
