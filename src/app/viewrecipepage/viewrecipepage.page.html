@@ -1,60 +1,54 @@
 <ion-header>
     <ion-toolbar>
-        <ion-icon name="arrow-round-back" slot="start" [routerLink]="['/recipe']"></ion-icon>
-        <ion-title>viewrecipe</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/recipes"></ion-back-button>
+          </ion-buttons>
+        <!-- <ion-icon name="arrow-round-back" slot="start" [routerLink]="['/recipes']"></ion-icon>
+        <ion-title>viewrecipe</ion-title> -->
       </ion-toolbar>
     </ion-header>
     
     <ion-content padding>
-        <ion-toolbar>
-          <ion-segment (ionChange)="segmentChanged()" [(ngModel)]="segment" color="warning">
-            <ion-segment-button value="0">
-              <ion-icon name="restaurant"></ion-icon>
-            </ion-segment-button>
-            <ion-segment-button value="1">
-              <ion-icon name="list"></ion-icon>
-            </ion-segment-button>
-          </ion-segment>
-        </ion-toolbar>
+
+        <ion-item >
+            <ion-input required type="text" placeholder="Name" [(ngModel)]="recipe.name"></ion-input>
+          </ion-item>
+          
+          <ion-item>
+              <ion-textarea placeholder="category" [(ngModel)]="recipe.category" rows="7"></ion-textarea>
+            </ion-item>
+  
+          <ion-item>
+              <ion-textarea placeholder="ingredients" [(ngModel)]="recipe.ingredients" rows="7"></ion-textarea>
+            </ion-item>
+
+          <ion-item>
+              <ion-textarea placeholder="steps" [(ngModel)]="recipe.steps" rows="7"></ion-textarea>
+            </ion-item>
+            </ion-content>
+          
+    <ion-footer *ngIf ="!recipe.id">
+          <ion-toolbar color="warning">
+            <ion-button expand="full" fill="clear" color="light" (click)="addRecipe()">
+              Add recipe
+            </ion-button>
+          </ion-toolbar>
+        </ion-footer>
+
+       <ion-footer *ngIf ="recipe.id">
+            <ion-row no-padding text-center>
+                <ion-col size="6">
+                  <ion-button expand="block" fill="outline" color="danger" (click)="deleteRecipe()">
+                    <ion-icon name="trash" slot="start"></ion-icon>
+                    Delete
+                  </ion-button>
+                </ion-col>
+                <ion-col size="6">
+                  <ion-button expand="block" fill="solid" color="warning" (click)="updateRecipe()">
+                    <ion-icon name="save" slot="start"></ion-icon>
+                    Update
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+          </ion-footer> 
       
-        <ion-slides #slides (ionSlideDidChange)="slideChanged()" scrollbar="true">
-          <ion-slide>
-            <ion-list>
-              <ion-item>
-                <ion-label>ingredients</ion-label>
-                <ion-button color="warning" slot="end">Add to cart</ion-button>
-              </ion-item>
-              <ion-item>
-                <ion-label>ingredients</ion-label>
-                <ion-button color="warning" slot="end">Add to cart</ion-button>
-              </ion-item>
-              <ion-item>
-                <ion-label>ingredients</ion-label>
-                <ion-button color="warning" slot="end">Add to cart</ion-button>
-              </ion-item>
-              <ion-item>
-                <ion-label>ingredients</ion-label>
-                <ion-button color="warning" slot="end">Add to cart</ion-button>
-              </ion-item>
-            </ion-list>
-          </ion-slide>
-          <ion-slide>
-            <ion-list>
-              <ion-item>
-                <ion-label>steps</ion-label>
-              </ion-item>
-              <ion-item>
-                <ion-label>steps</ion-label>
-              </ion-item>
-              <ion-item>
-                <ion-label>steps</ion-label>
-              </ion-item>
-              <ion-item>
-                <ion-label>steps</ion-label>
-              </ion-item>
-              <ion-button color="warning">WATCH VIDEO</ion-button>
-            </ion-list>
-          </ion-slide>
-        </ion-slides>
-      
-      </ion-content>

@@ -1,10 +1,12 @@
 <ion-header>
   <ion-toolbar>
-      <ion-icon name="arrow-round-back" slot="start" [routerLink]="['/tabs']"></ion-icon>
+    <ion-buttons slot="start" >
+      <ion-back-button defaultHref="/tabs"></ion-back-button>
+    </ion-buttons>
     <ion-title class="font">Location</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-searchbar animated></ion-searchbar>
+    <ion-searchbar class="font" animated></ion-searchbar>
 </ion-content>

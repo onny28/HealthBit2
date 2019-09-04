@@ -11,11 +11,15 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
+<<<<<<< HEAD
     db: AngularFirestore
+=======
+>>>>>>> 065f2a5ec68076e824dadbc921043088f263712d
   ) {
     this.initializeApp();
   }
