@@ -2,6 +2,7 @@ import { Injectable, NgModule } from '@angular/core';
 import { AngularFirestoreCollection, AngularFirestore, AngularFirestoreDocument, DocumentReference } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
+import firebaseConfig from './firebase'; 
 
 
 @Injectable({
@@ -21,7 +22,7 @@ export class FirebaseService {
   }
 
   read_Users() {
-    return this.firestore.collection('UserDetails').snapshotChanges();
+    return this.firestore.collection('UserDetails/${DocumentID}').snapshotChanges();
   }
 
   update_User(recordID, record) {
