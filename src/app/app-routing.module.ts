@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
+
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
-  { path: 'record', loadChildren: './record/record.module#RecordPageModule' },
-  { path: 'grocerylist', loadChildren: './grocerylist/grocerylist.module#GrocerylistPageModule' },
-  { path: 'setting', loadChildren: './setting/setting.module#SettingPageModule' },
+  { path: 'record/:id', loadChildren: './record/record.module#RecordPageModule' },
+  { path: 'grocerylist/:id', loadChildren: './grocerylist/grocerylist.module#GrocerylistPageModule' },
+  { path: 'setting/:id', loadChildren: './setting/setting.module#SettingPageModule' },
   { path: 'places', loadChildren: './places/places.module#PlacesPageModule' },
   { path: 'tabs', loadChildren: './tabs/tabs.module#TabsPageModule' },
   { path: 'recipe', loadChildren: './recipe/recipe.module#RecipePageModule' },
@@ -46,14 +47,12 @@ const routes: Routes = [
   { path: 'daysevenlunch', loadChildren: './daysevenlunch/daysevenlunch.module#DaysevenlunchPageModule' },
   { path: 'daysevendinner', loadChildren: './daysevendinner/daysevendinner.module#DaysevendinnerPageModule' },
   { path: 'viewrecipepage', loadChildren: './viewrecipepage/viewrecipepage.module#ViewrecipepagePageModule' },
+  { path: 'register-details/:id', loadChildren: './register-details/register-details.module#RegisterDetailsPageModule' },  { path: 'place-detail', loadChildren: './place-detail/place-detail.module#PlaceDetailPageModule' },
+
+  
 
 
 
-// const routes: Routes = [
-//   { path: '', redirectTo: 'login', pathMatch: 'full' },
-//   { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
-//   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
-//   { path: 'gender', loadChildren: './gender/gender.module#GenderPageModule' },
  ];
 
 
