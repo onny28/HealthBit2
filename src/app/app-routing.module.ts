@@ -5,23 +5,17 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
-<<<<<<< HEAD
-=======
   { path: 'record/:id', loadChildren: './record/record.module#RecordPageModule' },
   { path: 'grocerylist/:id', loadChildren: './grocerylist/grocerylist.module#GrocerylistPageModule' },
   { path: 'setting/:id', loadChildren: './setting/setting.module#SettingPageModule' },
   { path: 'places', loadChildren: './places/places.module#PlacesPageModule' },
   { path: 'tabs', loadChildren: './tabs/tabs.module#TabsPageModule' },
   { path: 'recipe', loadChildren: './recipe/recipe.module#RecipePageModule' },
->>>>>>> 1eb7f850180ac4fc76ecdf5b73646c165a55c3b7
   { path: 'record', loadChildren: './record/record.module#RecordPageModule' },
   { path: 'grocerylist', loadChildren: './grocerylist/grocerylist.module#GrocerylistPageModule' },
   { path: 'setting', loadChildren: './setting/setting.module#SettingPageModule' },
   { path: 'places', loadChildren: './places/places.module#PlacesPageModule' },
-<<<<<<< HEAD
   { path: 'places/:id', loadChildren: './places/places.module#PlacesPageModule' },
-=======
->>>>>>> 1eb7f850180ac4fc76ecdf5b73646c165a55c3b7
   { path: 'tabs', loadChildren: './tabs/tabs.module#TabsPageModule' },
   { path: 'recipes', loadChildren: './recipe/recipe.module#RecipePageModule' },
   { path: 'gender', loadChildren: './gender/gender.module#GenderPageModule' },
@@ -58,21 +52,15 @@ const routes: Routes = [
   { path: 'daysevenbreakfast', loadChildren: './daysevenbreakfast/daysevenbreakfast.module#DaysevenbreakfastPageModule' },
   { path: 'daysevenlunch', loadChildren: './daysevenlunch/daysevenlunch.module#DaysevenlunchPageModule' },
   { path: 'daysevendinner', loadChildren: './daysevendinner/daysevendinner.module#DaysevendinnerPageModule' },
-<<<<<<< HEAD
-=======
   { path: 'viewrecipepage', loadChildren: './viewrecipepage/viewrecipepage.module#ViewrecipepagePageModule' },
   { path: 'register-details/:id', loadChildren: './register-details/register-details.module#RegisterDetailsPageModule' },
   { path: 'place-detail', loadChildren: './place-detail/place-detail.module#PlaceDetailPageModule' },
->>>>>>> 1eb7f850180ac4fc76ecdf5b73646c165a55c3b7
   { path: 'recipe', loadChildren: './viewrecipepage/viewrecipepage.module#ViewrecipepagePageModule' },
   { path: 'recipe/:id ', loadChildren: './viewrecipepage/viewrecipepage.module#ViewrecipepagePageModule' },
   { path: 'addrecipe', loadChildren: './addrecipe/addrecipe.module#AddrecipePageModule' },
   { path: 'ingredients', loadChildren: './ingredients/ingredients.module#IngredientsPageModule' },
-<<<<<<< HEAD
   { path: 'locationdetail', loadChildren: './locationdetail/locationdetail.module#LocationdetailPageModule' },
   { path: 'locationdetail/:id', loadChildren: './locationdetail/locationdetail.module#LocationdetailPageModule' },
-=======
->>>>>>> 1eb7f850180ac4fc76ecdf5b73646c165a55c3b7
 
 
 
