@@ -82,14 +82,14 @@ export class SignupPage implements OnInit {
         toast.present();
     } catch(error) {
         console.dir(error)
-        if(error.code == "auth/email-already-in-use") {
-          console.log("Account already used.")
-          const toast = await this.toastController.create({
-          message: 'Account already used.',
-          duration: 2000
-        });
-        toast.present();
-        }
+        // if(error.code == "auth/email-already-in-use") {
+        //   console.log("Account already used.")
+        //   const toast = await this.toastController.create({
+        //   message: 'Account already used.',
+        //   duration: 2000
+        // });
+        // toast.present();
+        // }
     }
 
    
