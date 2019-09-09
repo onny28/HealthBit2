@@ -144,18 +144,6 @@ export class SignupPage implements OnInit {
           duration: 2000,
         });
         toast.present();
-<<<<<<< HEAD
-    } catch(error) {
-        console.dir(error)
-        // if(error.code == "auth/email-already-in-use") {
-        //   console.log("Account already used.")
-        //   const toast = await this.toastController.create({
-        //   message: 'Account already used.',
-        //   duration: 2000
-        // });
-        // toast.present();
-        // }
-=======
       }
       if(error.code == "Uncaught (in promise): Error: The email address is already in use by another account."){
         console.log("Account already used.")
@@ -169,7 +157,6 @@ export class SignupPage implements OnInit {
         });
         toast.present();
       }
->>>>>>> 157de15a17a32f096f99dd612ca55be472918117
     }
 
   }

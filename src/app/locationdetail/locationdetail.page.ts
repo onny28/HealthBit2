@@ -21,14 +21,14 @@ export class LocationdetailPage implements OnInit {
   ngOnInit() {
   }
 
-  ionViewWillEnter() {
-    let id = this.activatedRoute.snapshot.paramMap.get();
-    if (id) {
-      this.locationService.getLocation(id).subscribe(location => {
-        this.location = location;
-      });
-    } 
-  }
+  // ionViewWillEnter() {
+  //   let id = this.activatedRoute.snapshot.paramMap.get(id);
+  //   if (id) {
+  //     this.locationService.getLocation(id).subscribe(location => {
+  //       this.location = location;
+  //     });
+  //   } 
+  // }
 
   addLocation() {
     this.locationService.addLocation(this.location). then(() => {
