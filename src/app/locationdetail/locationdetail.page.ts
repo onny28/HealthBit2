@@ -22,7 +22,7 @@ export class LocationdetailPage implements OnInit {
   }
 
   // ionViewWillEnter() {
-  //   let id = this.activatedRoute.snapshot.paramMap.get(id);
+  //   let id = this.activatedRoute.snapshot.paramMap.get();
   //   if (id) {
   //     this.locationService.getLocation(id).subscribe(location => {
   //       this.location = location;
