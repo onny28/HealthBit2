@@ -3,10 +3,22 @@
     <ion-buttons slot="start" >
       <ion-back-button defaultHref="/tabs"></ion-back-button>
     </ion-buttons>
-    <ion-title class="font">Location</ion-title>
+    <ion-title class="font" text-align="center">Location</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
     <ion-searchbar class="font" animated></ion-searchbar>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button routerLink="/locationdetail">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
+  <ion-list>
+    <ion-item button (click)="goToLocationDetails()" *ngFor="let location of (locations | async)">
+      {{location.name}}
+    </ion-item>
+  </ion-list>
+
 </ion-content>

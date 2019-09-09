@@ -12,9 +12,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { environment } from '../environments/environment';
 import firebaseConfig from './firebase';
 import { AngularFireModule } from '@angular/fire';
-import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFirestoreModule, FirestoreSettingsToken} from '@angular/fire/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth'
+import { AngularFirestoreModule} from '@angular/fire/firestore'
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AuthenticationService } from './services/authentication.service'
+// import { AngularFireAuthModule } from '@angular/fire/auth';
+// import { AngularFirestoreModule, FirestoreSettingsToken} from '@angular/fire/firestore';
+// import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 
 
@@ -30,18 +35,26 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
     IonicModule.forRoot(), 
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    AngularFireStorageModule,
+    AuthenticationService,
+    
+    // AngularFireModule.initializeApp(environment.firebase),
+    // AngularFireAuthModule,
+    // AngularFirestoreModule,
+    // AngularFireDatabaseModule
     
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: FirestoreSettingsToken, useValue: {} }
+    
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }
