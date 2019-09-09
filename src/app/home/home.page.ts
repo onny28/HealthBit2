@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { AuthenticationService } from '../services/authentication.service'
+// import { AuthenticationService } from '../services/authentication.service'
+import { FirebaseService } from '../firebase.service';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -11,11 +12,12 @@ export class HomePage {
 
   constructor(
     private navCtrl: NavController,
-    private authService: AuthenticationService
+    // private authService: AuthenticationService
+    private firebaseService: FirebaseService,
   ) {}
 
   logout(){
-    this.authService.logoutUser()
+    this.firebaseService.logoutUser()
     .then(res => {
       console.log(res);
       this.navCtrl.navigateBack('');

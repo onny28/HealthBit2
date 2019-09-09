@@ -62,16 +62,6 @@ const routes: Routes = [
   { path: 'locationdetail', loadChildren: './locationdetail/locationdetail.module#LocationdetailPageModule' },
   { path: 'locationdetail/:id', loadChildren: './locationdetail/locationdetail.module#LocationdetailPageModule' },
 
-
-
-
-
-
-// const routes: Routes = [
-//   { path: '', redirectTo: 'login', pathMatch: 'full' },
-//   { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
-//   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
-//   { path: 'gender', loadChildren: './gender/gender.module#GenderPageModule' },
  ];
 
 

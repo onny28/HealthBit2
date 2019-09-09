@@ -3,7 +3,9 @@
     <ion-title>
       home
     </ion-title>
-    <ion-button left click="logout()">LOGOUT</ion-button>
+    <ion-button color="warning" slot="end" shape="round" (click)="logout()">LOGOUT
+      <ion-icon slot="end" name="log-out"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 <ion-content> 

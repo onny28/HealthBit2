@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth'
 import { auth } from 'firebase/app'
 import {NavController, ToastController} from '@ionic/angular'
+import { LoadingController } from '@ionic/angular';
 
 
 import * as firebase from 'firebase/app';
@@ -17,9 +18,11 @@ import { AuthenticationService } from '../services/authentication.service'
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-
+  
+  loading: any;
   email: string = ""
   password: string = ""
+  errorMessage: string = '';
 
   isActiveToggleTextPassword: Boolean = true;
 
@@ -44,6 +47,7 @@ export class LoginPage implements OnInit {
     private toastController: ToastController,
     private authService: AuthenticationService,
     private formBuilder: FormBuilder,
+    public loadingController: LoadingController,
     ) { 
 
       this.validations_form = this.formBuilder.group({
@@ -62,10 +66,15 @@ export class LoginPage implements OnInit {
       })
     }
 
-  ngOnInit() {
-    
+  async ngOnInit() {
+    this.loading = await this.loadingController.create({
+      message: 'Connecting ...'
+    });
   }
 
+  async presentLoading(loading) {
+    await loading.present();
+  }
   
 
   //For show/hide user password
@@ -110,7 +119,7 @@ export class LoginPage implements OnInit {
             duration: 2000
           });
           toast.present();
-        }
+        } debugger
         if(err.code == "auth/wrong-password") {
           console.log("wrong password")
           const toast = await this.toastController.create({
@@ -121,6 +130,7 @@ export class LoginPage implements OnInit {
         } 
     }
   }
+
  
   goToRegisterPage(){
     this.navCtrl.navigateForward('/signup');

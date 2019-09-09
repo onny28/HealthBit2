@@ -60,16 +60,16 @@ export class RecordPage implements OnInit {
    
   }
   
-  // logout(){
-  //   this.authService.logoutUser()
-  //   .then(res => {
-  //     console.log(res);
-  //     this.navCtrl.navigateBack('');
-  //   })
-  //   .catch(error => {
-  //     console.log(error);
-  //   })
-  // }
+  logout(){
+    this.firebaseService.logoutUser()
+    .then(res => {
+      console.log(res);
+      this.navCtrl.navigateBack('');
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  }
 
   // CreateRecord() {
   //   let record = {};

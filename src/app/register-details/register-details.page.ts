@@ -97,6 +97,7 @@ export class RegisterDetailsPage implements OnInit {
           dob: e.payload.doc.data()['dob'],
           weight: e.payload.doc.data()['weight'],
           heigth: e.payload.doc.data()['height'],
+         
         };
       })
       console.log(this.user);

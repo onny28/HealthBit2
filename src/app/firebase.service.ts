@@ -4,6 +4,9 @@ import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import firebaseConfig from './firebase'; 
 
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +15,16 @@ import firebaseConfig from './firebase';
 
 export class FirebaseService {
 
+ 
+
   constructor(
     public firestore: AngularFirestore,
-  ) {}
+    
+  ) {
+    
+  }
+
+  
 
  
   create_NewUser(record) {
@@ -22,7 +32,7 @@ export class FirebaseService {
   }
 
   read_Users() {
-    return this.firestore.collection('UserDetails/${DocumentID}').snapshotChanges();
+    return this.firestore.collection('UserDetails').snapshotChanges().pipe();
   }
 
   update_User(recordID, record) {
@@ -32,6 +42,24 @@ export class FirebaseService {
   delete_User(record_id) {
     this.firestore.doc('UserDetails/' + record_id).delete();
   }
+
+  logoutUser(){
+    return new Promise((resolve, reject) => {
+      if(firebase.auth().currentUser){
+        firebase.auth().signOut()
+        .then(() => {
+          console.log("LOG Out");
+          resolve();
+        }).catch((error) => {
+          reject();
+        });
+      }
+    })
+  }
+
+
+
+
 
   
 
