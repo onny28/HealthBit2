@@ -16,7 +16,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth'
 import { AngularFirestoreModule} from '@angular/fire/firestore'
 import { AngularFireStorageModule } from '@angular/fire/storage';
-import { AuthenticationService } from './services/authentication.service'
+import { AuthenticationService } from './services/authentication.service';
+import { FCM } from '@ionic-native/fcm/ngx';
 // import { AngularFireAuthModule } from '@angular/fire/auth';
 // import { AngularFirestoreModule, FirestoreSettingsToken} from '@angular/fire/firestore';
 // import { AngularFireDatabaseModule } from '@angular/fire/database';
@@ -41,6 +42,7 @@ import { AuthenticationService } from './services/authentication.service'
     AngularFireDatabaseModule,
     AngularFireStorageModule,
     AuthenticationService,
+    FCM,
     
     // AngularFireModule.initializeApp(environment.firebase),
     // AngularFireAuthModule,

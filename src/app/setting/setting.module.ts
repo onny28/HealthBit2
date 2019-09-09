@@ -24,3 +24,7 @@ const routes: Routes = [
   declarations: [SettingPage]
 })
 export class SettingPageModule {}
+
+
+
+
