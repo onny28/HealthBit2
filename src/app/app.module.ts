@@ -18,6 +18,12 @@ import { AngularFirestoreModule} from '@angular/fire/firestore'
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AuthenticationService } from './services/authentication.service'
 import { FirebaseService } from './firebase.service';
+import { FCM } from '@ionic-native/fcm/ngx';
+
+
+
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -34,6 +40,7 @@ import { FirebaseService } from './firebase.service';
     AngularFireDatabaseModule,
     AngularFireStorageModule,
     AuthenticationService,
+    FCM,
     
     
   ],
