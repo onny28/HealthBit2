@@ -7,8 +7,8 @@ export interface Recipe {
   id?: string,
   name: string,
   category: string,
-  ingredients: string,
-  steps: string
+  steps: string,
+  ingredient: string;
 }
 
 @Injectable({
@@ -16,43 +16,15 @@ export interface Recipe {
 })
 export class RecipeService {
 
-  // constructor(public firestore: AngularFirestore){
-  // }
-
-  // createRecipe(
-  //   foodName: string,
-  //   Category: string,
-  //   Ingredients: string,
-  //   Steps: string
-  // ): Promise<void> {
-  //   const id = this.firestore.createId();
-
-  //   return this.firestore.doc('Recipes/${id}').set({
-  //     id,
-  //     foodName,
-  //     Category,
-  //     Ingredients,
-  //     Steps,
-  //   });
-  // }
-
-  // getRecipeList(): AngularFirestoreCollection<Recipe>{
-  //   return this.firestore.collection('Recipes');
-  // }
-
-  // getRecipeDetail(recipeId: string): AngularFirestoreDocument<Recipe>{
-  //   return this.firestore.collection('Recipes').doc(recipeId);
-  // }
-
   private recipes: Observable<Recipe[]>;
   private recipeCollection: AngularFirestoreCollection<Recipe>;
-
+  
   constructor(private afs: AngularFirestore) { 
-    this.recipeCollection =this.afs.collection<Recipe>('recipes');
+    this.recipeCollection =this.afs.collection<Recipe>('recipes/');
     this.recipes = this.recipeCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
-          const data = a.payload.doc.data();
+          const data = a.payload.doc.data() as Recipe;
           const id = a.payload.doc.id;
           return { id, ...data};
         });
@@ -77,28 +49,32 @@ export class RecipeService {
   }
 
   updateRecipe(recipe: Recipe): Promise<void>{
-   return this.recipeCollection.doc(recipe.id).update({name: recipe.name, category: recipe.category, ingredients: recipe.ingredients, steps: recipe.steps});
+   return this.recipeCollection.doc(recipe.id).update({name: recipe.name, category: recipe.category, ingredient: recipe.ingredient, steps: recipe.steps});
   }
 
   deleteRecipe(id: string): Promise<void> {
     return this.recipeCollection.doc(id).delete();
   }
-
-  // constructor( private firestore: AngularFirestore) {}
   
-  //  create_NewRecipe(record) {
-  //    return this.firestore.collection('Recipes').add(record);
-  //  }
+ 
 
-  //  read_Recipes(){
-  //    return this.firestore.collection('Recipes').snapshotChanges();
-  //  }
+ 
 
-  //  update_Recipes(recordID, record){
-  //    this.firestore.doc('Recipes/' + recordID).update(record);
-  //  }
+//   addIngredient(recipe: Recipe): {
+//     return this.recipeCollection.add(recipe + )
+//   }
 
-  //  delete_Recipes(record_id){
-  //    this.firestore.doc('Recipes/' + record_id).delete();
-  //  }
+//     addIngredients(){
+//     if(this.ingredientList.length > 0){
+//       let ingredient = this.ingredientList;
+//       this.ingredientList.push(ingredient);
+
+//       this.ingredientOp = "";
+//     }
+//   }
+
+//   deleteIngredients(index){
+// this.ingredientOp.splice(index, 1);
+//   }
+// }
 }

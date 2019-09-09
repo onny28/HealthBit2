@@ -14,33 +14,36 @@ export class ViewrecipepagePage implements OnInit {
   recipe: Recipe = {
     name: '',
     category: '',
-    ingredients: '',
+    ingredient: '',
     steps:'',
   };
 
+ 
 
   @ViewChild('slides', {static: false}) slider: IonSlides;
 
   segment = 0;
+  
+
  
   constructor(private activatedRoute: ActivatedRoute,  private recipeService: RecipeService,
     private toastCtrl: ToastController, private router: Router) { }
 
-  ngOnInit() {}
-  
-  ionViewWillEnter(){
+  ngOnInit() {
     let id= this.activatedRoute.snapshot.paramMap.get('id');
     if(id) {
-      this.recipeService.getRecipe(id).subscribe(recipe =>{
-        this.recipe = recipe;
+      this.recipeService.getRecipe(id).subscribe((recipe) =>{
+        this.recipe = recipe; 
+        console.log(this.recipe);
       });
     }
   }
 
+
   // adding recipe
   addRecipe(){
     this.recipeService.addRecipe(this.recipe).then(() => {
-      this.router.navigateByUrl('/recipes');
+      this.router.navigateByUrl('/createingredients');
       this.showToast('recipe added to feed');
     }, err => {
       this.showToast('There is an error adding the recipe :(');
@@ -66,6 +69,29 @@ export class ViewrecipepagePage implements OnInit {
         this.showToast('there was a problem updating your recipes :(');
     });
   }
+
+//   db.collection("recipes").get()
+//   .then(function(querySnapshot) {
+//     querySnapshot.forEach(function(doc) {
+//       // doc.data() is never undefined for query doc snapshots
+//       console.log(doc.id, " => ", doc.data());
+//   });
+// });
+
+  
+//   addIngredients(){
+//     if(this.ingredientList.length > 0){
+//       let ingredient = this.ingredientList;
+//       this.ingredientList.push(ingredient);
+
+//       this.ingredientName = "";
+//     }
+//   }
+
+//   deleteIngredients(index){
+// this.ingredientList.splice(index, 1);
+//   }
+
 
   showToast(msg){
     this.toastCtrl.create({

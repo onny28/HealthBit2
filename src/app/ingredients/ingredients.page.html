@@ -3,7 +3,7 @@
      <ion-buttons slot="start">
             <ion-back-button defaultHref="/recipes"></ion-back-button>
           </ion-buttons>
-    <ion-title>ingredients</ion-title>
+          <ion-title>recipe name</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -23,10 +23,10 @@
       
          <ion-slides #slides (ionSlideDidChange)="slideChanged()" scrollbar="true">
           <ion-slide>
-          <ion-list>
-              <ion-item class="font">
-                ingredients
-                <ion-button color="warning" slot="end" class="font">Add to cart</ion-button>
+          <ion-list  >
+              <ion-item *ngFor="let item of ingredients" class="font">
+                {{item.Name}}
+                <ion-button (click)="addToCart(ingredients)" color="warning" slot="end" class="font">Add to cart</ion-button>
               </ion-item>
             </ion-list>
           </ion-slide>
