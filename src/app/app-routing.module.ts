@@ -27,7 +27,6 @@ const routes: Routes = [
   { path: 'ingredients', loadChildren: './ingredients/ingredients.module#IngredientsPageModule' },
   { path: 'createingredients', loadChildren: './createingredients/createingredients.module#CreateingredientsPageModule' },
   { path: 'createingredients/:id', loadChildren: './createingredients/createingredients.module#CreateingredientsPageModule' },
-
   { path: 'locationdetail', loadChildren: './locationdetail/locationdetail.module#LocationdetailPageModule' },
   { path: 'locationdetail/:id', loadChildren: './locationdetail/locationdetail.module#LocationdetailPageModule' },
 
