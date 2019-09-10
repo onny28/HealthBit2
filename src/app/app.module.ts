@@ -40,14 +40,13 @@ import { FCM } from '@ionic-native/fcm/ngx';
     AngularFireDatabaseModule,
     AngularFireStorageModule,
     AuthenticationService,
-    FCM,
-    
     
   ],
   providers: [
     StatusBar,
     SplashScreen,
     FirebaseService,
+    FCM,
     
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
