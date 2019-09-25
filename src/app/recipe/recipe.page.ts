@@ -7,7 +7,6 @@ import { AngularFireDatabase } from '@angular/fire/database';
 
 
 
-
 @Component({
   selector: 'app-recipe',
   templateUrl: './recipe.page.html',
@@ -21,6 +20,7 @@ export class RecipePage implements OnInit {
   // category: string;
   
   private recipes: Observable<Recipe[]>;
+  public searchTerm: string = "";
   // private recipes: any[]
   // recipeAux: any[]
   // name
@@ -30,7 +30,12 @@ export class RecipePage implements OnInit {
   
   ngOnInit(){
      this.recipes = this.recipeService.getRecipes();
+    //  this.setFilteredItems();
   }
+  
+  // setFilteredItems(){
+  //   this.recipes = this.recipeService.filterItems(this.searchTerm);
+  // }
 
 //   filter(event){
 //     const search= event.target.value
