@@ -43,14 +43,17 @@
 
       <div padding>
         <ion-button class="font" size="large" expand="block" type="submit"  [disabled]="!validations_form.valid" (click)="login()">Sign In</ion-button>
+        <!-- <ion-spinner name="bubbles" *ngIf="loading"></ion-spinner> -->
       </div>
 
       <div text-center>
         <p class="font">No account? <a (click)="goToRegisterPage()">REGISTER</a></p>
+        <a (click)="forgetPassword()">Forget Password?</a>
       </div>
     </ion-col>
   </ion-row>
 </ion-grid>
+
 
 <!-- <ion-grid> 
     <ion-row justify-content-center>
