@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 // import { RecipeService } from "../recipe.service";
 import { RecipeService, Recipe} from '../recipe.service';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireDatabase } from '@angular/fire/database';
+
 
 
 
@@ -18,12 +21,36 @@ export class RecipePage implements OnInit {
   // category: string;
   
   private recipes: Observable<Recipe[]>;
+  // private recipes: any[]
+  // recipeAux: any[]
+  // name
+  // selectedName
 
   constructor(private recipeService: RecipeService){}
   
   ngOnInit(){
-    this.recipes = this.recipeService.getRecipes();
+     this.recipes = this.recipeService.getRecipes();
   }
+
+//   filter(event){
+//     const search= event.target.value
+//     console.log('')
+//     if(search && search.trim() != '') {
+//       console.log('')
+      
+//       this.initializeListSearch();
+//       console.log(this.recipes)
+//       this.recipes = this.recipeAux.filter(name => {
+//         return name.name.toLowerCase().indexOf(search.toLowerCase()) > -1;
+//     });
+//   } else {
+//     this.recipes;
+//   }
+// }
+
+// initializeListSearch(){
+//   this.af.collection('recipes').valueChanges()
+// }
   
 }
 //  constructor(private recipeService: RecipeService ) {}

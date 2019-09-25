@@ -18,7 +18,7 @@ export class RecipeService {
 
   private recipes: Observable<Recipe[]>;
   private recipeCollection: AngularFirestoreCollection<Recipe>;
-  
+
   constructor(private afs: AngularFirestore) { 
     this.recipeCollection =this.afs.collection<Recipe>('recipes/');
     this.recipes = this.recipeCollection.snapshotChanges().pipe(
@@ -34,7 +34,7 @@ export class RecipeService {
   getRecipes(): Observable<Recipe[]> {
     return this.recipes;
   }
-  
+
   getRecipe(id: string): Observable<Recipe> {
     return this.recipeCollection.doc<Recipe>(id).valueChanges().pipe(
       take(1),
@@ -55,10 +55,13 @@ export class RecipeService {
   deleteRecipe(id: string): Promise<void> {
     return this.recipeCollection.doc(id).delete();
   }
-  
- 
 
- 
+  // filterItems(searchTerm) {
+  //   return this.recipes.filter(recipe => {
+  //     return recipe.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+  //   });
+  // }
+  
 
 //   addIngredient(recipe: Recipe): {
 //     return this.recipeCollection.add(recipe + )
