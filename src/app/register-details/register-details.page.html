@@ -16,8 +16,7 @@
           <div padding>
 
             <ion-item>
-              <ion-label class="font" position="floating">Username</ion-label>
-              <ion-input class="font" type="text" [(ngModel)]="username" formControlName="username" required></ion-input>
+              <ion-label class="font" Strong><strong>Email: {{userEmail}}</strong></ion-label>
             </ion-item>
             
             <div class="error-messages">
@@ -46,9 +45,9 @@
             </div>
 
 
-            <ion-item>
+            <!-- <ion-item>
               <ion-label class="font" position="floating">Date of Birth</ion-label>
-              <ion-input class="font" type="text" [(ngModel)]="dob" formControlName="dob" required></ion-input>
+              <ion-input class="font"  type="Date" [(ngModel)]="dob" formControlName="dob" required></ion-input>
             </ion-item>
             <div class="error-messages">
               <ng-container *ngFor="let error of error_messages.dob">
@@ -57,11 +56,25 @@
                   {{error.message}}
                 </div>
               </ng-container>
+            </div> -->
+
+            <ion-item>
+              <ion-label class="font" position="floating">Age</ion-label>
+              <ion-input class="font"  type="number" [(ngModel)]="age" formControlName="age" required></ion-input>
+            </ion-item>
+            <div class="error-messages">
+              <ng-container *ngFor="let error of error_messages.age">
+                <div class="error-messages"
+                  *ngIf="registerForm.get('age').hasError(error.type) && (registerForm.get('age').dirty || registerForm.get('age').touched)">
+                  {{error.message}}
+                </div>
+              </ng-container>
             </div>
+
 
             <ion-item>
               <ion-label class="font" position="floating">Weight</ion-label>
-              <ion-input class="font" type="number" [(ngModel)]="weight" formControlName="weight" required></ion-input>
+              <ion-input class="font" type="number" [(ngModel)]="weight" formControlName="weight"  required></ion-input>
             </ion-item>
             <div class="error-messages">
               <ng-container *ngFor="let error of error_messages.weight">
@@ -74,7 +87,7 @@
 
             <ion-item>
               <ion-label class="font" position="floating">Height</ion-label>
-              <ion-input class="font" type="number" [(ngModel)]="height" formControlName="height" required></ion-input>
+              <ion-input class="font" type="number" [(ngModel)]="height" formControlName="height"  required></ion-input>
             </ion-item>
             <div class="error-messages">
               <ng-container *ngFor="let error of error_messages.height">

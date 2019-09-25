@@ -8,7 +8,10 @@
 </ion-header>
 
 <ion-content>
-    <ion-searchbar animated></ion-searchbar>
+    <ion-searchbar
+    showcancelbutton=""
+    (ioninput)="filterList($event)">
+  </ion-searchbar>
         <ion-fab vertical="bottom" horizontal="end" slot="fixed" color="warning">
           <ion-fab-button color="warning" routerLink="/recipe">
             <ion-icon name="add"></ion-icon>
