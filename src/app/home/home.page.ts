@@ -1,22 +1,32 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
-// import { AuthenticationService } from '../services/authentication.service'
 import { FirebaseService } from '../firebase.service';
-import { RecipeService, Recipe } from 'app/recipe.service';
-import { Observable } from 'rxjs';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
- 
+  user: any;
 
   constructor(
     private navCtrl: NavController,
-    // private authService: AuthenticationService
-    private firebaseService: FirebaseService, private recipeService: RecipeService
+    private firebaseService: FirebaseService,
   ) {}
+  
+  ngOnInit() {
+  var user = firebase.auth().currentUser;
+
+    if (user) {
+      // User is signed in.
+    } else {
+      // No user is signed in.
+      this.navCtrl.navigateBack('/login');
+    }
+  }
 
 
   logout(){

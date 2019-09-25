@@ -32,7 +32,7 @@ export class FirebaseService {
   }
 
   read_Users() {
-    return this.firestore.collection('UserDetails').snapshotChanges().pipe();
+    return this.firestore.collection('UserDetails').snapshotChanges();
   }
 
   update_User(recordID, record) {
@@ -57,10 +57,8 @@ export class FirebaseService {
     })
   }
 
-
-
-
-
-  
+  userDetails(){
+    return firebase.auth().currentUser;
+  }
 
 }
