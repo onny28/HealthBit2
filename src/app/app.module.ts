@@ -14,14 +14,11 @@ import firebaseConfig from './firebase';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth'
-import { AngularFirestoreModule} from '@angular/fire/firestore'
+import { AngularFirestoreModule, FirestoreSettingsToken} from '@angular/fire/firestore'
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AuthenticationService } from './services/authentication.service'
 import { FirebaseService } from './firebase.service';
 import { FCM } from '@ionic-native/fcm/ngx';
-
-
-
 
 
 @NgModule({
@@ -34,6 +31,7 @@ import { FCM } from '@ionic-native/fcm/ngx';
     IonicModule.forRoot(), 
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFireModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
@@ -49,6 +47,7 @@ import { FCM } from '@ionic-native/fcm/ngx';
     FCM,
     
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    , { provide: FirestoreSettingsToken, useValue: {} }
   ],
   
   bootstrap: [AppComponent]

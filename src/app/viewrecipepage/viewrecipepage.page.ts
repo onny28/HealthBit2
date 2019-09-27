@@ -14,31 +14,30 @@ export class ViewrecipepagePage implements OnInit {
   recipe: Recipe = {
     name: '',
     category: '',
-    ingredient: '',
     steps:'',
+    ingredient: ''
   };
 
- 
 
   @ViewChild('slides', {static: false}) slider: IonSlides;
 
   segment = 0;
   
 
- 
   constructor(private activatedRoute: ActivatedRoute,  private recipeService: RecipeService,
     private toastCtrl: ToastController, private router: Router) { }
 
   ngOnInit() {
+  }
+
+  ionViewWillEnter(){
     let id= this.activatedRoute.snapshot.paramMap.get('id');
-    if(id) {
-      this.recipeService.getRecipe(id).subscribe((recipe) =>{
+    if (id) {
+      this.recipeService.getRecipe(id).subscribe(recipe =>{
         this.recipe = recipe; 
-        console.log(this.recipe);
       });
     }
   }
-
 
   // adding recipe
   addRecipe(){

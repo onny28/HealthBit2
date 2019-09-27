@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-// import { RecipeService } from "../recipe.service";
 import { RecipeService, Recipe} from '../recipe.service';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { AngularFireDatabase } from '@angular/fire/database';
+
+// import { RecipeService } from "../recipe.service";
+// import { AngularFirestore } from '@angular/fire/firestore';
+// import { AngularFireDatabase } from '@angular/fire/database';
 
 
 
@@ -13,26 +14,17 @@ import { AngularFireDatabase } from '@angular/fire/database';
   styleUrls: ['./recipe.page.scss'],
 })
 export class RecipePage implements OnInit {
-
-
-  // recipes: any;
-  // foodName: string;
-  // category: string;
   
   private recipes: Observable<Recipe[]>;
-  public searchTerm: string = "";
-  // private recipes: any[]
-  // recipeAux: any[]
-  // name
-  // selectedName
 
-  constructor(private recipeService: RecipeService){}
-  
-  ngOnInit(){
-     this.recipes = this.recipeService.getRecipes();
-    //  this.setFilteredItems();
+  constructor(private recipeService: RecipeService){
   }
   
+  ngOnInit() {
+    this.recipes = this.recipeService.getRecipes();
+    //  this.setFilteredItems();
+  }
+}
   // setFilteredItems(){
   //   this.recipes = this.recipeService.filterItems(this.searchTerm);
   // }
@@ -57,7 +49,7 @@ export class RecipePage implements OnInit {
 //   this.af.collection('recipes').valueChanges()
 // }
   
-}
+
 //  constructor(private recipeService: RecipeService ) {}
  
 //   ngOnInit() {

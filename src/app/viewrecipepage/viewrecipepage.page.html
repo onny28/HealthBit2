@@ -17,14 +17,14 @@
             <ion-input required type="text" placeholder="category" [(ngModel)]="recipe.category"></ion-input>
           </ion-item>
 
-          
+          <ion-item>
+            <ion-textarea placeholder="steps" [(ngModel)]="recipe.steps" rows="7"></ion-textarea>
+          </ion-item>
+
           <!-- <ion-item>
             <ion-textarea placeholder="ingredients" [(ngModel)]="recipe.ingredient" rows="7"></ion-textarea>
           </ion-item>  -->
 
-            <ion-item>
-                <ion-textarea placeholder="steps" [(ngModel)]="recipe.steps" rows="7"></ion-textarea>
-              </ion-item>
             </ion-content>
           
     <ion-footer *ngIf ="!recipe.id">
@@ -50,5 +50,5 @@
                   </ion-button>
                 </ion-col>
               </ion-row>
-          </ion-footer> 
+        </ion-footer> 
       

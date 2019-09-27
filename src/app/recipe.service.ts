@@ -8,7 +8,7 @@ export interface Recipe {
   name: string,
   category: string,
   steps: string,
-  ingredient: string;
+  ingredient: string
 }
 
 @Injectable({
@@ -20,17 +20,18 @@ export class RecipeService {
   private recipeCollection: AngularFirestoreCollection<Recipe>;
 
   constructor(private afs: AngularFirestore) { 
-    this.recipeCollection =this.afs.collection<Recipe>('recipes/');
+    this.recipeCollection =this.afs.collection<Recipe>('recipes');
     this.recipes = this.recipeCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
-          const data = a.payload.doc.data() as Recipe;
+          const data = a.payload.doc.data();
           const id = a.payload.doc.id;
-          return { id, ...data};
+          return { id, ...data };
         });
       })
     );
   }
+
   getRecipes(): Observable<Recipe[]> {
     return this.recipes;
   }
@@ -40,7 +41,8 @@ export class RecipeService {
       take(1),
       map(recipe => {
         recipe.id = id;
-        return recipe })
+        return recipe 
+      })
     );
   }
 

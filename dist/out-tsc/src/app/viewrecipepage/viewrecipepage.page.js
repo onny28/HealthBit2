@@ -10,15 +10,16 @@ let ViewrecipepagePage = class ViewrecipepagePage {
         this.toastCtrl = toastCtrl;
         this.router = router;
         this.recipe = {
-            id: '',
             name: '',
             category: '',
-            ingredient: '',
             steps: '',
+            ingredient: ''
         };
         this.segment = 0;
     }
     ngOnInit() {
+    }
+    ionViewWillEnter() {
         let id = this.activatedRoute.snapshot.paramMap.get('id');
         if (id) {
             this.recipeService.getRecipe(id).subscribe(recipe => {
@@ -29,7 +30,7 @@ let ViewrecipepagePage = class ViewrecipepagePage {
     // adding recipe
     addRecipe() {
         this.recipeService.addRecipe(this.recipe).then(() => {
-            this.router.navigateByUrl('/recipes');
+            this.router.navigateByUrl('/createingredients');
             this.showToast('recipe added to feed');
         }, err => {
             this.showToast('There is an error adding the recipe :(');

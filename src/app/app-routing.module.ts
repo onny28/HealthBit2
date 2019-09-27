@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'display', loadChildren: './display/display.module#DisplayPageModule' },
   { path: 'bmi', loadChildren: './bmi/bmi.module#BmiPageModule' },
   { path: 'healthyplan', loadChildren: './healthyplan/healthyplan.module#HealthyplanPageModule' },
-  { path: 'viewrecipepage', loadChildren: './viewrecipepage/viewrecipepage.module#ViewrecipepagePageModule' },
+  // { path: 'viewrecipepage', loadChildren: './viewrecipepage/viewrecipepage.module#ViewrecipepagePageModule' },
   { path: 'register-details/:id', loadChildren: './register-details/register-details.module#RegisterDetailsPageModule' },
   { path: 'place-detail', loadChildren: './place-detail/place-detail.module#PlaceDetailPageModule' },
   { path: 'recipe', loadChildren: './viewrecipepage/viewrecipepage.module#ViewrecipepagePageModule' },
@@ -29,6 +29,18 @@ const routes: Routes = [
   { path: 'createingredients/:id', loadChildren: './createingredients/createingredients.module#CreateingredientsPageModule' },
   { path: 'locationdetail', loadChildren: './locationdetail/locationdetail.module#LocationdetailPageModule' },
   { path: 'locationdetail/:id', loadChildren: './locationdetail/locationdetail.module#LocationdetailPageModule' },
+  { path: 'idea-list', loadChildren: './pages/idea-list/idea-list.module#IdeaListPageModule' },
+  { path: 'idea', loadChildren: './pages/idea-details/idea-details.module#IdeaDetailsPageModule' },
+  { path: 'idea/:id', loadChildren: './pages/idea-details/idea-details.module#IdeaDetailsPageModule' },
+  { path: 'resepi', loadChildren: './pages/resepi/resepi.module#ResepiPageModule' },
+  { path: 'resepi-list', loadChildren: './pages/resepi-list/resepi-list.module#ResepiListPageModule' },
+  { path: 'resepis', loadChildren: './pages/resepi-details/resepi-details.module#ResepiDetailsPageModule' },
+  { path: 'resepis/:id', loadChildren: './pages/resepi-details/resepi-details.module#ResepiDetailsPageModule' },  { path: 'adminpage', loadChildren: './adminpage/adminpage.module#AdminpagePageModule' },
+  { path: 'adminrecipe', loadChildren: './adminrecipe/adminrecipe.module#AdminrecipePageModule' },
+  { path: 'adminuser', loadChildren: './adminuser/adminuser.module#AdminuserPageModule' },
+
+
+   
 
  ];
 

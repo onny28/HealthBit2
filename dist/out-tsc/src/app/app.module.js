@@ -11,9 +11,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { environment } from '../environments/environment';
 import firebaseConfig from './firebase';
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AuthenticationService } from './services/authentication.service';
+import { FirebaseService } from './firebase.service';
+import { FCM } from '@ionic-native/fcm/ngx';
 let AppModule = class AppModule {
 };
 AppModule = tslib_1.__decorate([
@@ -28,13 +32,18 @@ AppModule = tslib_1.__decorate([
             AppRoutingModule,
             AngularFireModule.initializeApp(firebaseConfig),
             AngularFireModule.initializeApp(environment.firebase),
+            AngularFireModule,
             AngularFireAuthModule,
             AngularFirestoreModule,
-            AngularFireDatabaseModule
+            AngularFireDatabaseModule,
+            AngularFireStorageModule,
+            AuthenticationService,
         ],
         providers: [
             StatusBar,
             SplashScreen,
+            FirebaseService,
+            FCM,
             { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
             { provide: FirestoreSettingsToken, useValue: {} }
         ],
