@@ -24,6 +24,7 @@ export class RegisterDetailsPage implements OnInit {
   weight: number;
   height: number;
   userEmail: string;
+  userID: string;
 
   registerForm: FormGroup;
   isActiveToggleTextPassword: Boolean = true;
@@ -55,6 +56,9 @@ export class RegisterDetailsPage implements OnInit {
       { type: 'pattern', message: 'Height must in Centimeter(cm) format' }
     ],
   }
+  
+ 
+ 
  
   
 
@@ -94,30 +98,10 @@ export class RegisterDetailsPage implements OnInit {
   }
 
   ngOnInit() {
-    
-      
     var user = firebase.auth().currentUser;
-
     if (user) {
       // User is signed in.
-      // this.firebaseService.read_Users().subscribe(data => {
- 
-      //   this.user = data.map(e => {
-      //     return {
-      //       id: e.payload.doc.id,
-      //       isEdit: false,
-      //       username: e.payload.doc.data()['username'],
-      //       gender: e.payload.doc.data()['gender'],
-      //       dob: e.payload.doc.data()['dob'],
-      //       age: e.payload.doc.data()['age'],
-      //       weight: e.payload.doc.data()['weight'],
-      //       heigth: e.payload.doc.data()['height'],
-           
-      //     };
-      //   })
-      //   console.log(this.user);
-   
-      // });
+      this.userID = this.firebaseService.userDetails().uid;
       this.userEmail = this.firebaseService.userDetails().email;
 
     } else {
@@ -141,12 +125,16 @@ export class RegisterDetailsPage implements OnInit {
 
   CreateRecord() {
     let record = {};
+    record['authid'] = this.userID;
+    record['email'] = this.userEmail;
     record['gender'] = this.gender;
     // record['dob'] = this.dob;
     record['age'] = this.age;
     record['weight'] = this.weight;
     record['height'] = this.height;
     this.firebaseService.create_NewUser(record).then(resp => {
+      this.userID;
+      this.userEmail;
       this.gender = "";
       // this.dob = undefined;
       this.age = undefined;
