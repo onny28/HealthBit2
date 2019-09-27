@@ -21,7 +21,7 @@
       
                 <ion-item>
                   <ion-label><strong>Gender</strong></ion-label>
-                  <ion-select placeholder="Select One" [(ngModel)]="item.UpdateGender">
+                  <ion-select placeholder="Select One" [(ngModel)]="data.gender">
                       <ion-select-option value="Female">Female</ion-select-option>
                       <ion-select-option value="Male">Male</ion-select-option>
                     </ion-select>
@@ -34,17 +34,17 @@
 
                 <ion-item>
                   <ion-label><strong>Age</strong></ion-label>
-                  <ion-input type="number" [(ngModel)]="item.UpdateAge"></ion-input>
+                  <ion-input type="number" [(ngModel)]="data.age"></ion-input>
                 </ion-item>
           
                 <ion-item>
                   <ion-label><strong>Weight</strong></ion-label>
-                  <ion-input type="number" [(ngModel)]="item.UpdateWeight"></ion-input>
+                  <ion-input type="number" [(ngModel)]="data.weight"></ion-input>
                 </ion-item>
           
                 <ion-item>
                   <ion-label><strong>Height</strong></ion-label>
-                  <ion-input type="number" [(ngModel)]="item.UpdateHeight"></ion-input>
+                  <ion-input type="number" [(ngModel)]="idata.height"></ion-input>
                 </ion-item>
           </ion-content>
     
