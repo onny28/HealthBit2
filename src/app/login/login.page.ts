@@ -145,6 +145,16 @@ async loaderDismiss(){
       //   toast.present();
       // })
         const res = await this.afAuth.auth.signInWithEmailAndPassword(email, password)
+        this.afAuth.auth.currentUser.sendEmailVerification().then(function() {
+          const alert = this.alertController.create({
+            header: 'Verify User',
+            message: 'Check Your Email to verify your Email Address',
+            buttons: ['OK']
+          });
+      
+          alert.present();
+        });
+        
         this.loaderDismiss();
         console.log("You have successfully login")
         this.navCtrl.navigateForward('/tabs/tabs/home')

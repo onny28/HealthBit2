@@ -31,11 +31,13 @@ export class RecordPage implements OnInit {
     private formBuilder: FormBuilder,
     private firebaseService: FirebaseService,
     private alertCtrl: AlertController,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private router: Router,
     public loadingCtrl: LoadingController,
     private navCtrl: NavController,
-  ) { }
+  ) { 
+  
+  }
 
   
   ngOnInit() {
@@ -44,12 +46,12 @@ export class RecordPage implements OnInit {
 
     if (user) {
       // User is signed in.
-      this.firebaseService.read_Users().subscribe(data => {
+      this.firebaseService.read_Users(data => {
  
         this.user = data.map(e => {
           return {
             id: e.payload.doc.id,
-            isEdit: false,
+            // isEdit: false,
             gender: e.payload.doc.data()['gender'],
             // dob: e.payload.doc.data()['dob'],
             age: e.payload.doc.data()['age'],
@@ -82,7 +84,7 @@ export class RecordPage implements OnInit {
   }
 
   EditRecord(record) {
-    record.isEdit = true;
+    // record.isEdit = true;
     record.EditGender = record.gender;
     // record.EditDOB = record.dob;
     record.EditAge = record.age;
@@ -90,26 +92,25 @@ export class RecordPage implements OnInit {
     record.EditHeight = record.height;
   }
  
-  // UpdateRecord(recordRow) {
-  //   let record = {};
-  //   record['gender'] = recordRow.EditGender;
-  //   // record['dob'] = recordRow.EditDOB;
-  //   record['age'] = recordRow.EditAge;
-  //   record['weight'] = recordRow.EditWeight;
-  //   record['height'] = recordRow.EditHeight;
-  //   this.firebaseService.update_User(recordRow.id, record);
-  //   recordRow.isEdit = false;
-  // }
-
-  UpdateRecord(record, recordRow) {
-   record.isUpdate = true;
-   record.UpdateGender = record.gender;
-   record.UpdateAge = record.age;
-   record.UpdateWeight = record.weight;
-   record.UpdateHeight = record.height;
+  UpdateRecord(recordRow) {
+    let record = {};
+    record['gender'] = recordRow.EditGender;
+    // record['dob'] = recordRow.EditDOB;
+    record['age'] = recordRow.EditAge;
+    record['weight'] = recordRow.EditWeight;
+    record['height'] = recordRow.EditHeight;
     this.firebaseService.update_User(recordRow.id, record);
     // recordRow.isEdit = false;
   }
+
+  // UpdateRecord(record, recordRow) {
+  //  record.UpdateGender = record.gender;
+  //  record.UpdateAge = record.age;
+  //  record.UpdateWeight = record.weight;
+  //  record.UpdateHeight = record.height;
+  //   this.firebaseService.update_User(recordRow.id, record);
+  //   // recordRow.isEdit = false;
+  // }
 
 
 
