@@ -8,7 +8,59 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<!-- <ion-content>
     <ion-button [routerLink]="['/adminuser']">USER</ion-button>
     <ion-button [routerLink]="['/adminrecipe']">RECIPES</ion-button>
-</ion-content>
+</ion-content> -->
+
+<ion-content>
+<ion-toolbar color="light">
+    <ion-segment (ionChange)="segmentChanged()" [(ngModel)]="segment" color="warning">
+      <ion-segment-button value="0" class="font">
+        USER
+        <ion-icon name="person" ></ion-icon>
+      </ion-segment-button>
+
+      <ion-segment-button value="1" class="font">
+        RECIPES
+        <ion-icon name="list-box"></ion-icon>
+      </ion-segment-button>
+
+      <ion-segment-button value="2" class="font">
+          LOCATION
+          <ion-icon name="pin"></ion-icon>
+        </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
+  <ion-slides #slides (ionSlideDidChange)="slideChanged()" scrollbar="true">
+      <ion-slide>
+          <ion-item>
+            USER
+          </ion-item> 
+      </ion-slide>
+
+      <ion-slide>
+          <ion-item>
+            <ion-button slot="end">
+              <ion-icon name="add"></ion-icon>
+              ADD RECIPE
+            </ion-button>
+      
+            <ion-list>
+
+            </ion-list>
+          </ion-item>
+      </ion-slide>
+
+      <ion-slide>
+          <ion-item>
+              LOCATION
+          </ion-item>
+      </ion-slide>
+
+    </ion-slides>
+
+
+    
+  </ion-content>
