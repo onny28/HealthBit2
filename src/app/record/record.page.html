@@ -7,7 +7,95 @@
   </ion-toolbar>
 </ion-header>
 
+<!-- <ion-content padding>
+    <ion-card *ngIf="data">
+      <ion-card-header>
+        <ion-card-title>
+            {{userEmail}}
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+            {{ data.gender }}
+        </ion-item>
+        <ion-item>
+            {{ data.age}}
+        </ion-item>
+        <ion-item>
+            {{ data.weight }}
+        </ion-item>
+        <ion-item>
+            {{ data.height }}
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+    </ion-content> -->
+<!-- <ion-content>
+  <ion-card *ngFor="let item of user">
+    <span *ngIf="!item.isEdit; else elseBlock">
+      <ion-card-header>
+        <ion-card-title>{{item.gender}} of {{item.age}} years</ion-card-title>
+        <ion-card-subtitle>From: {{item.weight}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+ 
+        <ion-button shape="round" color="secondary" size="small" (click)="EditRecord(item)">
+          <ion-icon size="small" slot="icon-only" name="create"></ion-icon>
+ 
+        </ion-button>
+        <ion-button shape="round" color="danger" size="small" (click)="RemoveRecord(item.id)">
+          <ion-icon size="small" slot="icon-only" name="trash"></ion-icon>
+ 
+        </ion-button>
+      </ion-card-content>
+    </span>
+    <ng-template #elseBlock>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                Edit
+              </ion-col>
+              <ion-col>
+                <ion-button fill="clear" color="medium" size="small" (click)="item.isEdit = false">
+                  Cancel
+                </ion-button>
+              </ion-col>
+              <ion-col>
+                <ion-button fill="outline" color="success" size="small" (click)="UpdateRecord(item)">
+                  Update
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label><strong>Gender</strong></ion-label>
+          <ion-select placeholder="Select One" [(ngModel)]="item.EditGender">
+          <ion-select-option value="Female">Female</ion-select-option>
+          <ion-select-option value="Male">Male</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Age</strong></ion-label>
+          <ion-input type="number" [(ngModel)]="item.EditAge"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Weight</strong></ion-label>
+          <ion-input type="number" [(ngModel)]="item.EditWeight"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Height</strong></ion-label>
+          <ion-input type="number" [(ngModel)]="item.EditHeight"></ion-input>
+        </ion-item>
+      </ion-card-content>
+    </ng-template>
+  </ion-card>
 
+</ion-content> -->
         
               <ion-button fill="outline" color="success" size="small" (click)="UpdateRecord(item)">
                Update
@@ -21,88 +109,34 @@
       
                 <ion-item>
                   <ion-label><strong>Gender</strong></ion-label>
-                  <ion-select placeholder="Select One" [(ngModel)]="data.gender">
+                  <ion-select placeholder="Select One" [(ngModel)]="gender">
                       <ion-select-option value="Female">Female</ion-select-option>
                       <ion-select-option value="Male">Male</ion-select-option>
                     </ion-select>
-                </ion-item>
+                </ion-item> 
                   
-                <!-- <ion-item>
+                <!-- <!-- <ion-item>
                   <ion-label><strong>Date of Birth</strong></ion-label>
                   <ion-input type="text" [(ngModel)]="item.EditDOB"></ion-input>
                 </ion-item> -->
-
+<!--  -->
                 <ion-item>
                   <ion-label><strong>Age</strong></ion-label>
-                  <ion-input type="number" [(ngModel)]="data.age"></ion-input>
+                  <ion-input type="number" [(ngModel)]="age"></ion-input>
                 </ion-item>
           
                 <ion-item>
                   <ion-label><strong>Weight</strong></ion-label>
-                  <ion-input type="number" [(ngModel)]="data.weight"></ion-input>
+                  <ion-input type="number" [(ngModel)]="weight"></ion-input>
                 </ion-item>
           
                 <ion-item>
                   <ion-label><strong>Height</strong></ion-label>
-                  <ion-input type="number" [(ngModel)]="idata.height"></ion-input>
+                  <ion-input type="number" [(ngModel)]="height"></ion-input>
                 </ion-item>
           </ion-content>
     
      
 
 
-  <!-- <ion-card *ngFor="let item of users">
-    <ion-card-header>
-      <ion-card-title>
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-              Edit
-            </ion-col>
-            <ion-col>
-              <ion-button fill="clear" color="medium" size="small" (click)="item.isEdit = false">
-                Cancel
-              </ion-button>
-            </ion-col>
-            <ion-col>
-              <ion-button fill="outline" color="success" size="small" (click)="UpdateRecord(item)">
-                Update
-              </ion-button>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-
-      <ion-item>
-        <ion-label><strong>Email</strong></ion-label>
-        <ion-input> {{item.email}} </ion-input>
-      </ion-item>
-
-
-      <ion-item>
-        <ion-label><strong>Gender</strong></ion-label>
-        <ion-select placeholder="Select One" [(ngModel)]="item.EditGender">
-            <ion-select-option value="Female">Female</ion-select-option>
-            <ion-select-option value="Male">Male</ion-select-option>
-          </ion-select>
-      </ion-item>
-        
-      <ion-item>
-        <ion-label><strong>Date of Birth</strong></ion-label>
-        <ion-input type="text" [(ngModel)]="item.EditDOB"> {{item.dob}}</ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label><strong>Weight</strong></ion-label>
-        <ion-input type="number" [(ngModel)]="item.EditWeight">  </ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label><strong>Height</strong></ion-label>
-        <ion-input type="number" [(ngModel)]="item.EditHeight">  </ion-input>
-      </ion-item>
-
-    </ion-card-content>
-  </ion-card> -->
+ 

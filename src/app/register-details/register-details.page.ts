@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../firebase.service';
 import { NavController, LoadingController } from '@ionic/angular'
 import { Validators, FormBuilder, FormGroup, FormControl, PatternValidator } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
@@ -16,7 +16,7 @@ import 'firebase/firestore';
 export class RegisterDetailsPage implements OnInit {
   // date = new Date();  
   // maxDate = (new Date().getFullYear()).toString()+"/0"+(new Date().getMonth()+1).toString()+"/"+(new Date().getDate()).toString();
-  
+
   // user: any;
   gender: string;
   // dob: Date;
@@ -25,7 +25,7 @@ export class RegisterDetailsPage implements OnInit {
   height: number;
   userEmail: string;
   userID: string;
-
+  id: string;
   registerForm: FormGroup;
   isActiveToggleTextPassword: Boolean = true;
 
@@ -56,6 +56,7 @@ export class RegisterDetailsPage implements OnInit {
       { type: 'pattern', message: 'Height must in Centimeter(cm) format' }
     ],
   }
+ 
   
  
  
@@ -98,6 +99,8 @@ export class RegisterDetailsPage implements OnInit {
   }
 
   ngOnInit() {
+    this.id = this.route.snapshot.paramMap.get("id");
+    
     var user = firebase.auth().currentUser;
     if (user) {
       // User is signed in.
@@ -145,7 +148,6 @@ export class RegisterDetailsPage implements OnInit {
     })
       .catch(error => {
         console.dir(error);
-
       });
   }
 
