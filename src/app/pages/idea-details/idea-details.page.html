@@ -47,8 +47,9 @@
   <ion-slides #slides (ionSlideDidChange)="slideChanged()" scrollbar="true">
       <ion-slide>
           <ion-item class="font">
-            <ion-input class="font" [(ngModel)]="idea.ingredients">
-            </ion-input>
+            <ion-list [(ngModel)]="idea.ingredients"></ion-list>
+            <!-- <ion-input class="font" [(ngModel)]="idea.ingredients">
+            </ion-input> -->
             <ion-button (click)="addToCart(ingredients)" color="warning" slot="end" class="font">Add to cart</ion-button>
           </ion-item> 
       </ion-slide>
