@@ -5,7 +5,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
-  { path: 'record', loadChildren: './record/record.module#RecordPageModule' },
+  { path: 'record/:id', loadChildren: './record/record.module#RecordPageModule' },
   { path: 'grocerylist', loadChildren: './grocerylist/grocerylist.module#GrocerylistPageModule' },
   { path: 'setting', loadChildren: './setting/setting.module#SettingPageModule' },
   { path: 'places', loadChildren: './places/places.module#PlacesPageModule' },
@@ -39,9 +39,6 @@ const routes: Routes = [
   { path: 'adminpage', loadChildren: './adminpage/adminpage.module#AdminpagePageModule' },
   { path: 'adminrecipe', loadChildren: './adminrecipe/adminrecipe.module#AdminrecipePageModule' },
   { path: 'adminuser', loadChildren: './adminuser/adminuser.module#AdminuserPageModule' },
-  { path: 'details', loadChildren: './pages/todo-details/todo-details.module#TodoDetailsPageModule' },
-  { path: 'details/:id', loadChildren: './pages/todo-details/todo-details.module#TodoDetailsPageModule' },  { path: 'cart', loadChildren: './cart/cart.module#CartPageModule' },
-
 
 
    

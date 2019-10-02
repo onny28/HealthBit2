@@ -85,9 +85,6 @@ export class LoginPage implements OnInit {
 
   async ngOnInit() {
     
-    // this.loading = await this.loadingController.create({
-    //   message: 'Connecting ...'
-    // });
   }
   async loadingFunction(loadmsg) {
     this.loader = await this.loadingCtrl.create({
@@ -99,10 +96,6 @@ export class LoginPage implements OnInit {
 async loaderDismiss(){
    this.loading = await this.loadingCtrl.dismiss();
 }
-
-  // async presentLoading(loading) {
-  //   await loading.present();
-  // }
   
 
   //For show/hide user password
@@ -114,7 +107,6 @@ async loaderDismiss(){
   }
 
   async login() {
-    // await this.loading.present();
 
     if(this.email=="") {
       const toast = await this.toastController.create({
@@ -145,15 +137,6 @@ async loaderDismiss(){
       //   toast.present();
       // })
         const res = await this.afAuth.auth.signInWithEmailAndPassword(email, password)
-        this.afAuth.auth.currentUser.sendEmailVerification().then(function() {
-          const alert = this.alertController.create({
-            header: 'Verify User',
-            message: 'Check Your Email to verify your Email Address',
-            buttons: ['OK']
-          });
-      
-          alert.present();
-        });
         
         this.loaderDismiss();
         console.log("You have successfully login")
@@ -191,15 +174,44 @@ async loaderDismiss(){
   }
 
   async forgetPassword(){
-    this.afAuth.auth.sendPasswordResetEmail(this.email)
-    const alert = await this.alertController.create({
-      header: 'Reset Password',
-      message: 'Check Your Email to Reset Your Password',
-      buttons: ['OK']
-    });
-
-    await alert.present();
+    try{
+      if(this.email=="") {
+        const toast = await this.toastController.create({
+          message: 'Email can not be empty',
+          duration: 2000
+        });
+        toast.present();
+      }else{
+        this.afAuth.auth.sendPasswordResetEmail(this.email)
+        const alert = await this.alertController.create({
+          header: 'Reset Password',
+          message: 'Check Your Email Account to Reset Your Password',
+          buttons: ['OK']
+        });
+    
+        await alert.present();
+      }
+    }catch(error){
+      if(error.code == "auth/invalid-email"){
+        console.log("email invalid")
+        const toast = await this.toastController.create({
+          message: 'email invalid',
+          duration: 2000
+        });
+        toast.present();
+      }
+      if(error.code == "auth/user-not-found"){
+        console.log("Account did not exists")
+        const toast = await this.toastController.create({
+          message: 'Account did not exists"',
+          duration: 2000
+        });
+        toast.present();
+      }
+    }
+    
   }
 
+    
 
 }
