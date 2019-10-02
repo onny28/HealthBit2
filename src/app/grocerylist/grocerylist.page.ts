@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from '../cart.service';
+
+import { IdeaService } from 'app/services/idea.service';
+import { CartService } from 'app/cart.service';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @Component({
   selector: 'app-grocerylist',
@@ -7,14 +10,27 @@ import { CartService } from '../cart.service';
   styleUrls: ['./grocerylist.page.scss'],
 })
 export class GrocerylistPage implements OnInit {
-
+ 
+  message: string = null;
+  subject: string = null;
+  file: string = null;
+  link: string = null;
   items;
+  constructor(private cartService: CartService, private socialSharing: SocialSharing) { 
+    
+  }
 
-  constructor(private cartService: CartService) { 
-    this.items = this.cartService.getItems();
+  share(){
+    this.socialSharing.share(this.message, this.subject, this.file, this.link)
+    .then(() =>{
+
+    }).catch(()=>{
+
+    });
   }
 
   ngOnInit() {
+    this.items = this.cartService.getItems();
   }
 
 }

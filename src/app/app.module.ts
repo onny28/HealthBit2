@@ -19,6 +19,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AuthenticationService } from './services/authentication.service'
 import { FirebaseService } from './firebase.service';
 import { FCM } from '@ionic-native/fcm/ngx';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { FCM } from '@ionic-native/fcm/ngx';
     SplashScreen,
     FirebaseService,
     FCM,
+    SocialSharing,
     
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
     , { provide: FirestoreSettingsToken, useValue: {} }

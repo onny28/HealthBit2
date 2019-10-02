@@ -35,9 +35,13 @@ const routes: Routes = [
   { path: 'resepi', loadChildren: './pages/resepi/resepi.module#ResepiPageModule' },
   { path: 'resepi-list', loadChildren: './pages/resepi-list/resepi-list.module#ResepiListPageModule' },
   { path: 'resepis', loadChildren: './pages/resepi-details/resepi-details.module#ResepiDetailsPageModule' },
-  { path: 'resepis/:id', loadChildren: './pages/resepi-details/resepi-details.module#ResepiDetailsPageModule' },  { path: 'adminpage', loadChildren: './adminpage/adminpage.module#AdminpagePageModule' },
+  { path: 'resepis/:id', loadChildren: './pages/resepi-details/resepi-details.module#ResepiDetailsPageModule' },
+  { path: 'adminpage', loadChildren: './adminpage/adminpage.module#AdminpagePageModule' },
   { path: 'adminrecipe', loadChildren: './adminrecipe/adminrecipe.module#AdminrecipePageModule' },
   { path: 'adminuser', loadChildren: './adminuser/adminuser.module#AdminuserPageModule' },
+  { path: 'details', loadChildren: './pages/todo-details/todo-details.module#TodoDetailsPageModule' },
+  { path: 'details/:id', loadChildren: './pages/todo-details/todo-details.module#TodoDetailsPageModule' },  { path: 'cart', loadChildren: './cart/cart.module#CartPageModule' },
+
 
 
    
