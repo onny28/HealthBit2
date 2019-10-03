@@ -17,7 +17,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 
 export class FirebaseService {
 
-
+  Info;
 
   constructor(
     public firestore: AngularFirestore,
@@ -32,25 +32,29 @@ export class FirebaseService {
     var db = firebase.firestore();
     var user = firebase.auth().currentUser;
     var authID = user.uid;
-    db.collection("users").where("authid", "==", authID)
-      .get()
-      .then(function (querySnapshot) {
-        querySnapshot.forEach(function (doc) {
-          console.log(doc.id, " => ", doc.data());
-          let data = doc.data();
-          return{
-            gender : data.gender,
-            age : data.age,
-            weight : data.weight,
-            height : data.height,
-          }
+    // this.Info = db.collection("users").where("authid", "==", authID)
+    //   .get()
+    //   .then(function (querySnapshot) {
+    //     querySnapshot.forEach(function (doc) {
+    //       console.log(doc.id, " => ", doc.data());
+    //       let data = doc.data();
+    //       return {
+    //         id: doc.id,
+    //         isEdit: false,
+    //         gender: doc.data()['gender'],
+    //         age: doc.data()['age'],
+    //         weight: doc.data()['weight'],
+    //         height: doc.data()['height'],
+    //       }
          
-          });
-      })
-      .catch(function (error) {
-        console.log("Error getting documents: ", error);
-      });
-    // return this.firestore.collection('users').doc(`${this.id}`).get();
+    //     });
+
+    //   })
+    // return this.Info;
+    // catch(function (error) {
+    //   console.log("Error getting documents: ", error);
+    // });
+    return this.firestore.collection('users', ref => ref.where("authid", "==", authID)).snapshotChanges();
   }
 
   update_User(userID, record) {

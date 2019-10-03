@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth'
 import { auth } from 'firebase/app'
 import {NavController, ToastController, AlertController} from '@ionic/angular'
 import { LoadingController } from '@ionic/angular';
+import {RegisterDetailsPage} from '../register-details/register-details.page'
 
 
 import * as firebase from 'firebase/app';
@@ -10,8 +11,7 @@ import 'firebase/auth';
 import 'firebase/firestore';
 
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-// import { AuthenticationService } from '../services/authentication.service'
-import { User } from  'firebase';
+
 
 @Component({
   selector: 'app-login',
@@ -19,9 +19,7 @@ import { User } from  'firebase';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  // authRef: AngularFireAuth;
-
-  // loading: any;
+  
   email: string = ""
   password: string = ""
   errorMessage: string = '';
@@ -49,7 +47,6 @@ export class LoginPage implements OnInit {
     public afAuth: AngularFireAuth, 
     private navCtrl: NavController, 
     private toastController: ToastController,
-    // private authService: AuthenticationService,
     private formBuilder: FormBuilder,
     public loadingCtrl: LoadingController,
     public alertController: AlertController
@@ -84,6 +81,8 @@ export class LoginPage implements OnInit {
     }
 
   async ngOnInit() {
+
+    
     
   }
   async loadingFunction(loadmsg) {
@@ -124,6 +123,7 @@ async loaderDismiss(){
 
     const { email, password } = this
     this.loadingFunction('Loading...')
+    
     try {
       // return this.afAuth.auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
       // .then( async () => {

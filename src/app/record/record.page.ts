@@ -6,7 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NavController, ModalController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import * as firebase from 'firebase/app';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, docChanges } from '@angular/fire/firestore';
+
 
 @Component({
   selector: 'app-record',
@@ -17,16 +18,20 @@ export class RecordPage implements OnInit {
 
   signupForm: FormGroup;
  
-  id: string;
+  aid: string;
   user: any;
   gender: string;
   dob: Date;
   age: number;
   weight: number;
   height: number;
-  item: any;
   userEmail: string;
- 
+  bmi: number;
+  userInfo;
+  loader: HTMLIonLoadingElement;
+  loading: boolean;
+  bmiValue: number;
+  bmiMessage: string;
 
   constructor(
     public toastCtrl: ToastController,
@@ -44,40 +49,51 @@ export class RecordPage implements OnInit {
 
   
   ngOnInit() {
-  
-    this.id = this.activatedRoute.snapshot.paramMap.get("id");
+    
+    // this.aid = this.activatedRoute.snapshot.paramMap.get("id");
 
     var user = firebase.auth().currentUser;
 
-
     if (user) {
       // User is signed in.
-      return this.firebaseService.read_Users();
-      // this.firebaseService.read_Users().subscribe(data => {
- 
-      //   this.user = data.map(e => {
-      //     return {
-      //       id: e.payload.doc.id,
-      //       isEdit: false,
-      //       gender: e.payload.doc.data()['gender'],
-      //       // dob: e.payload.doc.data()['dob'],
-      //       age: e.payload.doc.data()['age'],
-      //       weight: e.payload.doc.data()['weight'],
-      //       height: e.payload.doc.data()['height'],
-           
-      //     };
-      //   })
-      //   console.log(this.user);
-   
-      // });
+      this.loadingFunction('Loading...')
       this.userEmail = this.firebaseService.userDetails().email;
+      try{
+        this.firebaseService.read_Users().subscribe(data =>{
+          this.user = data.map(e => {
+            return {
+              id: e.payload.doc.id,
+              isEdit: false,
+              role: e.payload.doc.data()['role'],
+              gender: e.payload.doc.data()['gender'],
+              age: e.payload.doc.data()['age'],
+              weight: e.payload.doc.data()['weight'],
+              height: e.payload.doc.data()['height'],
+            };
+          })
+          this.loaderDismiss();
+          console.log(this.user);
+        })
+      }catch{
 
+      }
     } else {
       // No user is signed in.
       this.navCtrl.navigateBack('/login');
     }
    
   }
+
+  async loadingFunction(loadmsg) {
+    this.loader = await this.loadingCtrl.create({
+      message: loadmsg
+    })
+    await this.loader.present();
+ }
+
+async loaderDismiss(){
+   this.loading = await this.loadingCtrl.dismiss();
+}
   
   logout(){
     this.firebaseService.logoutUser()
@@ -93,11 +109,11 @@ export class RecordPage implements OnInit {
   EditRecord(record) {
     record.isEdit = true;
     record.EditGender = record.gender;
-    // record.EditDOB = record.dob;
     record.EditAge = record.age;
     record.EditWeight = record.weight;
     record.EditHeight = record.height;
   }
+
  
   UpdateRecord(recordRow) {
     let record = {};
@@ -110,5 +126,35 @@ export class RecordPage implements OnInit {
     recordRow.isEdit = false;
   }
 
+  calculateBMI(data) {
+    let record = {};
+    record['weight'] = data.weight;
+    record['height'] = data.height;
+    if (data.weight > 0 && data.height > 0) {
+      let finalBmi = data.weight / (data.height / 100 * data.height / 100);
+      this.bmiValue = parseFloat(finalBmi.toFixed(2));
+      this.setBMIMessage();
+    }
+  }
+  
+  // setBMIMessage will set the text message based on the value of BMI
+  private setBMIMessage() {
+    if (this.bmiValue < 18.5) {
+      this.bmiMessage = "Underweight"
+    }
+  
+    if (this.bmiValue > 18.5 && this.bmiValue < 25) {
+      this.bmiMessage = "Normal"
+    }
+  
+    if (this.bmiValue > 25 && this.bmiValue < 30) {
+      this.bmiMessage = "Overweight"
+    }
+  
+    if (this.bmiValue > 30) {
+      this.bmiMessage = "Obese"
+    }
+  }
 
 }
+ 
