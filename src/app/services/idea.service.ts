@@ -19,6 +19,7 @@ export class IdeaService {
   private ideas: Observable<Idea[]>;
   private ideaCollection: AngularFirestoreCollection<Idea>;
  
+ 
   constructor(private afs: AngularFirestore) {
     this.ideaCollection = this.afs.collection<Idea>('recipe');
     this.ideas = this.ideaCollection.snapshotChanges().pipe(
@@ -32,8 +33,6 @@ export class IdeaService {
     );
   }
  
-  
-
   getIdeas(): Observable<Idea[]> {
     return this.ideas;
   }
@@ -59,4 +58,7 @@ export class IdeaService {
   deleteIdea(id: string): Promise<void> {
     return this.ideaCollection.doc(id).delete();
   }
+
+  
+  
 }

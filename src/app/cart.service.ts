@@ -1,15 +1,27 @@
 import { Injectable } from '@angular/core';
-
+import { Idea } from './services/idea.service';
+ 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  items =[];
+  
+  items = [];
 
-  constructor() { }
+  idea: Idea = {
+    name: '',
+    notes: '',
+    steps:'',
+    ingredients: ['']
+    };
 
-  addToCart(ingredients){
-    this.items.push(ingredients);
+   
+    private cart = [];
+
+  constructor() {}
+
+  addToCart(ingredient){
+    this.items.push(ingredient);
   }
 
   getItems(){
@@ -20,4 +32,6 @@ export class CartService {
     this.items = [];
     return this.items;
   }
+
+ 
 }

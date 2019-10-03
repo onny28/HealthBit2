@@ -36,10 +36,10 @@ export class IngredientsPage implements OnInit {
     });
   }
 
-    addToCart(ingredients){
-      window.alert('Added to Grocery list!');
-      this.cartService.addToCart(ingredients)
-    };
+    // addToCart(ingredients){
+    //   window.alert('Added to Grocery list!');
+    //   this.cartService.addToCart(ingredients)
+    // };
 
    
     // this.recipes = this.recipeService.getRecipes();

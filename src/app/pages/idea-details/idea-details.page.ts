@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IdeaService, Idea } from '../../services/idea.service';
 import { ToastController, IonSlides, NavController } from '@ionic/angular';
+import { CartService } from 'app/cart.service';
  
 @Component({
   selector: 'app-idea-details',
@@ -21,12 +22,17 @@ export class IdeaDetailsPage implements OnInit {
 
  @ViewChild('slides', {static: false}) slider: IonSlides;
      segment = 0;
+     cart =[];
+
  
+   
   constructor(private activatedRoute: ActivatedRoute, private ideaService: IdeaService,
-    private toastCtrl: ToastController, private router: Router, public navCtrl: NavController) { }
+    private toastCtrl: ToastController, private router: Router, public navCtrl: NavController, private cartService: CartService) { }
  
-  ngOnInit() { }
- 
+  ngOnInit() {
+    
+   }
+
   ionViewWillEnter() {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
     if (id) {
@@ -70,6 +76,14 @@ export class IdeaDetailsPage implements OnInit {
     }
   }
 
+  addToCart(ingredient){
+    this.showToast('added to cart!');
+    // let ingredients = this.idea.ingredients;
+    this.idea.ingredients = ingredient;
+    this.cartService.addToCart(ingredient);
+  }
+
+ 
   showToast(msg) {
     this.toastCtrl.create({
       message: msg,
