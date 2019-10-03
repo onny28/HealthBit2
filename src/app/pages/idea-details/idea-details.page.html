@@ -1,14 +1,21 @@
-<ion-header>
+<ion-header *ngIf ="!idea.id">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/idea-list"></ion-back-button>
     </ion-buttons>
-    <ion-title>
-      <ion-input class="font" [(ngModel)]="idea.name"></ion-input>
-    </ion-title>
   </ion-toolbar>
 </ion-header>
 
+<ion-header *ngIf ="idea.id">
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="/idea-list"></ion-back-button>
+        </ion-buttons>
+      <ion-button slot="end" fill="clear" [routerLink]="['/tabs/tabs/grocerylist']">
+        <ion-icon name="cart" ></ion-icon>
+      </ion-button>
+  </ion-toolbar>
+</ion-header>
  
 <ion-content padding *ngIf="idea.id">
   <ion-item>
@@ -22,7 +29,6 @@
         <ion-select-option value="vegetarian">vegetarian</ion-select-option>
         <ion-select-option value="non-vegetarian">non-vegetarian</ion-select-option>
     </ion-select>	
-    <!-- <ion-input [(ngModel)]="idea.notes"></ion-input> -->
   </ion-item>
 
 <!-- <ion-item>
@@ -49,6 +55,11 @@
           <ion-item class="font">
             <ion-input class="font" [(ngModel)]="idea.ingredients">
             </ion-input>
+            <!-- <ion-list>
+                <ion-item *ngFor="let ingredient of ingredients">
+                    {{ingredient}}
+                  </ion-item>
+            </ion-list> -->
             <ion-button (click)="addToCart()" color="warning" slot="end" class="font">Add to cart</ion-button>
           </ion-item> 
       </ion-slide>
@@ -63,7 +74,7 @@
     <ion-button color="warning" class="font">VIDEO</ion-button>
   </ion-content>
 
-<ion-footer *ngIf="idea.id">
+<!-- <ion-footer *ngIf="idea.id">
     <ion-row no-padding text-center>
         <ion-col size="6">
           <ion-button class="font"  expand="block" fill="outline" color="danger" (click)="deleteIdea()">
@@ -78,7 +89,7 @@
           </ion-button>
         </ion-col>
       </ion-row>
-    </ion-footer>
+    </ion-footer> -->
 
 
 <ion-content padding *ngIf="!idea.id">
@@ -126,6 +137,24 @@
         </ion-button>
       </ion-toolbar>
     </ion-footer>
+
+    <ion-footer *ngIf="idea.id">
+        <ion-row no-padding text-center>
+            <ion-col size="6">
+              <ion-button class="font"  expand="block" fill="outline" color="danger" (click)="deleteIdea()">
+                <ion-icon name="trash" slot="start"></ion-icon>
+                DELETE
+              </ion-button>
+            </ion-col>
+            <ion-col size="6">
+              <ion-button class="font" expand="block" fill="solid" color="success" (click)="updateIdea()">
+                <ion-icon name="save" slot="start"></ion-icon>
+                EDIT
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-footer>
+    
 
 
 

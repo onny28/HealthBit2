@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentReference } from '@angular/fire/firestore';
-import { map, take } from 'rxjs/operators';
+import { map, take, filter} from 'rxjs/operators';
 import { Observable } from 'rxjs';
  
 export interface Idea {
@@ -8,7 +8,7 @@ export interface Idea {
   name: string,
   notes: string,
   steps: string,
-  ingredients: Array<String>
+  ingredients: Array<String>;
 }
 
 @Injectable({
@@ -58,6 +58,12 @@ export class IdeaService {
   deleteIdea(id: string): Promise<void> {
     return this.ideaCollection.doc(id).delete();
   }
+
+  // filterIdeas(searchTerm){
+  //   return this.ideas.filter(idea => {
+  //     return idea.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+  //   })
+  // }
 
   
   

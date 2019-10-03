@@ -11,17 +11,17 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 })
 export class GrocerylistPage implements OnInit {
  
-  message: string = null;
-  subject: string = null;
-  file: string = null;
-  link: string = null;
+  text = 'check this out'
+  url = 'https://'
   items;
   constructor(private cartService: CartService, private socialSharing: SocialSharing) { 
     
   }
 
-  share(){
-    this.socialSharing.share(this.message, this.subject, this.file, this.link)
+
+
+  shareWhatsapp(){
+    this.socialSharing.shareViaWhatsApp(this.text, null, this.url)
     .then(() =>{
 
     }).catch(()=>{

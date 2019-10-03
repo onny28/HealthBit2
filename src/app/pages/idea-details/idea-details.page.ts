@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IdeaService, Idea } from '../../services/idea.service';
 import { ToastController, IonSlides, NavController } from '@ionic/angular';
 import { CartService } from 'app/cart.service';
+
  
 @Component({
   selector: 'app-idea-details',
@@ -15,7 +16,7 @@ export class IdeaDetailsPage implements OnInit {
     name: '',
     notes: '',
     steps:'',
-    ingredients: ['']
+    ingredients: [],
     };
 
     ingredients =[];
@@ -38,6 +39,7 @@ export class IdeaDetailsPage implements OnInit {
     if (id) {
       this.ideaService.getIdea(id).subscribe(idea => {
         this.idea = idea;
+        this.idea.ingredients = this.ingredients;
       });
     }
   }
@@ -72,7 +74,7 @@ export class IdeaDetailsPage implements OnInit {
   if (this.idea.ingredients.length > 0) {
     let task = this.idea.ingredients;
     this.ingredients.push(task);
-    this.idea.ingredients = this.ingredients;
+    // this.idea.ingredients = [];
     }
   }
 
@@ -82,6 +84,8 @@ export class IdeaDetailsPage implements OnInit {
     this.idea.ingredients = ingredient;
     this.cartService.addToCart(ingredient);
   }
+
+  
 
  
   showToast(msg) {
