@@ -127,9 +127,7 @@ async loaderDismiss(){
   }
 
   calculateBMI(data) {
-    let record = {};
-    record['weight'] = data.weight;
-    record['height'] = data.height;
+    data.weight
     if (data.weight > 0 && data.height > 0) {
       let finalBmi = data.weight / (data.height / 100 * data.height / 100);
       this.bmiValue = parseFloat(finalBmi.toFixed(2));
