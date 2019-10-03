@@ -42,6 +42,10 @@
             <ion-label><strong>Height</strong></ion-label>
             <ion-input>{{item.height}}</ion-input>
         </ion-item>
+        <div padding>
+            <ion-button (click)="calculateBMI()">Calculate BMI</ion-button>
+             <p style="color:red">User need to click on the 'CALCULATE BMI' once they update their weight and height to get new BMI calculation.</p> 
+          </div>
     </ion-card-content>
   </span>
   <ng-template #elseBlock>
@@ -104,16 +108,13 @@
         </ion-item>
       </ion-card-content>
       </ng-template>
-      <div padding>
-          <ion-button (click)="calculateBMI()">Calculate BMI</ion-button>
-        </div>
-      <ion-card *ngIf="calculateBMI">
+      <ion-card *ngIf="bmiValue">
           <ion-card-header>
             BMI Calculation
           </ion-card-header>
           <ion-card-content>
             <p>Person: Weight {{item.weight}} kg, Height {{item.height}} cm</p>
-            <p>BMI: {{bmiValue}}</p>
+            <p>BMI: {{bmiValue}} </p>
             <p><strong>You are {{bmiMessage}}</strong></p>
           </ion-card-content>
         </ion-card>

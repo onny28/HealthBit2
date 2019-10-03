@@ -20,11 +20,11 @@ export class RecordPage implements OnInit {
  
   aid: string;
   user: any;
-  gender: string;
-  dob: Date;
-  age: number;
-  weight: number;
-  height: number;
+  // gender: string;
+  // dob: Date;
+  // age: number;
+  // weight: number;
+  // height: number;
   userEmail: string;
   bmi: number;
   userInfo;
@@ -126,13 +126,13 @@ async loaderDismiss(){
     recordRow.isEdit = false;
   }
 
-  calculateBMI(data) {
-    data.weight
-    if (data.weight > 0 && data.height > 0) {
-      let finalBmi = data.weight / (data.height / 100 * data.height / 100);
-      this.bmiValue = parseFloat(finalBmi.toFixed(2));
-      this.setBMIMessage();
-    }
+  calculateBMI() {
+    let data = this.user["0"];
+      if (data.weight > 0 && data.height > 0) {
+        let finalBmi = data.weight  / (data.height / 100 * data.height / 100);
+        this.bmiValue = parseFloat(finalBmi.toFixed(2));
+        this.setBMIMessage();
+      }  
   }
   
   // setBMIMessage will set the text message based on the value of BMI
