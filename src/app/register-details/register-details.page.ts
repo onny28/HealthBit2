@@ -7,6 +7,11 @@ import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 
+// export interface roles{
+//   user: boolean;
+//   admin?: boolean;
+// }
+
 
 @Component({
   selector: 'app-register-details',
@@ -23,6 +28,7 @@ export class RegisterDetailsPage implements OnInit {
   age: number;
   weight: number;
   height: number;
+  role: string;
   userEmail: string;
   userID: string;
   id: string;
@@ -30,6 +36,9 @@ export class RegisterDetailsPage implements OnInit {
   isActiveToggleTextPassword: Boolean = true;
 
   error_messages = {
+    'role': [
+   
+    ],
     'gender': [
       { type: 'required', message: 'Gender is required' },
       { type: 'pattern', message: 'Enter male or female only' }
@@ -71,9 +80,11 @@ export class RegisterDetailsPage implements OnInit {
     public router: Router,
     public route: ActivatedRoute,
   ) { 
-    // console.log(this.maxDate)
 
     this.registerForm = this.formBuilder.group({
+      role: new FormControl('' , Validators.compose([
+
+      ])),
       gender: new FormControl('', Validators.compose([
         Validators.required,
         // Validators.pattern('^male$|^female$')
@@ -99,14 +110,16 @@ export class RegisterDetailsPage implements OnInit {
   }
 
   ngOnInit() {
+    
     this.id = this.route.snapshot.paramMap.get("id");
+    
     
     var user = firebase.auth().currentUser;
     if (user) {
       // User is signed in.
       this.userID = this.firebaseService.userDetails().uid;
       this.userEmail = this.firebaseService.userDetails().email;
-
+      this.role = "user";
     } else {
       // No user is signed in.
       this.navCtrl.navigateBack('/login');
@@ -130,6 +143,7 @@ export class RegisterDetailsPage implements OnInit {
     let record = {};
     record['authid'] = this.userID;
     record['email'] = this.userEmail;
+    record['role'] = this.role;
     record['gender'] = this.gender;
     // record['dob'] = this.dob;
     record['age'] = this.age;
@@ -138,6 +152,7 @@ export class RegisterDetailsPage implements OnInit {
     this.firebaseService.create_NewUser(record).then(resp => {
       this.userID;
       this.userEmail;
+      this.role;
       this.gender = "";
       // this.dob = undefined;
       this.age = undefined;
