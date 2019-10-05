@@ -28,7 +28,7 @@ export class FirebaseService {
     return this.firestore.collection('users').add(record);
   }
 
-  read_Users() {
+  read_User() {
     var db = firebase.firestore();
     var user = firebase.auth().currentUser;
     var authID = user.uid;
@@ -57,6 +57,10 @@ export class FirebaseService {
     return this.firestore.collection('users', ref => ref.where("authid", "==", authID)).snapshotChanges();
   }
 
+  listUsers(){
+    return this.firestore.collection('users').snapshotChanges();
+  }
+
   update_User(userID, record) {
     this.firestore.doc('users/' + userID).update(record);
   }
@@ -83,5 +87,22 @@ export class FirebaseService {
   userDetails() {
     return firebase.auth().currentUser;
   }
+  create_newRecipe(recipe) {
+    return this.firestore.collection('recipeN').add(recipe);
+  }
+
+  listRecipe(){
+    return this.firestore.collection('recipeN').snapshotChanges();
+  }
+
+  update_recipe(recipeID, recipe) {
+    this.firestore.doc('recipeN/' + recipeID).update(recipe);
+  }
+
+  delete_recipe(recipe_id) {
+    this.firestore.doc('recipeN/' + recipe_id).delete();
+  }
+
+
 
 }

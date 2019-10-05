@@ -39,7 +39,6 @@ export class IdeaDetailsPage implements OnInit {
     if (id) {
       this.ideaService.getIdea(id).subscribe(idea => {
         this.idea = idea;
-        this.idea.ingredients = this.ingredients;
       });
     }
   }

@@ -59,7 +59,7 @@ export class RecordPage implements OnInit {
       this.loadingFunction('Loading...')
       this.userEmail = this.firebaseService.userDetails().email;
       try{
-        this.firebaseService.read_Users().subscribe(data =>{
+        this.firebaseService.read_User().subscribe(data =>{
           this.user = data.map(e => {
             return {
               id: e.payload.doc.id,
@@ -108,6 +108,7 @@ async loaderDismiss(){
 
   EditRecord(record) {
     record.isEdit = true;
+    record.EditRole = record.role;
     record.EditGender = record.gender;
     record.EditAge = record.age;
     record.EditWeight = record.weight;
@@ -117,6 +118,7 @@ async loaderDismiss(){
  
   UpdateRecord(recordRow) {
     let record = {};
+    record['role'] = recordRow.EditRole;
     record['gender'] = recordRow.EditGender;
     // record['dob'] = recordRow.EditDOB;
     record['age'] = recordRow.EditAge;
