@@ -74,7 +74,7 @@ export class IdeaDetailsPage implements OnInit {
   if (this.idea.ingredients.length > 0) {
     let task = this.idea.ingredients;
     this.ingredients.push(task);
-    // this.idea.ingredients = [];
+    this.idea.ingredients = this.ingredients;
     }
   }
 
@@ -87,7 +87,6 @@ export class IdeaDetailsPage implements OnInit {
 
   
 
- 
   showToast(msg) {
     this.toastCtrl.create({
       message: msg,

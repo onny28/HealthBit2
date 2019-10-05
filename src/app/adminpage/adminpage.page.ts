@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
 import { Todo, TodoService } from '../services/todo.service';
+import { IdeaService, Idea } from 'app/services/idea.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-adminpage',
@@ -12,19 +14,31 @@ export class AdminpagePage implements OnInit {
   @ViewChild('slides', {static: false}) slider: IonSlides;
   segment = 0;
   
-  todos: Todo[];
+  // todos: Todo[];
  
-  constructor(private todoService: TodoService) { }
+  // constructor(private todoService: TodoService) { }
  
-  ngOnInit() {
-    this.todoService.getTodos().subscribe(res => {
-      this.todos = res;
-    });
+  // ngOnInit() {
+  //   this.todoService.getTodos().subscribe(res => {
+  //     this.todos = res;
+  //   });
+  // }
+ 
+  // remove(item) {
+  //   this.todoService.removeTodo(item.id);
+  // }
+  
+  private ideas: Observable<Idea[]>;
+  
+  constructor(private ideaService: IdeaService){
+
   }
- 
-  remove(item) {
-    this.todoService.removeTodo(item.id);
+
+  ngOnInit(){
+    this.ideas = this.ideaService.getIdeas();
   }
+
+  
 
    //slides
    async segmentChanged() {

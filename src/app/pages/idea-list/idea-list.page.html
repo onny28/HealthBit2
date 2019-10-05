@@ -8,18 +8,19 @@
 </ion-header>
  
 <ion-content>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button routerLink="/idea">
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+
   <ion-searchbar showcancelbutton="" (ioninput)="filterList($event)"></ion-searchbar>
   <!-- <ion-list>
     <ion-item *ngfor="let idea of ideaList">
       <ion-label>{{ idea.name }}</ion-label>
     </ion-item>
   </ion-list> -->
-
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button routerLink="/idea">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
 
   <ion-card class="font" *ngFor="let idea of (ideas | async)">
    

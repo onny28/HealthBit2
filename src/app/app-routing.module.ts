@@ -37,7 +37,8 @@ const routes: Routes = [
   { path: 'resepis', loadChildren: './pages/resepi-details/resepi-details.module#ResepiDetailsPageModule' },
   { path: 'resepis/:id', loadChildren: './pages/resepi-details/resepi-details.module#ResepiDetailsPageModule' },
   { path: 'adminpage', loadChildren: './adminpage/adminpage.module#AdminpagePageModule' },
-  { path: 'adminrecipe', loadChildren: './adminrecipe/adminrecipe.module#AdminrecipePageModule' },
+  { path: 'idea2', loadChildren: './adminrecipe/adminrecipe.module#AdminrecipePageModule' },
+  { path: 'idea2/:id', loadChildren: './adminrecipe/adminrecipe.module#AdminrecipePageModule' },
   { path: 'adminuser', loadChildren: './adminuser/adminuser.module#AdminuserPageModule' },
 
 

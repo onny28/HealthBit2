@@ -42,7 +42,24 @@
             <ion-label><strong>Height</strong></ion-label>
             <ion-input>{{item.height}}</ion-input>
         </ion-item>
-    </ion-card-content>
+      </ion-card-content>
+    </ion-card>
+
+        <div padding>
+            <ion-button (click)="calculateBMI()">Calculate BMI</ion-button>
+          </div>
+
+        <ion-card *ngIf="bmiValue">
+            <ion-card-header>
+              BMI Calculation
+            </ion-card-header>
+            <ion-card-content>
+              <p>Person: Weight {{item.weight}} kg, Height {{item.height}} cm</p>
+              <p>BMI: {{bmiValue}}</p>
+              <p><strong>You are {{bmiMessage}}</strong></p>
+            </ion-card-content>
+          </ion-card>
+
   </span>
   <ng-template #elseBlock>
     <ion-card-header>

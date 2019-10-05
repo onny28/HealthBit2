@@ -126,10 +126,9 @@ async loaderDismiss(){
     recordRow.isEdit = false;
   }
 
-  calculateBMI(data) {
-    data.weight
-    if (data.weight > 0 && data.height > 0) {
-      let finalBmi = data.weight / (data.height / 100 * data.height / 100);
+  calculateBMI() {
+    if (this.user.weight > 0 && this.user.height > 0) {
+      let finalBmi = this.user.weight / (this.user.height / 100 * this.user.height / 100);
       this.bmiValue = parseFloat(finalBmi.toFixed(2));
       this.setBMIMessage();
     }
