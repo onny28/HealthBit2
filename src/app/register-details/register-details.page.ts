@@ -19,8 +19,6 @@ import 'firebase/firestore';
   styleUrls: ['./register-details.page.scss'],
 })
 export class RegisterDetailsPage implements OnInit {
-  // date = new Date();  
-  // maxDate = (new Date().getFullYear()).toString()+"/0"+(new Date().getMonth()+1).toString()+"/"+(new Date().getDate()).toString();
 
   // user: any;
   gender: string;
@@ -125,10 +123,6 @@ export class RegisterDetailsPage implements OnInit {
       this.navCtrl.navigateBack('/login');
     }
   }
-
-  // dateChange(event){
-  //   console.log(event);
-  // }
 
   
   //For show/hide user password

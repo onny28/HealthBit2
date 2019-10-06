@@ -31,9 +31,11 @@ export class IdeaService {
         });
       })
     );
+    console.log(this.ideas);
   }
  
   getIdeas(): Observable<Idea[]> {
+    console.log(this.ideas);
     return this.ideas;
   }
  
@@ -45,6 +47,7 @@ export class IdeaService {
         return idea
       })
     );
+   
   }
  
   addIdea(idea: Idea): Promise<DocumentReference> {

@@ -17,6 +17,7 @@ private ideas: Observable<Idea[]>;
  
   ngOnInit() {
     this.ideas = this.ideaService.getIdeas();
+   
      
   //   this.firestore.collection('recipe').valueChanges()
   //   .subscribe(ideaList => {

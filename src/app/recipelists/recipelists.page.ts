@@ -31,7 +31,7 @@ export class RecipelistsPage implements OnInit {
     var user = firebase.auth().currentUser;
     if (user) {
       // User is signed in.
-      this.loadingFunction('Loading...')
+      // this.loadingFunction('Loading...')
       this.firebaseService.listRecipe().subscribe(data =>{
         this.recipe = data.map(e => {
           return {
@@ -45,7 +45,7 @@ export class RecipelistsPage implements OnInit {
           };
         })
       });
-        this.loaderDismiss();
+        // this.loaderDismiss();
         console.log(this.recipe);
       
     } else {
@@ -66,47 +66,30 @@ async loaderDismiss(){
  this.loading = await this.loadingCtrl.dismiss();
 }
 
-CreateRecipe() {
-  let recipe = {};
-  recipe['recipeName'] = this.recipeName;
-  recipe['category'] = this.category;
-  recipe['ingredient'] = this.ingredient;
-  recipe['steps'] = this.steps;
-  recipe['price'] = this.price;
-  this.firebaseService.create_newRecipe(recipe).then(resp => {
-    this.recipeName = "";
-    this.category = "";
-    this.ingredient = [""];
-    this.steps = "";
-    this.price = undefined;
-    console.log(resp);
-    // this.navCtrl.navigateForward('/tabs/tabs/home')
-  })
-    .catch(error => {
-      console.dir(error);
-    });
-}
 
 EditRecipe(recipe) {
-  record.isEdit = true;
-  record.EditRole = record.role;
-  record.EditGender = record.gender;
-  record.EditAge = record.age;
-  record.EditWeight = record.weight;
-  record.EditHeight = record.height;
+  recipe.isEdit = true;
+  recipe.EditRecipeName = recipe.recipeName;
+  recipe.EditCategory = recipe.category;
+  recipe.EditIngredient = recipe.ingredient;
+  recipe.EditSteps = recipe.steps;
+  recipe.EditPrice = recipe.price;
 }
 
 
-UpdateRecord(recordRow) {
-  let record = {};
-  record['role'] = recordRow.EditRole;
-  record['gender'] = recordRow.EditGender;
-  // record['dob'] = recordRow.EditDOB;
-  record['age'] = recordRow.EditAge;
-  record['weight'] = recordRow.EditWeight;
-  record['height'] = recordRow.EditHeight;
-  this.firebaseService.update_User(recordRow.id, record);
-  recordRow.isEdit = false;
+UpdateRecord(recipeRow) {
+  let recipe = {};
+  recipe['recipeName'] = recipeRow.EditRecipeName;
+  recipe['category'] = recipeRow.EditCategory;
+  recipe['ingredient'] = recipeRow.EditIngredient;
+  recipe['steps'] = recipeRow.EditSteps;
+  recipe['price'] = recipeRow.EditPrice;
+  this.firebaseService.update_User(recipeRow.id, recipe);
+  recipeRow.isEdit = false;
+}
+
+RemoveRecipe(rowID) {
+  this.firebaseService. delete_recipe(rowID);
 }
 }
 

@@ -39,6 +39,7 @@ const routes: Routes = [
   { path: 'adminpage', loadChildren: './adminpage/adminpage.module#AdminpagePageModule' },
   { path: 'adminrecipe', loadChildren: './adminrecipe/adminrecipe.module#AdminrecipePageModule' },
   { path: 'adminuser', loadChildren: './adminuser/adminuser.module#AdminuserPageModule' },  { path: 'recipelists', loadChildren: './recipelists/recipelists.module#RecipelistsPageModule' },
+  { path: 'create-recipe', loadChildren: './create-recipe/create-recipe.module#CreateRecipePageModule' },
 
 
 
