@@ -9,12 +9,15 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+//import { Geolocation } from '@ionic-native/geolocation/ngx';
+//import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
+
 import { environment } from '../environments/environment';
 import firebaseConfig from './firebase';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth'
-import { AngularFirestoreModule} from '@angular/fire/firestore'
+import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AuthenticationService } from './services/authentication.service'
 import { FirebaseService } from './firebase.service';
@@ -28,18 +31,10 @@ import { FCM } from '@ionic-native/fcm/ngx';
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
-    BrowserModule, 
-    FormsModule,
-    ReactiveFormsModule,
-    IonicModule.forRoot(), 
-    AppRoutingModule,
-    AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireModule,
-    AngularFireAuthModule,
-    AngularFirestoreModule,
-    AngularFireDatabaseModule,
-    AngularFireStorageModule,
-    AuthenticationService,
+    BrowserModule, FormsModule, ReactiveFormsModule, IonicModule.forRoot(), 
+    AppRoutingModule, AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule, AngularFireAuthModule, AngularFirestoreModule,
+    AngularFireDatabaseModule, AngularFireStorageModule, AuthenticationService,
     
   ],
   providers: [
@@ -47,8 +42,11 @@ import { FCM } from '@ionic-native/fcm/ngx';
     SplashScreen,
     FirebaseService,
     FCM,
+    //Geolocation,
+    //NativeGeocoder,
     
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    ,{ provide: FirestoreSettingsToken, useValue: {} }
   ],
   
   bootstrap: [AppComponent]

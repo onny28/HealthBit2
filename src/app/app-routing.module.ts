@@ -8,8 +8,6 @@ const routes: Routes = [
   { path: 'record', loadChildren: './record/record.module#RecordPageModule' },
   { path: 'grocerylist', loadChildren: './grocerylist/grocerylist.module#GrocerylistPageModule' },
   { path: 'setting', loadChildren: './setting/setting.module#SettingPageModule' },
-  { path: 'places', loadChildren: './places/places.module#PlacesPageModule' },
-  { path: 'places/:id', loadChildren: './places/places.module#PlacesPageModule' },
   { path: 'tabs', loadChildren: './tabs/tabs.module#TabsPageModule' },
   { path: 'recipes', loadChildren: './recipe/recipe.module#RecipePageModule' },
   { path: 'gender', loadChildren: './gender/gender.module#GenderPageModule' },
@@ -20,15 +18,19 @@ const routes: Routes = [
   { path: 'healthyplan', loadChildren: './healthyplan/healthyplan.module#HealthyplanPageModule' },
   { path: 'viewrecipepage', loadChildren: './viewrecipepage/viewrecipepage.module#ViewrecipepagePageModule' },
   { path: 'register-details/:id', loadChildren: './register-details/register-details.module#RegisterDetailsPageModule' },
-  { path: 'place-detail', loadChildren: './place-detail/place-detail.module#PlaceDetailPageModule' },
   { path: 'recipe', loadChildren: './viewrecipepage/viewrecipepage.module#ViewrecipepagePageModule' },
   { path: 'recipe/:id ', loadChildren: './viewrecipepage/viewrecipepage.module#ViewrecipepagePageModule' },
   { path: 'addrecipe', loadChildren: './addrecipe/addrecipe.module#AddrecipePageModule' },
   { path: 'ingredients', loadChildren: './ingredients/ingredients.module#IngredientsPageModule' },
   { path: 'createingredients', loadChildren: './createingredients/createingredients.module#CreateingredientsPageModule' },
   { path: 'createingredients/:id', loadChildren: './createingredients/createingredients.module#CreateingredientsPageModule' },
-  { path: 'locationdetail', loadChildren: './locationdetail/locationdetail.module#LocationdetailPageModule' },
-  { path: 'locationdetail/:id', loadChildren: './locationdetail/locationdetail.module#LocationdetailPageModule' },
+  { path: 'idea-list', loadChildren: './idea-list/idea-list.module#IdeaListPageModule' },
+  { path: 'idea', loadChildren: './idea-detail/idea-detail.module#IdeaDetailPageModule' },
+  { path: 'idea:/id', loadChildren: './idea-detail/idea-detail.module#IdeaDetailPageModule' },  { path: 'map', loadChildren: './pages/map/map.module#MapPageModule' },
+
+
+  
+
 
  ];
 
