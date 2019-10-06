@@ -4,6 +4,7 @@ import { IdeaService, Idea } from '../../services/idea.service';
 import { ToastController, IonSlides, NavController } from '@ionic/angular';
 import { CartService } from 'app/cart.service';
 
+
  
 @Component({
   selector: 'app-idea-details',
@@ -16,17 +17,24 @@ export class IdeaDetailsPage implements OnInit {
     name: '',
     notes: '',
     steps:'',
-    ingredients: [],
+    ingredients: [ {
+      "name" : "testing",
+      "price" : null, }
+    ]
     };
 
-    ingredients =[];
+    // ingredients: {
+    //   "title" : "testing title",
+    //   "ingredients": [
+    //     { "ingredients" : "" }
+    //   ]
+    // }
 
  @ViewChild('slides', {static: false}) slider: IonSlides;
      segment = 0;
      cart =[];
 
  
-   
   constructor(private activatedRoute: ActivatedRoute, private ideaService: IdeaService,
     private toastCtrl: ToastController, private router: Router, public navCtrl: NavController, private cartService: CartService) { }
  
@@ -39,7 +47,6 @@ export class IdeaDetailsPage implements OnInit {
     if (id) {
       this.ideaService.getIdea(id).subscribe(idea => {
         this.idea = idea;
-        this.idea.ingredients = this.ingredients;
       });
     }
   }
@@ -71,12 +78,22 @@ export class IdeaDetailsPage implements OnInit {
   }
 
   addIngredient(){
-  if (this.idea.ingredients.length > 0) {
-    let task = this.idea.ingredients;
-    this.ingredients.push(task);
-    this.idea.ingredients = this.ingredients;
-    }
+    this.idea.ingredients.push({name: "" , price: null});
+    // "name" : '' , 
+    // "price": null});
   }
+
+  delIngredient(ingredientID){
+    this.idea.ingredients.splice(ingredientID,1);
+  }
+
+  // addIngredient(){
+  // if (this.idea.ingredients.length > 0) {
+  //   let task = this.idea.ingredients;
+  //   this.ingredients.ingredients.push({"ingredients": "" });
+  
+  //   }
+  // }
 
   addToCart(ingredient){
     this.showToast('added to cart!');

@@ -11,13 +11,14 @@ import { AngularFirestore } from '@angular/fire/firestore'
 export class IdeaListPage implements OnInit {
 
 private ideas: Observable<Idea[]>;
- public ideaList: any[];
- private loadedIdeaList: any[];
 
+ 
   constructor(private ideaService: IdeaService, private firestore:AngularFirestore) { }
  
   ngOnInit() {
     this.ideas = this.ideaService.getIdeas();
+
+   
      
   //   this.firestore.collection('recipe').valueChanges()
   //   .subscribe(ideaList => {

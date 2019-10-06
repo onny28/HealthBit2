@@ -40,6 +40,7 @@ const routes: Routes = [
   { path: 'idea2', loadChildren: './adminrecipe/adminrecipe.module#AdminrecipePageModule' },
   { path: 'idea2/:id', loadChildren: './adminrecipe/adminrecipe.module#AdminrecipePageModule' },
   { path: 'adminuser', loadChildren: './adminuser/adminuser.module#AdminuserPageModule' },
+  { path: 'try', loadChildren: './try/try.module#TryPageModule' },
 
 
    

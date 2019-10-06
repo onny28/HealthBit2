@@ -8,7 +8,12 @@ export interface Idea {
   name: string,
   notes: string,
   steps: string,
-  ingredients: Array<String>;
+  ingredients: Array<Ingredient>
+}
+
+interface Ingredient{
+  name: string,
+  price: number,
 }
 
 @Injectable({
