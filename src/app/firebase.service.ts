@@ -8,6 +8,7 @@ import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AdminpagePage } from './adminpage/adminpage.page';
 
 
 @Injectable({
@@ -18,6 +19,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class FirebaseService {
 
   Info;
+  user;
 
   constructor(
     public firestore: AngularFirestore,
@@ -68,6 +70,10 @@ export class FirebaseService {
 
   delete_User(record_id) {
     this.firestore.doc('users/' + record_id).delete();
+    let uid = firebase.auth()
+    let id =  this.firestore.collection('users', ref => ref.where("authid", "==", uid))
+    
+    
   }
 
   logoutUser() {
@@ -101,6 +107,22 @@ export class FirebaseService {
 
   delete_recipe(recipe_id) {
     this.firestore.doc('recipeN/' + recipe_id).delete();
+  }
+
+  create_location(location) {
+    return this.firestore.collection('locationN').add(location);
+  }
+
+  read_location(){
+    return this.firestore.collection('locationN').snapshotChanges();
+  }
+
+  update_location(locationID, location) {
+    this.firestore.doc('locationN/' + locationID).update(location);
+  }
+
+  delete_location(location_id) {
+    this.firestore.doc('locationN/' + location_id).delete();
   }
 
 

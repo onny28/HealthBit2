@@ -23,6 +23,10 @@ export class AdminpagePage implements OnInit {
   role: string;
   userEmail: string;
   userID: string;
+
+  locationName: string;
+  address: string;
+  location: any;
  
   @ViewChild('slides', {static: false}) slider: IonSlides;
   segment = 0;
@@ -51,7 +55,7 @@ export class AdminpagePage implements OnInit {
 
       this.todoService.getTodos().subscribe(res => {
         this.todos = res;
-  
+      });
         this.firebaseService.listUsers().subscribe(data => {
    
           this.users = data.map(e => {
@@ -67,9 +71,22 @@ export class AdminpagePage implements OnInit {
           })
           this.loaderDismiss();
           console.log(this.users);
-     
         });
-      });
+
+        this.firebaseService.read_location().subscribe(data => {
+   
+          this.location= data.map(e => {
+            return {
+              id: e.payload.doc.id,
+              isEdit: false,
+              locationName: e.payload.doc.data()['locationName'],
+              address: e.payload.doc.data()['address'],
+            };
+          })
+          this.loaderDismiss();
+          console.log(this.location);
+        });
+      
     } else {
       // No user is signed in.
       this.navCtrl.navigateBack('/login');
@@ -113,6 +130,8 @@ async loaderDismiss(){
   async slideChanged() {
     this.segment = await this.slider.getActiveIndex();
   }
+
+  //user
 
   CreateRecord() {
     let record = {};
@@ -165,6 +184,27 @@ async loaderDismiss(){
 
   RemoveRecord(rowID) {
     this.firebaseService.delete_User(rowID);
+  }
+
+  //location
+
+  EditLocation(data) {
+    data.isEdit = true;
+    data.EditLocationName = data.locationName;
+    data.EditAddress = data.address;
+  }
+
+ 
+  UpdateLocation(dataRow) {
+    let data = {};
+    data['locationName'] = dataRow.EditLocationName;
+    data['address'] = dataRow.EditAddress;
+    this.firebaseService.update_location(dataRow.id, data);
+    dataRow.isEdit = false;
+  }
+
+  RemoveLocation(rowID) {
+    this.firebaseService.delete_location(rowID);
   }
 
 }

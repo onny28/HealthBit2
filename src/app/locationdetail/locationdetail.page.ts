@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
-import { LocationService, Location } from '../location.service';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
+import { FirebaseService } from 'app/firebase.service';
+import { NavController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-locationdetail',
@@ -10,57 +12,56 @@ import { LocationService, Location } from '../location.service';
 })
 export class LocationdetailPage implements OnInit {
 
-  location: Location = {
-    name: '',
-    address: '',
-  };
+ location;
+  loader: HTMLIonLoadingElement;
+  loading: boolean;
 
-  constructor(private activatedRoute: ActivatedRoute, private locationService: LocationService,
-    private toastCtrl: ToastController, private router: Router) { }
+  constructor(
+    private firebaseService: FirebaseService,
+    private navCtrl: NavController,
+    public loadingCtrl: LoadingController,
+  ) { }
 
   ngOnInit() {
-  }
+    var user = firebase.auth().currentUser;
+    if (user) {
+      // User is signed in.
+      this.loadingFunction('Loading...')
 
-  // ionViewWillEnter() {
-  //   let id = this.activatedRoute.snapshot.paramMap.get();
-  //   if (id) {
-  //     this.locationService.getLocation(id).subscribe(location => {
-  //       this.location = location;
-  //     });
-  //   } 
-  // }
+        this.firebaseService.read_location().subscribe(data => {
+   
+          this.location= data.map(e => {
+            return {
+              id: e.payload.doc.id,
+              isEdit: false,
+              locationName: e.payload.doc.data()['locationName'],
+              address: e.payload.doc.data()['address'],
+            };
+          })
+          this.loaderDismiss();
+          console.log(this.location);
+        });
+      
+    } else {
+      // No user is signed in.
+      this.navCtrl.navigateBack('/login');
+    }
+}
 
-  addLocation() {
-    this.locationService.addLocation(this.location). then(() => {
-      this.router.navigateByUrl('/places');
-      this.showToast('Location added');
-    }, err => {
-      this.showToast('There was a problem adding your location :(');
-    });
-  }
+async loadingFunction(loadmsg) {
+  this.loader = await this.loadingCtrl.create({
+    message: loadmsg
+  })
+  await this.loader.present();
+}
 
-  deleteLocation() {
-    this.locationService.deleteLocation(this.location.id).then(() => {
-      this.router.navigateByUrl('/places');
-      this.showToast('Location deleted');
-    }, err => { 
-      this.showToast('There was a problem deleting your location :('); 
-    });
-  }
+async loaderDismiss(){
+ this.loading = await this.loadingCtrl.dismiss();
+}
 
-  updateLocation() {
-    this.locationService.updateLocation(this.location).then(()=> {
-      this.showToast('Location updated');
-    }, err => {
-      this.showToast('There was a problem updating your location :(');
-    });
-  }
-
-  showToast(msg) {
-    this.toastCtrl.create({
-      message: msg,
-      duration: 2000
-    }).then(toast => toast.present());
-  }
-
+EditLocation(data) {
+  data.isEdit = true;
+  data.EditLocationName = data.locationName;
+  data.EditAddress = data.address;
+}
 }

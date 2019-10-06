@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-button slot="start" [routerLink]="['/adminpage']" clear>
+          Cancel
+        </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h4 style="text-align: center">ADD LOCATION</h4>
+    
+        <div padding>
+
+          <ion-item>
+            <ion-label class="font" position="floating">Location Name</ion-label>
+            <ion-input class="font"  type="text" [(ngModel)]="locationName" required></ion-input>
+          </ion-item>
+
+
+          <ion-item>
+            <ion-label class="font" position="floating">Address</ion-label>
+            <ion-input class="font" type="text" [(ngModel)]="address" required></ion-input>
+          </ion-item>
+          </div>
+    
+
+      <div padding>
+        <ion-button (click)="CreateLocation()" [disabled]="!locationName || !address">
+          <ion-icon size="small" slot="icon-only" name="add"></ion-icon>
+          &nbsp;Create 
+        </ion-button>
+      </div>
+</ion-content>
