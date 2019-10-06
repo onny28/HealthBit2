@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSlides, NavController, LoadingController } from '@ionic/angular';
-import { Todo, TodoService } from '../services/todo.service';
 import { FirebaseService } from 'app/firebase.service';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
@@ -31,7 +30,6 @@ export class AdminpagePage implements OnInit {
   @ViewChild('slides', {static: false}) slider: IonSlides;
   segment = 0;
   
-  todos: Todo[];
   loader: HTMLIonLoadingElement;
   loading: boolean;
 
@@ -39,7 +37,6 @@ export class AdminpagePage implements OnInit {
  
   constructor(
     private ideaService: IdeaService,
-    private todoService: TodoService,
     private firebaseService: FirebaseService,
     private navCtrl: NavController,
     public loadingCtrl: LoadingController,) { }
@@ -53,9 +50,6 @@ export class AdminpagePage implements OnInit {
       this.userID = this.firebaseService.userDetails().uid;
       this.userEmail = this.firebaseService.userDetails().email;
 
-      this.todoService.getTodos().subscribe(res => {
-        this.todos = res;
-      });
         this.firebaseService.listUsers().subscribe(data => {
    
           this.users = data.map(e => {
@@ -104,23 +98,6 @@ export class AdminpagePage implements OnInit {
 async loaderDismiss(){
    this.loading = await this.loadingCtrl.dismiss();
 }
-  // todos: Todo[];
- 
-  // constructor(private todoService: TodoService) { }
- 
-  // ngOnInit() {
-  //   this.todoService.getTodos().subscribe(res => {
-  //     this.todos = res;
-  //   });
-  // }
- 
-  // remove(item) {
-  //   this.todoService.removeTodo(item.id);
-  // }
-  
- 
-
-  
 
    //slides
    async segmentChanged() {
