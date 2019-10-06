@@ -17,7 +17,6 @@ const routes: Routes = [
   { path: 'adminpage', loadChildren: './adminpage/adminpage.module#AdminpagePageModule' },
   { path: 'idea2', loadChildren: './adminrecipe/adminrecipe.module#AdminrecipePageModule' },
   { path: 'idea2/:id', loadChildren: './adminrecipe/adminrecipe.module#AdminrecipePageModule' },
-  { path: 'adminuser', loadChildren: './adminuser/adminuser.module#AdminuserPageModule' },
   { path: 'adminrecipe', loadChildren: './adminrecipe/adminrecipe.module#AdminrecipePageModule' },
   { path: 'create-location', loadChildren: './create-location/create-location.module#CreateLocationPageModule' },
 
