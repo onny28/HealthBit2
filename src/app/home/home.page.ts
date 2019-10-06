@@ -3,7 +3,7 @@ import { NavController } from '@ionic/angular';
 import { FirebaseService } from '../firebase.service';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
-import { Todo, TodoService } from '../services/todo.service';
+
 
 
 @Component({
@@ -13,12 +13,12 @@ import { Todo, TodoService } from '../services/todo.service';
 })
 export class HomePage {
   user: any;
-  todos: Todo[];
+  
 
   constructor(
     private navCtrl: NavController,
     private firebaseService: FirebaseService,
-    private todoService: TodoService,
+   
   ) {}
   
   ngOnInit() {
