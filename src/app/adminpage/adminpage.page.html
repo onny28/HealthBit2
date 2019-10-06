@@ -31,13 +31,106 @@
           <ion-icon name="pin"></ion-icon>
         </ion-segment-button>
     </ion-segment>
-  </ion-toolbar>
+</ion-toolbar>
 
   <ion-slides #slides (ionSlideDidChange)="slideChanged()" scrollbar="true">
       <ion-slide>
-          <ion-item>
-            USER
-          </ion-item> 
+        <ion-item>
+          <ion-list>
+          <ion-card *ngFor="let item of users">
+              <span *ngIf="!item.isEdit; else elseBlock">
+                <ion-card-header>
+                  <ion-card-title>{{userEmail}}</ion-card-title>
+                  <ion-card-subtitle>AuthID: {{userID}}</ion-card-subtitle>
+                  <ion-card-subtitle>UserID: {{item.id}}</ion-card-subtitle>
+                </ion-card-header>
+                <ion-card-content>
+           
+                  <ion-button shape="round" color="secondary" size="small" (click)="EditRecord(item)">
+                    <ion-icon size="small" slot="icon-only" name="create"></ion-icon>
+           
+                  </ion-button>
+                  <ion-button shape="round" color="danger" size="small" (click)="RemoveRecord(item.id)">
+                    <ion-icon size="small" slot="icon-only" name="trash"></ion-icon>
+           
+                  </ion-button>
+                </ion-card-content>
+              </span>
+              <ng-template #elseBlock>
+                <ion-card-header>
+                  <ion-card-title>
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col>
+                          Edit
+                        </ion-col>
+                        <ion-col>
+                          <ion-button fill="clear" color="medium" size="small" (click)="item.isEdit = false">
+                            Cancel
+                          </ion-button>
+                        </ion-col>
+                        <ion-col>
+                          <ion-button fill="outline" color="success" size="small" (click)="UpdateRecord(item)">
+                            Update
+                          </ion-button>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                    <ion-item>
+                        <ion-label><strong>UserID:</strong></ion-label>
+                        <ion-input>{{item.id}}</ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label><strong>Email:</strong></ion-label>
+                        <ion-input>{{userEmail}}</ion-input>
+                    </ion-item>
+            
+                    <ion-item>
+                      <ion-label><strong>Role:</strong></ion-label>
+                      <ion-select [(ngModel)]="item.EditRole">
+                        <ion-select-option value="admin">Admin</ion-select-option>
+                        <ion-select-option value="user">User</ion-select-option>
+                      </ion-select>
+                    </ion-item>
+            
+                    <ion-item>
+                      <ion-label><strong>Gender:</strong></ion-label>
+                      <ion-select placeholder="Select One" [(ngModel)]="item.EditGender">
+                        <ion-select-option value="Female">Female</ion-select-option>
+                        <ion-select-option value="Male">Male</ion-select-option>
+                      </ion-select>
+                    </ion-item>
+            
+                    <ion-item>
+                      <ion-label><strong>Age:</strong></ion-label>
+                      <ion-input type="number" [(ngModel)]="item.EditAge"></ion-input>
+                    </ion-item>
+            
+                    <ion-item>
+                      <ion-label><strong>Weight:</strong></ion-label>
+                      <ion-input type="number" [(ngModel)]="item.EditWeight"></ion-input>
+                    </ion-item>
+            
+                    <ion-item>
+                      <ion-label><strong>Height:</strong></ion-label>
+                      <ion-input type="number" [(ngModel)]="item.EditHeight"></ion-input>
+                    </ion-item>
+                </ion-card-content>
+              </ng-template>
+            </ion-card>
+          </ion-list>
+          <ion-footer>
+              <ion-fab vertical="bottom" horizontal="end" position="fixed">
+                  <ion-fab-button routerLink="/details">
+                    <ion-icon name="add"></ion-icon>
+                  </ion-fab-button>
+                </ion-fab>
+          </ion-footer>
+          </ion-item>
       </ion-slide>
 
       <ion-slide>
@@ -103,8 +196,66 @@
 
       <ion-slide>
           <ion-item>
-              LOCATION
-          </ion-item>
+              <ion-list>
+              <ion-card *ngFor="let item of location">
+                  <span *ngIf="!item.isEdit; else elseBlock">
+                    <ion-card-header>
+                      <ion-card-title>{{item.locationName}}</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+               
+                      <ion-button shape="round" color="secondary" size="small" (click)="EditLocation(item)">
+                        <ion-icon size="small" slot="icon-only" name="create"></ion-icon>
+               
+                      </ion-button>
+                      <ion-button shape="round" color="danger" size="small" (click)="RemoveLocation(item.id)">
+                        <ion-icon size="small" slot="icon-only" name="trash"></ion-icon>
+               
+                      </ion-button>
+                    </ion-card-content>
+                  </span>
+                  <ng-template #elseBlock>
+                    <ion-card-header>
+                      <ion-card-title>
+                        <ion-grid>
+                          <ion-row>
+                            <ion-col>
+                              Edit
+                            </ion-col>
+                            <ion-col>
+                              <ion-button fill="clear" color="medium" size="small" (click)="item.isEdit = false">
+                                Cancel
+                              </ion-button>
+                            </ion-col>
+                            <ion-col>
+                              <ion-button fill="outline" color="success" size="small" (click)=" UpdateLocation(item)">
+                                Update
+                              </ion-button>
+                            </ion-col>
+                          </ion-row>
+                        </ion-grid>
+                      </ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content> 
+                        <ion-item>
+                          <ion-label><strong>Location Name:</strong></ion-label>
+                          <ion-input type="text" [(ngModel)]="item.EditLocationName"></ion-input>
+                        </ion-item>
+                
+                        <ion-item>
+                          <ion-label><strong>Address:</strong></ion-label>
+                          <ion-input type="text" [(ngModel)]="item.EditAddress"></ion-input>
+                        </ion-item>
+                    </ion-card-content>
+                  </ng-template>
+                </ion-card>
+              </ion-list>
+              </ion-item>
+              <ion-fab vertical="bottom" horizontal="end">
+                  <ion-fab-button routerLink="/create-location">
+                    <ion-icon name="add"></ion-icon>
+                  </ion-fab-button>
+                </ion-fab>
       </ion-slide>
 
     </ion-slides>
