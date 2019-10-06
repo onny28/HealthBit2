@@ -1,4 +1,4 @@
-<ion-header *ngIf ="!idea.id">
+<ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/idea-list"></ion-back-button>
@@ -6,17 +6,6 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-header *ngIf ="idea.id">
-  <ion-toolbar>
-      <ion-buttons slot="start">
-          <ion-back-button defaultHref="/idea-list"></ion-back-button>
-        </ion-buttons>
-      <ion-button slot="end" fill="clear" [routerLink]="['/tabs/tabs/grocerylist']">
-        <ion-icon name="cart" ></ion-icon>
-      </ion-button>
-  </ion-toolbar>
-</ion-header>
- 
 <ion-content padding *ngIf="idea.id">
   <ion-item>
     <ion-label class="font" position="stacked">NAME</ion-label>
@@ -53,6 +42,9 @@
   <ion-slides #slides (ionSlideDidChange)="slideChanged()" scrollbar="true">
       <ion-slide>
           <ion-item class="font">
+              <ion-button slot="end" fill="clear" [routerLink]="['/tabs/tabs/grocerylist']">
+                <ion-icon name="cart" ></ion-icon>
+              </ion-button>
             <ion-input class="font" [(ngModel)]="idea.ingredients">
             </ion-input>
             <!-- <ion-list>

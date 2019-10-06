@@ -38,12 +38,10 @@ const routes: Routes = [
   { path: 'resepis/:id', loadChildren: './pages/resepi-details/resepi-details.module#ResepiDetailsPageModule' },
   { path: 'adminpage', loadChildren: './adminpage/adminpage.module#AdminpagePageModule' },
   { path: 'adminrecipe', loadChildren: './adminrecipe/adminrecipe.module#AdminrecipePageModule' },
-  { path: 'adminuser', loadChildren: './adminuser/adminuser.module#AdminuserPageModule' },  { path: 'recipelists', loadChildren: './recipelists/recipelists.module#RecipelistsPageModule' },
+  { path: 'adminuser', loadChildren: './adminuser/adminuser.module#AdminuserPageModule' },
+  { path: 'recipelists', loadChildren: './recipelists/recipelists.module#RecipelistsPageModule' },
   { path: 'create-recipe', loadChildren: './create-recipe/create-recipe.module#CreateRecipePageModule' },
 
-
-
-   
 
  ];
 
@@ -54,4 +52,6 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
+
+
 export class AppRoutingModule { }

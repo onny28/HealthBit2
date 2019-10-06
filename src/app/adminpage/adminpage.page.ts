@@ -5,6 +5,8 @@ import { FirebaseService } from 'app/firebase.service';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
+import { Observable } from 'rxjs';
+import { Idea, IdeaService } from 'app/services/idea.service';
 
 @Component({
   selector: 'app-adminpage',
@@ -28,14 +30,18 @@ export class AdminpagePage implements OnInit {
   todos: Todo[];
   loader: HTMLIonLoadingElement;
   loading: boolean;
+
+  private ideas: Observable<Idea[]>;
  
   constructor(
+    private ideaService: IdeaService,
     private todoService: TodoService,
     private firebaseService: FirebaseService,
     private navCtrl: NavController,
     public loadingCtrl: LoadingController,) { }
  
   ngOnInit() {
+    this.ideas = this.ideaService.getIdeas();
     var user = firebase.auth().currentUser;
     if (user) {
       // User is signed in.
@@ -81,10 +87,23 @@ export class AdminpagePage implements OnInit {
 async loaderDismiss(){
    this.loading = await this.loadingCtrl.dismiss();
 }
+  // todos: Todo[];
  
-  remove(item) {
-    this.todoService.removeTodo(item.id);
-  }
+  // constructor(private todoService: TodoService) { }
+ 
+  // ngOnInit() {
+  //   this.todoService.getTodos().subscribe(res => {
+  //     this.todos = res;
+  //   });
+  // }
+ 
+  // remove(item) {
+  //   this.todoService.removeTodo(item.id);
+  // }
+  
+ 
+
+  
 
    //slides
    async segmentChanged() {

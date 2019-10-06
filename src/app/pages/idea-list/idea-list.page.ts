@@ -13,6 +13,7 @@ export class IdeaListPage implements OnInit {
 private ideas: Observable<Idea[]>;
  public ideaList: any[];
  private loadedIdeaList: any[];
+
   constructor(private ideaService: IdeaService, private firestore:AngularFirestore) { }
  
   ngOnInit() {
