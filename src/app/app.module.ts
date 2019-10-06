@@ -37,7 +37,6 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
     AngularFirestoreModule,
     AngularFireDatabaseModule,
     AngularFireStorageModule,
-  
     
   ],
   providers: [

@@ -5,7 +5,6 @@ import * as firebase from 'firebase/app';
 import 'firebase/auth';
 
 
-
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -13,12 +12,11 @@ import 'firebase/auth';
 })
 export class HomePage {
   user: any;
-  
+ 
 
   constructor(
     private navCtrl: NavController,
     private firebaseService: FirebaseService,
-   
   ) {}
   
   ngOnInit() {
@@ -31,9 +29,6 @@ export class HomePage {
       this.navCtrl.navigateBack('/login');
     }
 
-    // this.todoService.getTodos().subscribe(res => {
-    //   this.todos = res;
-    // });
   }
 
 

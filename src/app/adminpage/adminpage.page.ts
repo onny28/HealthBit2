@@ -30,7 +30,6 @@ export class AdminpagePage implements OnInit {
   @ViewChild('slides', {static: false}) slider: IonSlides;
   segment = 0;
   
- 
   loader: HTMLIonLoadingElement;
   loading: boolean;
 
@@ -51,9 +50,6 @@ export class AdminpagePage implements OnInit {
       this.userID = this.firebaseService.userDetails().uid;
       this.userEmail = this.firebaseService.userDetails().email;
 
-      (res => {
-
-      });
         this.firebaseService.listUsers().subscribe(data => {
    
           this.users = data.map(e => {
@@ -102,23 +98,6 @@ export class AdminpagePage implements OnInit {
 async loaderDismiss(){
    this.loading = await this.loadingCtrl.dismiss();
 }
-  // todos: Todo[];
- 
-  // constructor(private todoService: TodoService) { }
- 
-  // ngOnInit() {
-  //   this.todoService.getTodos().subscribe(res => {
-  //     this.todos = res;
-  //   });
-  // }
- 
-  // remove(item) {
-  //   this.todoService.removeTodo(item.id);
-  // }
-  
- 
-
-  
 
    //slides
    async segmentChanged() {
