@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Idea } from './services/idea.service';
+
  
 @Injectable({
   providedIn: 'root'
@@ -12,10 +13,12 @@ export class CartService {
     name: '',
     notes: '',
     steps:'',
-    ingredients: ['']
+    ingredients: [{
+      name: '',
+      price: undefined
+    }]
     };
 
-   
     private cart = [];
 
   constructor() {}
