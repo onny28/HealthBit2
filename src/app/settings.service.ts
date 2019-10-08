@@ -6,17 +6,18 @@ import { Injectable } from '@angular/core';
 })
 export class SettingsService {
 
-  private theme: BehaviorSubject<String>;
+  // private theme: BehaviorSubject<String>;
 
   constructor() {
-    this.theme = new BehaviorSubject('dark-theme');
+    // this.theme = new BehaviorSubject('dark-theme');
   }
 
-  setActiveTheme(val) {
-    this.theme.next(val);
-  }
+//   setActiveTheme(val) {
+//     this.theme.next(val);
+//   }
 
-  getActiveTheme() {
-    return this.theme.asObservable();
-  }
+//   getActiveTheme() {
+//     return this.theme.asObservable();
+//   }
+// }
 }
