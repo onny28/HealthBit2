@@ -9,13 +9,20 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+//import { Geolocation } from '@ionic-native/geolocation/ngx';
+//import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
+
 import { environment } from '../environments/environment';
 import firebaseConfig from './firebase';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth'
-import { AngularFirestoreModule, FirestoreSettingsToken} from '@angular/fire/firestore'
+import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+<<<<<<< HEAD
+// import { AuthenticationService } from './services/authentication.service';
+=======
+>>>>>>> 156d76dfa9cd45d6bee2719c6e81c148c7cfdce3
 import { FirebaseService } from './firebase.service';
 import { FCM } from '@ionic-native/fcm/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
@@ -25,6 +32,10 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
+    BrowserModule, FormsModule, ReactiveFormsModule, IonicModule.forRoot(), 
+    AppRoutingModule, AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule, AngularFireAuthModule, AngularFirestoreModule,
+    AngularFireDatabaseModule, AngularFireStorageModule, 
     BrowserModule, 
     FormsModule,
     ReactiveFormsModule,
@@ -37,6 +48,10 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
     AngularFirestoreModule,
     AngularFireDatabaseModule,
     AngularFireStorageModule,
+<<<<<<< HEAD
+
+=======
+>>>>>>> 156d76dfa9cd45d6bee2719c6e81c148c7cfdce3
     
   ],
   providers: [
@@ -44,7 +59,12 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
     SplashScreen,
     FirebaseService,
     FCM,
-    SocialSharing,
+    //Geolocation,
+    //NativeGeocoder,
+    
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    ,{ provide: FirestoreSettingsToken, useValue: {} }
+    , SocialSharing ,
     
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
     , { provide: FirestoreSettingsToken, useValue: {} }
