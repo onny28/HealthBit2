@@ -1,24 +1,14 @@
-<<<<<<< HEAD
-import { Component } from '@angular/core';
 import { NavController, ActionSheetController } from '@ionic/angular';
-=======
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController } from '@ionic/angular';
->>>>>>> f9f28305160ecc24e283649ae01bd1bbd1bfa2bb
 import { FirebaseService } from '../firebase.service';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 
-
-
-<<<<<<< HEAD
-=======
 //import { Geolocation } from '@ionic-native/geolocation/ngx';
 //import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 
 //declare var google; //
 
->>>>>>> f9f28305160ecc24e283649ae01bd1bbd1bfa2bb
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
