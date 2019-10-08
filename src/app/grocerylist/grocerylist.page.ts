@@ -38,10 +38,10 @@ export class GrocerylistPage implements OnInit {
     var user = firebase.auth().currentUser;
     if (user) {
       // User is signed in.
-      this.loadingFunction('Loading...')
+      // this.loadingFunction('Loading...')
       try{
         const items = this.cartService.getCart();
-        
+
       const selected = {};
       for (const obj of items) {
         if (selected[obj.id]) {
@@ -58,11 +58,12 @@ export class GrocerylistPage implements OnInit {
             return {
               id: e.payload.doc.id,
               isEdit: false,
-              ingredient: e.payload.doc.data()['ingredient'],
-             
+              name: e.payload.doc.data()['name'],
+              price: e.payload.doc.data()['price'],
+            
             };
           })
-          this.loaderDismiss();
+          // this.loaderDismiss();
           console.log(this.grocery);
         })
       }catch{
@@ -76,13 +77,15 @@ export class GrocerylistPage implements OnInit {
     }
 
 
+  }
 
-
+  RemoveGroceryList(rowID) {
+    this.firebaseService.delete_grocery(rowID);
   }
 
 
   shareWhatsapp() {
-    this.socialSharing.shareViaWhatsApp(this.text, null, this.url)
+    this.socialSharing.shareViaWhatsApp(this.grocery)
       .then(() => {
 
       }).catch(() => {

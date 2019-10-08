@@ -130,6 +130,9 @@ export class FirebaseService {
     this.firestore.doc('locationN/' + location_id).delete();
   }
 
+  delete_grocery(grocery_id) {
+    this.firestore.doc('locationN/' + grocery_id).delete();
+  }
 
 
 }

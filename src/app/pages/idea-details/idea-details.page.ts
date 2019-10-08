@@ -110,8 +110,24 @@ export class IdeaDetailsPage implements OnInit {
     this.showToast('added to cart!');
     // let ingredients = this.idea.ingredients;
     this.cartService.addCart(ingredient);
-    this.cartService.cartCount = this.cartService.cartCount+1;
-    this.cartCount = this.cartService.cartCount;
+    let data={};
+    data = ingredient;
+    data['name'] = this.idea.ingredients[0].name;
+    data['price'] = this.idea.ingredients[0].price;
+    this.firebaseService.create_grocerylist(data).then(resp => {
+      ingredient = [{
+        name: '',
+        price: undefined
+      }];
+      console.log(resp);
+      // this.navCtrl.navigateBack('/gr')
+    })
+      .catch(error => {
+        console.dir(error);
+      });
+      
+    // this.cartService.cartCount = this.cartService.cartCount+1;
+    // this.cartCount = this.cartService.cartCount;
     }
 
     openCart(){
@@ -134,16 +150,18 @@ export class IdeaDetailsPage implements OnInit {
     this.segment = await this.slider.getActiveIndex();
   }
 
-  CreateGroceryList() {
-    let data = {};
-    data['ingredient'] = this.idea.ingredients;
-    this.firebaseService.create_grocerylist(data).then(resp => {
-      this.idea.ingredients = [];
-      console.log(resp);
-      // this.navCtrl.navigateBack('/gr')
-    })
-      .catch(error => {
-        console.dir(error);
-      });
-  }
-}
+ 
+
+//   CreateGroceryList() {
+//     let data = {};
+//     data['ingredient'] = this.idea.ingredients;
+//     this.firebaseService.create_grocerylist(data).then(resp => {
+//       this.idea.ingredients = [];
+//       console.log(resp);
+//       // this.navCtrl.navigateBack('/gr')
+//     })
+//       .catch(error => {
+//         console.dir(error);
+//       });
+//   }
+ }

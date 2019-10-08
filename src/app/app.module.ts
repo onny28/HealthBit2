@@ -19,10 +19,6 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth'
 import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
-<<<<<<< HEAD
-// import { AuthenticationService } from './services/authentication.service';
-=======
->>>>>>> 156d76dfa9cd45d6bee2719c6e81c148c7cfdce3
 import { FirebaseService } from './firebase.service';
 import { FCM } from '@ionic-native/fcm/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
@@ -48,10 +44,6 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
     AngularFirestoreModule,
     AngularFireDatabaseModule,
     AngularFireStorageModule,
-<<<<<<< HEAD
-
-=======
->>>>>>> 156d76dfa9cd45d6bee2719c6e81c148c7cfdce3
     
   ],
   providers: [

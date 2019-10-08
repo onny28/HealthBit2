@@ -21,13 +21,19 @@
 </ion-content> -->
 
 <ion-content>
-  <ion-card *ngFor="let item of grocery">
- {{item.ingredient}}
-  </ion-card>
+  <ion-list>
+    <ion-item *ngFor="let item of grocery" class="font">
+    {{item.name}}  - ${{item.price}}
+ <ion-button fill="clear" slot="end" (click)="RemoveGroceryList(item.id)">
+    <ion-icon name="trash"></ion-icon> 
+  </ion-button>
+</ion-item>
+  </ion-list>
+
 </ion-content>
 
-<ion-content padding *ngIf="!selectedItems.length">
+<!-- <ion-content padding *ngIf="">
     <div text-center class="font">
       No grocery list 
     </div>
-  </ion-content>
+  </ion-content> -->

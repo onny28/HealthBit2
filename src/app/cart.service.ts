@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Idea } from './services/idea.service';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 
  
 @Injectable({
@@ -21,7 +25,7 @@ export class CartService {
     cartCount: number;
     
 
-  constructor() {
+  constructor(public firestore: AngularFirestore,) {
    this.cartCount = 0;
   }
  
@@ -31,6 +35,7 @@ export class CartService {
 
   addCart(ingredient) {
     this.cart.push(ingredient);
+    return this.firestore.collection('grocerylist').add(ingredient);
   }
 
   getCart(){
