@@ -1,57 +1,54 @@
 <ion-header>
   <ion-toolbar>
-      <ion-buttons slot="start">
-          <ion-back-button defaultHref="/tabs/tabs/home"></ion-back-button>
-        </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tabs/home"></ion-back-button>
+    </ion-buttons>
     <ion-title class="font">RECORD</ion-title>
   </ion-toolbar>
 </ion-header>
-
-
-        
-              <ion-button fill="outline" color="success" size="small" (click)="UpdateRecord(item)">
-               Update
-              </ion-button>
-
-          <ion-content>
-              <ion-item>
-                  <ion-label><strong>Email</strong></ion-label>
-                  <ion-input>{{userEmail}}</ion-input>
-                </ion-item>
-      
-                <ion-item>
-                  <ion-label><strong>Gender</strong></ion-label>
-                  <ion-select placeholder="Select One" [(ngModel)]="item.UpdateGender">
-                      <ion-select-option value="Female">Female</ion-select-option>
-                      <ion-select-option value="Male">Male</ion-select-option>
-                    </ion-select>
-                </ion-item>
-                  
-                <!-- <ion-item>
-                  <ion-label><strong>Date of Birth</strong></ion-label>
-                  <ion-input type="text" [(ngModel)]="item.EditDOB"></ion-input>
-                </ion-item> -->
-
-                <ion-item>
-                  <ion-label><strong>Age</strong></ion-label>
-                  <ion-input type="number" [(ngModel)]="item.UpdateAge"></ion-input>
-                </ion-item>
-          
-                <ion-item>
-                  <ion-label><strong>Weight</strong></ion-label>
-                  <ion-input type="number" [(ngModel)]="item.UpdateWeight"></ion-input>
-                </ion-item>
-          
-                <ion-item>
-                  <ion-label><strong>Height</strong></ion-label>
-                  <ion-input type="number" [(ngModel)]="item.UpdateHeight"></ion-input>
-                </ion-item>
-          </ion-content>
-    
-     
-
-
-  <!-- <ion-card *ngFor="let item of users">
+<ion-content padding>
+  <ion-card *ngFor="let item of user">
+    <span *ngIf="!item.isEdit; else elseBlock">
+      <ion-card-header>
+        <ion-button shape="round" color="secondary" size="small" (click)="EditRecord(item)">
+          <ion-icon size="small" slot="icon-only" name="create"></ion-icon>
+        </ion-button>
+        <!-- <ion-button shape="round" color="danger" size="small" (click)="RemoveRecord(item.id)">
+          <ion-icon size="small" slot="icon-only" name="trash"></ion-icon>
+        </ion-button> -->
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label><strong>Email</strong></ion-label>
+          <ion-input>{{userEmail}}</ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Role</strong></ion-label>
+          <ion-input>{{item.role}}</ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Gender</strong></ion-label>
+          <ion-input>{{item.gender}}</ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Age</strong></ion-label>
+          <ion-input>{{item.age}}</ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Weight</strong></ion-label>
+          <ion-input>{{item.weight}}</ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label><strong>Height</strong></ion-label>
+            <ion-input>{{item.height}}</ion-input>
+        </ion-item>
+        <div padding>
+            <ion-button (click)="calculateBMI()">Calculate BMI</ion-button>
+             <p style="color:red">User need to click on the 'CALCULATE BMI' once they update their weight and height to get new BMI calculation.</p> 
+          </div>
+    </ion-card-content>
+  </span>
+  <ng-template #elseBlock>
     <ion-card-header>
       <ion-card-title>
         <ion-grid>
@@ -74,35 +71,52 @@
       </ion-card-title>
     </ion-card-header>
     <ion-card-content>
+        <ion-item>
+            <ion-label><strong>Email</strong></ion-label>
+            <ion-input>{{userEmail}}</ion-input>
+        </ion-item>
 
-      <ion-item>
-        <ion-label><strong>Email</strong></ion-label>
-        <ion-input> {{item.email}} </ion-input>
-      </ion-item>
+        <ion-item>
+          <ion-label><strong>Role</strong></ion-label>
+          <ion-select value="user" disabled>
+            <ion-select-option value="admin">Admin</ion-select-option>
+            <ion-select-option value="user">User</ion-select-option>
+          </ion-select>
+        </ion-item>
 
-
-      <ion-item>
-        <ion-label><strong>Gender</strong></ion-label>
-        <ion-select placeholder="Select One" [(ngModel)]="item.EditGender">
+        <ion-item>
+          <ion-label><strong>Gender</strong></ion-label>
+          <ion-select placeholder="Select One" [(ngModel)]="item.EditGender">
             <ion-select-option value="Female">Female</ion-select-option>
             <ion-select-option value="Male">Male</ion-select-option>
           </ion-select>
-      </ion-item>
-        
-      <ion-item>
-        <ion-label><strong>Date of Birth</strong></ion-label>
-        <ion-input type="text" [(ngModel)]="item.EditDOB"> {{item.dob}}</ion-input>
-      </ion-item>
+        </ion-item>
 
-      <ion-item>
-        <ion-label><strong>Weight</strong></ion-label>
-        <ion-input type="number" [(ngModel)]="item.EditWeight">  </ion-input>
-      </ion-item>
+        <ion-item>
+          <ion-label><strong>Age</strong></ion-label>
+          <ion-input type="number" [(ngModel)]="item.EditAge"></ion-input>
+        </ion-item>
 
-      <ion-item>
-        <ion-label><strong>Height</strong></ion-label>
-        <ion-input type="number" [(ngModel)]="item.EditHeight">  </ion-input>
-      </ion-item>
+        <ion-item>
+          <ion-label><strong>Weight</strong></ion-label>
+          <ion-input type="number" [(ngModel)]="item.EditWeight"></ion-input>
+        </ion-item>
 
-    </ion-card-content>
-  </ion-card> -->
+        <ion-item>
+          <ion-label><strong>Height</strong></ion-label>
+          <ion-input type="number" [(ngModel)]="item.EditHeight"></ion-input>
+        </ion-item>
+      </ion-card-content>
+      </ng-template>
+      <ion-card *ngIf="bmiValue">
+          <ion-card-header>
+            BMI Calculation
+          </ion-card-header>
+          <ion-card-content>
+            <p>Person: Weight {{item.weight}} kg, Height {{item.height}} cm</p>
+            <p>BMI: {{bmiValue}} </p>
+            <p><strong>You are {{bmiMessage}}</strong></p>
+          </ion-card-content>
+        </ion-card>
+  </ion-card>
+</ion-content>

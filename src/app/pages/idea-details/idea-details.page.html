@@ -1,0 +1,179 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/idea-list"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding *ngIf="idea.id">
+  <ion-item>
+    <ion-label class="font" position="stacked">NAME</ion-label>
+    <ion-input class="font" [(ngModel)]="idea.name"></ion-input>
+  </ion-item>
+ 
+  <ion-item>
+    <ion-label class="font" position="stacked">CATEGORY</ion-label>
+    <ion-select placeholder="Select Category" class="font" [(ngModel)]="idea.notes">
+        <ion-select-option value="vegetarian">vegetarian</ion-select-option>
+        <ion-select-option value="non-vegetarian">non-vegetarian</ion-select-option>
+    </ion-select>	
+  </ion-item>
+
+<!-- <ion-item>
+  <ion-label class="font" position="stacked">STEPS</ion-label>
+  <ion-textarea [(ngModel)]="idea.steps" rows="8" class="font"></ion-textarea>
+</ion-item> -->
+
+<ion-toolbar color="light">
+    <ion-segment (ionChange)="segmentChanged()" [(ngModel)]="segment" color="warning">
+      <ion-segment-button value="0" class="font">
+        INGREDIENTS
+        <ion-icon name="restaurant" ></ion-icon>
+      </ion-segment-button>
+
+      <ion-segment-button value="1" class="font">
+        STEPS
+        <ion-icon name="list"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
+  <ion-slides #slides (ionSlideDidChange)="slideChanged()" scrollbar="true">
+      <ion-slide>
+          <ion-item class="font">
+              <ion-button slot="end" fill="clear" [routerLink]="['/tabs/tabs/grocerylist']">
+                <ion-icon name="cart" ></ion-icon>
+              </ion-button>
+            <ion-input class="font" [(ngModel)]="idea.ingredients">
+            </ion-input>
+            <!-- <ion-list>
+                <ion-item *ngFor="let ingredient of ingredients">
+                    {{ingredient}}
+                  </ion-item>
+            </ion-list> -->
+            <ion-button (click)="addToCart()" color="warning" slot="end" class="font">Add to cart</ion-button>
+          </ion-item> 
+      </ion-slide>
+
+      <ion-slide>
+          <ion-item>
+              <ion-textarea [(ngModel)]="idea.steps" rows="12" cols="80" class="font"></ion-textarea>
+          </ion-item>
+      </ion-slide>
+    </ion-slides>
+
+    <ion-button color="warning" class="font">VIDEO</ion-button>
+  </ion-content>
+
+<!-- <ion-footer *ngIf="idea.id">
+    <ion-row no-padding text-center>
+        <ion-col size="6">
+          <ion-button class="font"  expand="block" fill="outline" color="danger" (click)="deleteIdea()">
+            <ion-icon name="trash" slot="start"></ion-icon>
+            DELETE
+          </ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button class="font" expand="block" fill="solid" color="success" (click)="updateIdea()">
+            <ion-icon name="save" slot="start"></ion-icon>
+            EDIT
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-footer> -->
+
+
+<ion-content padding *ngIf="!idea.id">
+  <ion-item>
+    <ion-label class="font" position="stacked">NAME</ion-label>
+    <ion-input class="font" [(ngModel)]="idea.name"></ion-input>
+  </ion-item>
+ 
+  <ion-item>
+    <ion-label class="font" position="stacked">CATEGORY</ion-label>
+    <ion-select placeholder="Select Category" class="font" [(ngModel)]="idea.notes">
+        <ion-select-option value="vegetarian">vegetarian</ion-select-option>
+        <ion-select-option value="non-vegetarian">non-vegetarian</ion-select-option>
+    </ion-select>	
+    <!-- <ion-input [(ngModel)]="idea.notes"></ion-input> -->
+  </ion-item>
+
+  <ion-item>
+    <ion-input class="font" [(ngModel)]="idea.ingredients" placeholder="Enter ingredients">
+    </ion-input>
+    <ion-button slot="end" (click)="addIngredient()"  [disabled]="!idea.ingredients">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <div padding>
+      <ion-list>
+        <ion-item *ngFor="let ingredient of ingredients">
+          {{ingredient}}
+        </ion-item>
+      </ion-list>
+    </div>
+ 
+<ion-item>
+  <ion-label class="font" position="stacked">STEPS</ion-label>
+  <ion-textarea [(ngModel)]="idea.steps" rows="8" class="font"></ion-textarea>
+</ion-item>
+</ion-content> 
+
+<ion-footer *ngIf="!idea.id">
+    <ion-toolbar color="success">
+        <ion-button class="font" expand="full" fill="clear" color="light" (click)="addIdea()"  [disabled]="!idea.name || !idea.notes || !idea.steps || !idea.ingredients">
+          <ion-icon name="checkmark" slot="start"></ion-icon>
+          ADD RECIPE
+        </ion-button>
+      </ion-toolbar>
+    </ion-footer>
+
+    <ion-footer *ngIf="idea.id">
+        <ion-row no-padding text-center>
+            <ion-col size="6">
+              <ion-button class="font"  expand="block" fill="outline" color="danger" (click)="deleteIdea()">
+                <ion-icon name="trash" slot="start"></ion-icon>
+                DELETE
+              </ion-button>
+            </ion-col>
+            <ion-col size="6">
+              <ion-button class="font" expand="block" fill="solid" color="success" (click)="updateIdea()">
+                <ion-icon name="save" slot="start"></ion-icon>
+                EDIT
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-footer>
+    
+
+
+
+
+<!--  
+<ion-footer *ngIf="!idea.id">
+  <ion-toolbar color="success">
+    <ion-button class="font" expand="full" fill="clear" color="light" (click)="addIdea()">
+      <ion-icon name="checkmark" slot="start"></ion-icon>
+      ADD RECIPE
+    </ion-button>
+  </ion-toolbar>
+</ion-footer> -->
+ 
+<!-- <ion-footer *ngIf="idea.id">
+  <ion-row no-padding text-center>
+    <ion-col size="6">
+      <ion-button class="font"  expand="block" fill="outline" color="danger" (click)="deleteIdea()">
+        <ion-icon name="trash" slot="start"></ion-icon>
+        DELETE
+      </ion-button>
+    </ion-col>
+    <ion-col size="6">
+      <ion-button class="font" expand="block" fill="solid" color="success" (click)="updateIdea()">
+        <ion-icon name="save" slot="start"></ion-icon>
+        EDIT
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-footer> -->

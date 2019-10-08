@@ -2,10 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../firebase.service';
 import { NavController, LoadingController } from '@ionic/angular'
 import { Validators, FormBuilder, FormGroup, FormControl, PatternValidator } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
+
+// export interface roles{
+//   user: boolean;
+//   admin?: boolean;
+// }
 
 
 @Component({
@@ -14,21 +19,24 @@ import 'firebase/firestore';
   styleUrls: ['./register-details.page.scss'],
 })
 export class RegisterDetailsPage implements OnInit {
-  // date = new Date();  
-  // maxDate = (new Date().getFullYear()).toString()+"/0"+(new Date().getMonth()+1).toString()+"/"+(new Date().getDate()).toString();
-  
+
   // user: any;
   gender: string;
   // dob: Date;
   age: number;
   weight: number;
   height: number;
+  role: string;
   userEmail: string;
-
+  userID: string;
+  id: string;
   registerForm: FormGroup;
   isActiveToggleTextPassword: Boolean = true;
 
   error_messages = {
+    'role': [
+   
+    ],
     'gender': [
       { type: 'required', message: 'Gender is required' },
       { type: 'pattern', message: 'Enter male or female only' }
@@ -57,6 +65,10 @@ export class RegisterDetailsPage implements OnInit {
   }
  
   
+ 
+ 
+ 
+  
 
   constructor(
     private navCtrl: NavController,
@@ -66,9 +78,11 @@ export class RegisterDetailsPage implements OnInit {
     public router: Router,
     public route: ActivatedRoute,
   ) { 
-    // console.log(this.maxDate)
 
     this.registerForm = this.formBuilder.group({
+      role: new FormControl('' , Validators.compose([
+
+      ])),
       gender: new FormControl('', Validators.compose([
         Validators.required,
         // Validators.pattern('^male$|^female$')
@@ -95,40 +109,20 @@ export class RegisterDetailsPage implements OnInit {
 
   ngOnInit() {
     
-      
+    this.id = this.route.snapshot.paramMap.get("id");
+    
+    
     var user = firebase.auth().currentUser;
-
     if (user) {
       // User is signed in.
-      // this.firebaseService.read_Users().subscribe(data => {
- 
-      //   this.user = data.map(e => {
-      //     return {
-      //       id: e.payload.doc.id,
-      //       isEdit: false,
-      //       username: e.payload.doc.data()['username'],
-      //       gender: e.payload.doc.data()['gender'],
-      //       dob: e.payload.doc.data()['dob'],
-      //       age: e.payload.doc.data()['age'],
-      //       weight: e.payload.doc.data()['weight'],
-      //       heigth: e.payload.doc.data()['height'],
-           
-      //     };
-      //   })
-      //   console.log(this.user);
-   
-      // });
+      this.userID = this.firebaseService.userDetails().uid;
       this.userEmail = this.firebaseService.userDetails().email;
-
+      this.role = "user";
     } else {
       // No user is signed in.
       this.navCtrl.navigateBack('/login');
     }
   }
-
-  // dateChange(event){
-  //   console.log(event);
-  // }
 
   
   //For show/hide user password
@@ -141,12 +135,18 @@ export class RegisterDetailsPage implements OnInit {
 
   CreateRecord() {
     let record = {};
+    record['authid'] = this.userID;
+    record['email'] = this.userEmail;
+    record['role'] = this.role;
     record['gender'] = this.gender;
     // record['dob'] = this.dob;
     record['age'] = this.age;
     record['weight'] = this.weight;
     record['height'] = this.height;
     this.firebaseService.create_NewUser(record).then(resp => {
+      this.userID;
+      this.userEmail;
+      this.role;
       this.gender = "";
       // this.dob = undefined;
       this.age = undefined;
@@ -157,7 +157,6 @@ export class RegisterDetailsPage implements OnInit {
     })
       .catch(error => {
         console.dir(error);
-
       });
   }
 

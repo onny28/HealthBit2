@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from '../cart.service';
+
+import { IdeaService } from 'app/services/idea.service';
+import { CartService } from 'app/cart.service';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @Component({
   selector: 'app-grocerylist',
@@ -7,14 +10,27 @@ import { CartService } from '../cart.service';
   styleUrls: ['./grocerylist.page.scss'],
 })
 export class GrocerylistPage implements OnInit {
-
+ 
+  text = 'check this out'
+  url = 'https://'
   items;
+  constructor(private cartService: CartService, private socialSharing: SocialSharing) { 
+    
+  }
 
-  constructor(private cartService: CartService) { 
-    this.items = this.cartService.getItems();
+
+
+  shareWhatsapp(){
+    this.socialSharing.shareViaWhatsApp(this.text, null, this.url)
+    .then(() =>{
+
+    }).catch(()=>{
+
+    });
   }
 
   ngOnInit() {
+    this.items = this.cartService.getItems();
   }
 
 }

@@ -19,12 +19,10 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth'
 import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
-import { AuthenticationService } from './services/authentication.service'
+// import { AuthenticationService } from './services/authentication.service';
 import { FirebaseService } from './firebase.service';
 import { FCM } from '@ionic-native/fcm/ngx';
-
-
-
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 
 @NgModule({
@@ -34,7 +32,20 @@ import { FCM } from '@ionic-native/fcm/ngx';
     BrowserModule, FormsModule, ReactiveFormsModule, IonicModule.forRoot(), 
     AppRoutingModule, AngularFireModule.initializeApp(firebaseConfig),
     AngularFireModule, AngularFireAuthModule, AngularFirestoreModule,
-    AngularFireDatabaseModule, AngularFireStorageModule, AuthenticationService,
+    AngularFireDatabaseModule, AngularFireStorageModule, 
+    BrowserModule, 
+    FormsModule,
+    ReactiveFormsModule,
+    IonicModule.forRoot(), 
+    AppRoutingModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule,
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    AngularFireDatabaseModule,
+    AngularFireStorageModule,
+
     
   ],
   providers: [
@@ -47,6 +58,10 @@ import { FCM } from '@ionic-native/fcm/ngx';
     
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
     ,{ provide: FirestoreSettingsToken, useValue: {} }
+    , SocialSharing ,
+    
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    , { provide: FirestoreSettingsToken, useValue: {} }
   ],
   
   bootstrap: [AppComponent]

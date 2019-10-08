@@ -1,0 +1,265 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="/tabs"></ion-back-button>
+        </ion-buttons>
+    <ion-title>ADMIN</ion-title>
+    <ion-button slot="end">Logout</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<!-- <ion-content>
+    <ion-button [routerLink]="['/adminuser']">USER</ion-button>
+    <ion-button [routerLink]="['/adminrecipe']">RECIPES</ion-button>
+</ion-content> -->
+
+<ion-content>
+<ion-toolbar color="light">
+    <ion-segment (ionChange)="segmentChanged()" [(ngModel)]="segment" color="warning">
+      <ion-segment-button value="0" class="font">
+        USER
+        <ion-icon name="person" ></ion-icon>
+      </ion-segment-button>
+
+      <ion-segment-button value="1" class="font">
+        RECIPES
+        <ion-icon name="list-box"></ion-icon>
+      </ion-segment-button>
+
+      <ion-segment-button value="2" class="font">
+          LOCATION
+          <ion-icon name="pin"></ion-icon>
+        </ion-segment-button>
+    </ion-segment>
+</ion-toolbar>
+
+  <ion-slides #slides (ionSlideDidChange)="slideChanged()" scrollbar="true">
+      <ion-slide>
+        <ion-item>
+          <ion-list>
+          <ion-card *ngFor="let item of users">
+              <span *ngIf="!item.isEdit; else elseBlock">
+                <ion-card-header>
+                  <ion-card-title>{{userEmail}}</ion-card-title>
+                  <ion-card-subtitle>AuthID: {{userID}}</ion-card-subtitle>
+                  <ion-card-subtitle>UserID: {{item.id}}</ion-card-subtitle>
+                </ion-card-header>
+                <ion-card-content>
+           
+                  <ion-button shape="round" color="secondary" size="small" (click)="EditRecord(item)">
+                    <ion-icon size="small" slot="icon-only" name="create"></ion-icon>
+           
+                  </ion-button>
+                  <ion-button shape="round" color="danger" size="small" (click)="RemoveRecord(item.id)">
+                    <ion-icon size="small" slot="icon-only" name="trash"></ion-icon>
+           
+                  </ion-button>
+                </ion-card-content>
+              </span>
+              <ng-template #elseBlock>
+                <ion-card-header>
+                  <ion-card-title>
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col>
+                          Edit
+                        </ion-col>
+                        <ion-col>
+                          <ion-button fill="clear" color="medium" size="small" (click)="item.isEdit = false">
+                            Cancel
+                          </ion-button>
+                        </ion-col>
+                        <ion-col>
+                          <ion-button fill="outline" color="success" size="small" (click)="UpdateRecord(item)">
+                            Update
+                          </ion-button>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                    <ion-item>
+                        <ion-label><strong>UserID:</strong></ion-label>
+                        <ion-input>{{item.id}}</ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label><strong>Email:</strong></ion-label>
+                        <ion-input>{{userEmail}}</ion-input>
+                    </ion-item>
+            
+                    <ion-item>
+                      <ion-label><strong>Role:</strong></ion-label>
+                      <ion-select [(ngModel)]="item.EditRole">
+                        <ion-select-option value="admin">Admin</ion-select-option>
+                        <ion-select-option value="user">User</ion-select-option>
+                      </ion-select>
+                    </ion-item>
+            
+                    <ion-item>
+                      <ion-label><strong>Gender:</strong></ion-label>
+                      <ion-select placeholder="Select One" [(ngModel)]="item.EditGender">
+                        <ion-select-option value="Female">Female</ion-select-option>
+                        <ion-select-option value="Male">Male</ion-select-option>
+                      </ion-select>
+                    </ion-item>
+            
+                    <ion-item>
+                      <ion-label><strong>Age:</strong></ion-label>
+                      <ion-input type="number" [(ngModel)]="item.EditAge"></ion-input>
+                    </ion-item>
+            
+                    <ion-item>
+                      <ion-label><strong>Weight:</strong></ion-label>
+                      <ion-input type="number" [(ngModel)]="item.EditWeight"></ion-input>
+                    </ion-item>
+            
+                    <ion-item>
+                      <ion-label><strong>Height:</strong></ion-label>
+                      <ion-input type="number" [(ngModel)]="item.EditHeight"></ion-input>
+                    </ion-item>
+                </ion-card-content>
+              </ng-template>
+            </ion-card>
+          </ion-list>
+          <ion-footer>
+              <ion-fab vertical="bottom" horizontal="end" position="fixed">
+                  <ion-fab-button routerLink="/details">
+                    <ion-icon name="add"></ion-icon>
+                  </ion-fab-button>
+                </ion-fab>
+          </ion-footer>
+          </ion-item>
+      </ion-slide>
+
+      <ion-slide>
+          <ion-item>
+            <ion-button slot="end" fill="clear" [routerLink]="['/idea2']">
+              <ion-icon name="add"></ion-icon>
+            </ion-button>
+
+            <ion-list>
+            <ion-card  button [routerLink]="['/idea2', idea.id]" class="font" *ngFor="let idea of (ideas | async)" >
+             <ion-card-header>
+              <ion-card-title>{{ idea.name }}</ion-card-title>
+              <ion-card-subtitle>{{ idea.notes }}</ion-card-subtitle>
+              </ion-card-header>
+              </ion-card>
+            </ion-list>
+          </ion-item>
+  
+                <!-- <ng-container *ngIf="!todos || todos.length == 0">
+                  <div *ngFor="let n of [0,1,2]" padding>
+                    <ion-skeleton-text></ion-skeleton-text>
+                    <p>
+                      <ion-skeleton-text class="fake-skeleton"></ion-skeleton-text>
+                    </p>
+                  </div>
+                </ng-container>
+
+                <ion-item *ngFor="let item of todos">
+                  <ion-label>
+                    {{ item.task }}
+                    <p>{{ item.createdAt | date:'short' }}</p>
+                  </ion-label>
+                  <ion-note slot="end" color="primary">{{ item.priority }}</ion-note>
+                
+                
+                  <ion-button slot="end" (click)="remove(item)">
+                    <ion-icon name="trash"></ion-icon>
+                  </ion-button>
+                  <ion-button slot="end" [routerLink]="['/details', item.id]">EDIT</ion-button>
+                </ion-item> -->
+
+           
+             
+                <!-- <ion-item-sliding *ngFor="let item of todos">
+                  <ion-item lines="inset" button [routerLink]="['/details', item.id]">
+                    <ion-label>
+                      {{ item.task }}
+                      <p>{{ item.createdAt | date:'short' }}</p>
+                    </ion-label>
+                    <ion-note slot="end" color="primary">{{ item.priority }}</ion-note>
+                  </ion-item>
+             
+                  <ion-item-options side="end">
+                    <ion-item-option (click)="remove(item)" color="secondary">
+                      Check
+                      <ion-icon name="checkmark" slot="end"></ion-icon>
+                    </ion-item-option>
+                  </ion-item-options>
+                </ion-item-sliding>
+              </ion-list>
+          </ion-item> -->
+      </ion-slide>
+
+      <ion-slide>
+          <ion-item>
+              <ion-list>
+              <ion-card *ngFor="let item of location">
+                  <span *ngIf="!item.isEdit; else elseBlock">
+                    <ion-card-header>
+                      <ion-card-title>{{item.locationName}}</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+               
+                      <ion-button shape="round" color="secondary" size="small" (click)="EditLocation(item)">
+                        <ion-icon size="small" slot="icon-only" name="create"></ion-icon>
+               
+                      </ion-button>
+                      <ion-button shape="round" color="danger" size="small" (click)="RemoveLocation(item.id)">
+                        <ion-icon size="small" slot="icon-only" name="trash"></ion-icon>
+               
+                      </ion-button>
+                    </ion-card-content>
+                  </span>
+                  <ng-template #elseBlock>
+                    <ion-card-header>
+                      <ion-card-title>
+                        <ion-grid>
+                          <ion-row>
+                            <ion-col>
+                              Edit
+                            </ion-col>
+                            <ion-col>
+                              <ion-button fill="clear" color="medium" size="small" (click)="item.isEdit = false">
+                                Cancel
+                              </ion-button>
+                            </ion-col>
+                            <ion-col>
+                              <ion-button fill="outline" color="success" size="small" (click)=" UpdateLocation(item)">
+                                Update
+                              </ion-button>
+                            </ion-col>
+                          </ion-row>
+                        </ion-grid>
+                      </ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content> 
+                        <ion-item>
+                          <ion-label><strong>Location Name:</strong></ion-label>
+                          <ion-input type="text" [(ngModel)]="item.EditLocationName"></ion-input>
+                        </ion-item>
+                
+                        <ion-item>
+                          <ion-label><strong>Address:</strong></ion-label>
+                          <ion-input type="text" [(ngModel)]="item.EditAddress"></ion-input>
+                        </ion-item>
+                    </ion-card-content>
+                  </ng-template>
+                </ion-card>
+              </ion-list>
+              </ion-item>
+              <ion-fab vertical="bottom" horizontal="end">
+                  <ion-fab-button routerLink="/create-location">
+                    <ion-icon name="add"></ion-icon>
+                  </ion-fab-button>
+                </ion-fab>
+      </ion-slide>
+
+    </ion-slides>
+
+
+    
+  </ion-content>

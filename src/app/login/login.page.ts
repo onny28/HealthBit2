@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth'
 import { auth } from 'firebase/app'
 import {NavController, ToastController, AlertController} from '@ionic/angular'
 import { LoadingController } from '@ionic/angular';
+import {RegisterDetailsPage} from '../register-details/register-details.page'
 
 
 import * as firebase from 'firebase/app';
@@ -10,8 +11,7 @@ import 'firebase/auth';
 import 'firebase/firestore';
 
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-// import { AuthenticationService } from '../services/authentication.service'
-import { User } from  'firebase';
+
 
 @Component({
   selector: 'app-login',
@@ -19,9 +19,7 @@ import { User } from  'firebase';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  // authRef: AngularFireAuth;
-
-  // loading: any;
+  
   email: string = ""
   password: string = ""
   errorMessage: string = '';
@@ -49,7 +47,6 @@ export class LoginPage implements OnInit {
     public afAuth: AngularFireAuth, 
     private navCtrl: NavController, 
     private toastController: ToastController,
-    // private authService: AuthenticationService,
     private formBuilder: FormBuilder,
     public loadingCtrl: LoadingController,
     public alertController: AlertController
@@ -84,10 +81,9 @@ export class LoginPage implements OnInit {
     }
 
   async ngOnInit() {
+
     
-    // this.loading = await this.loadingController.create({
-    //   message: 'Connecting ...'
-    // });
+    
   }
   async loadingFunction(loadmsg) {
     this.loader = await this.loadingCtrl.create({
@@ -99,10 +95,6 @@ export class LoginPage implements OnInit {
 async loaderDismiss(){
    this.loading = await this.loadingCtrl.dismiss();
 }
-
-  // async presentLoading(loading) {
-  //   await loading.present();
-  // }
   
 
   //For show/hide user password
@@ -114,7 +106,6 @@ async loaderDismiss(){
   }
 
   async login() {
-    // await this.loading.present();
 
     if(this.email=="") {
       const toast = await this.toastController.create({
@@ -132,6 +123,7 @@ async loaderDismiss(){
 
     const { email, password } = this
     this.loadingFunction('Loading...')
+    
     try {
       // return this.afAuth.auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
       // .then( async () => {
@@ -145,6 +137,7 @@ async loaderDismiss(){
       //   toast.present();
       // })
         const res = await this.afAuth.auth.signInWithEmailAndPassword(email, password)
+        
         this.loaderDismiss();
         console.log("You have successfully login")
         this.navCtrl.navigateForward('/tabs/tabs/home')
@@ -181,15 +174,44 @@ async loaderDismiss(){
   }
 
   async forgetPassword(){
-    this.afAuth.auth.sendPasswordResetEmail(this.email)
-    const alert = await this.alertController.create({
-      header: 'Reset Password',
-      message: 'Check Your Email to Reset Your Password',
-      buttons: ['OK']
-    });
-
-    await alert.present();
+    try{
+      if(this.email=="") {
+        const toast = await this.toastController.create({
+          message: 'Email can not be empty',
+          duration: 2000
+        });
+        toast.present();
+      }else{
+        this.afAuth.auth.sendPasswordResetEmail(this.email)
+        const alert = await this.alertController.create({
+          header: 'Reset Password',
+          message: 'Check Your Email Account to Reset Your Password',
+          buttons: ['OK']
+        });
+    
+        await alert.present();
+      }
+    }catch(error){
+      if(error.code == "auth/invalid-email"){
+        console.log("email invalid")
+        const toast = await this.toastController.create({
+          message: 'email invalid',
+          duration: 2000
+        });
+        toast.present();
+      }
+      if(error.code == "auth/user-not-found"){
+        console.log("Account did not exists")
+        const toast = await this.toastController.create({
+          message: 'Account did not exists"',
+          duration: 2000
+        });
+        toast.present();
+      }
+    }
+    
   }
 
+    
 
 }

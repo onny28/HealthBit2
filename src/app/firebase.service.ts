@@ -1,12 +1,15 @@
 import { Injectable, NgModule } from '@angular/core';
-import { AngularFirestoreCollection, AngularFirestore, AngularFirestoreDocument, DocumentReference } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
-import firebaseConfig from './firebase'; 
+import firebaseConfig from './firebase';
 
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AdminpagePage } from './adminpage/adminpage.page';
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,50 +18,113 @@ import 'firebase/firestore';
 
 export class FirebaseService {
 
- 
+  Info;
+  user;
 
   constructor(
     public firestore: AngularFirestore,
-    
-  ) {
-    
-  }
+  ) { }
 
-  
 
- 
   create_NewUser(record) {
-    return this.firestore.collection('UserDetails').add(record);
+    return this.firestore.collection('users').add(record);
   }
 
-  read_Users() {
-    return this.firestore.collection('UserDetails').snapshotChanges();
+  read_User() {
+    var db = firebase.firestore();
+    var user = firebase.auth().currentUser;
+    var authID = user.uid;
+    // this.Info = db.collection("users").where("authid", "==", authID)
+    //   .get()
+    //   .then(function (querySnapshot) {
+    //     querySnapshot.forEach(function (doc) {
+    //       console.log(doc.id, " => ", doc.data());
+    //       let data = doc.data();
+    //       return {
+    //         id: doc.id,
+    //         isEdit: false,
+    //         gender: doc.data()['gender'],
+    //         age: doc.data()['age'],
+    //         weight: doc.data()['weight'],
+    //         height: doc.data()['height'],
+    //       }
+         
+    //     });
+
+    //   })
+    // return this.Info;
+    // catch(function (error) {
+    //   console.log("Error getting documents: ", error);
+    // });
+    return this.firestore.collection('users', ref => ref.where("authid", "==", authID)).snapshotChanges();
   }
 
-  update_User(recordID, record) {
-    this.firestore.doc('UserDetails/' + recordID).update(record);
+  listUsers(){
+    return this.firestore.collection('users').snapshotChanges();
   }
+
+  update_User(userID, record) {
+    this.firestore.doc('users/' + userID).update(record);
+  }
+
 
   delete_User(record_id) {
-    this.firestore.doc('UserDetails/' + record_id).delete();
+    this.firestore.doc('users/' + record_id).delete();
+    let uid = firebase.auth()
+    let id =  this.firestore.collection('users', ref => ref.where("authid", "==", uid))
+    
+    
   }
 
-  logoutUser(){
+  logoutUser() {
     return new Promise((resolve, reject) => {
-      if(firebase.auth().currentUser){
+      if (firebase.auth().currentUser) {
         firebase.auth().signOut()
-        .then(() => {
-          console.log("LOG Out");
-          resolve();
-        }).catch((error) => {
-          reject();
-        });
+          .then(() => {
+            console.log("LOG Out");
+            resolve();
+          }).catch((error) => {
+            reject();
+          });
       }
     })
   }
 
-  userDetails(){
+  userDetails() {
     return firebase.auth().currentUser;
   }
+  create_newRecipe(recipe) {
+    return this.firestore.collection('recipeN').add(recipe);
+  }
+
+  listRecipe(){
+    return this.firestore.collection('recipeN').snapshotChanges();
+  }
+
+  update_recipe(recipeID, recipe) {
+    this.firestore.doc('recipeN/' + recipeID).update(recipe);
+  }
+
+  delete_recipe(recipe_id) {
+    this.firestore.doc('recipeN/' + recipe_id).delete();
+  }
+
+  create_location(location) {
+    return this.firestore.collection('locationN').add(location);
+  }
+
+  read_location(){
+    return this.firestore.collection('locationN').snapshotChanges();
+  }
+
+  update_location(locationID, location) {
+    this.firestore.doc('locationN/' + locationID).update(location);
+  }
+
+  delete_location(location_id) {
+    this.firestore.doc('locationN/' + location_id).delete();
+  }
+
+
 
 }

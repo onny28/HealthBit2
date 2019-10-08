@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="/tabs"></ion-back-button>
+        </ion-buttons>
+    <ion-title class="font">MY RECIPE LISTS</ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button routerLink="/idea">
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+
+  <ion-searchbar showcancelbutton="" (ioninput)="filterList($event)"></ion-searchbar>
+  <!-- <ion-list>
+    <ion-item *ngfor="let idea of ideaList">
+      <ion-label>{{ idea.name }}</ion-label>
+    </ion-item>
+  </ion-list> -->
+
+  <ion-card class="font" *ngFor="let idea of (ideas | async)">
+   
+    <ion-card-header>
+    <ion-card-title>{{ idea.name }}</ion-card-title>
+    <ion-card-subtitle>{{ idea.notes }}</ion-card-subtitle>
+   </ion-card-header>
+
+   <ion-card-content>
+     <ion-button color="warning"  class="font" button [routerLink]="['/idea', idea.id]">VIEW RECIPE</ion-button>
+   </ion-card-content>
+  </ion-card>
+</ion-content>
+  <!-- <ion-list >
+    <ion-item class="font" button [routerLink]="['/idea', idea.id]" *ngFor="let idea of (ideas | async)">
+      {{ idea.name }}
+    </ion-item>
+  </ion-list> -->

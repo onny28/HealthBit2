@@ -4,6 +4,8 @@ import { FirebaseService } from '../firebase.service';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 
+
+
 //import { Geolocation } from '@ionic-native/geolocation/ngx';
 //import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 
@@ -39,6 +41,7 @@ export class HomePage {
       // No user is signed in.
       this.navCtrl.navigateBack('/login');
     }
+    
   }
 
   // loadMap() {

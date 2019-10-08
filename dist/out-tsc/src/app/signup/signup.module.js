@@ -1,7 +1,7 @@
 import * as tslib_1 from "tslib";
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { SignupPage } from './signup.page';
@@ -17,9 +17,10 @@ SignupPageModule = tslib_1.__decorate([
     NgModule({
         imports: [
             CommonModule,
+            FormsModule,
             ReactiveFormsModule,
             IonicModule,
-            RouterModule.forChild(routes)
+            RouterModule.forChild(routes),
         ],
         declarations: [SignupPage]
     })

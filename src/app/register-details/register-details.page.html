@@ -18,15 +18,14 @@
             <ion-item>
               <ion-label class="font" Strong><strong>Email: {{userEmail}}</strong></ion-label>
             </ion-item>
-            
-            <div class="error-messages">
-              <ng-container *ngFor="let error of error_messages.username">
-                <div class="error-messages"
-                  *ngIf="registerForm.get('username').hasError(error.type) && (registerForm.get('username').dirty || registerForm.get('username').touched)">
-                  {{error.message}}
-                </div>
-              </ng-container>
-            </div>
+
+            <ion-item>
+                <ion-label class="font" position="floating">Role</ion-label>
+                <ion-select class="font" [(ngModel)]="role" formControlName="role" value="user" disabled>
+                    <ion-select-option value="admin">Admin</ion-select-option>
+                    <ion-select-option value="user">User</ion-select-option>
+                  </ion-select>	
+              </ion-item>
 
             <ion-item>
               <ion-label class="font" position="floating">Gender</ion-label>

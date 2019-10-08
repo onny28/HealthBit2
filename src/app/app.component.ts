@@ -30,14 +30,4 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
-
-//   firebase.auth().onAuthStateChanged(function(user) {
-//     if (user) {
-//       this.navCtrl.setRoot('home'); //to the page where user navigates after login
-//       // User is signed in.q
-//     } else {
-//       this.navCtrl.setRoot(LoginPage); // to the login page as user is not logged in
-//       // No user is signed in.
-//     }
-//   });
  }
