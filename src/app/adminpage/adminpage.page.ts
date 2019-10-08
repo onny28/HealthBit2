@@ -49,7 +49,7 @@ export class AdminpagePage implements OnInit {
     if (user) {
       // User is signed in.
       this.loadingFunction('Loading...')
-      // this.userID = this.firebaseService.userDetails().uid;
+      this.userID = this.firebaseService.userDetails().uid;
       this.userEmail = this.firebaseService.userDetails().email;
 
         this.firebaseService.listUsers().subscribe(data => {

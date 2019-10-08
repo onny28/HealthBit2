@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
@@ -19,10 +20,11 @@ const routes: Routes = [
   { path: 'idea2/:id', loadChildren: './adminrecipe/adminrecipe.module#AdminrecipePageModule' },
   { path: 'adminrecipe', loadChildren: './adminrecipe/adminrecipe.module#AdminrecipePageModule' },
   { path: 'create-location', loadChildren: './create-location/create-location.module#CreateLocationPageModule' },
-  { path: 'locationdetail', loadChildren: './locationdetail/locationdetail.module#LocationdetailPageModule' },  { path: 'create-user', loadChildren: './create-user/create-user.module#CreateUserPageModule' },
-
-  
- ];
+  { path: 'locationdetail', loadChildren: './locationdetail/locationdetail.module#LocationdetailPageModule' },
+  { path: 'create-user', loadChildren: './create-user/create-user.module#CreateUserPageModule' },
+  { path: 'map', loadChildren: './pages/map/map.module#MapPageModule' },
+ 
+];
 
 
 @NgModule({

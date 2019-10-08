@@ -4,17 +4,30 @@
         <ion-button slot="end" fill="clear" (click)="shareWhatsapp()">
             <ion-icon name="share"></ion-icon>
         </ion-button>
+        <ion-button slot="end" fill="clear">
+          <ion-icon name="filing"></ion-icon>
+      </ion-button>
     </ion-toolbar>
 </ion-header>
-<ion-content>
+<!-- <ion-content *ngIf="selectedItems.length">
 <ion-list>
-    <ion-item class="font" *ngFor="let item of items">
-      {{ item.ingredients }}
+    <ion-item class="font" *ngFor="let item of selectedItems">
+      {{ item.count }}x {{item.name}} - {{item.price}}
       <ion-button slot="end">
         <ion-icon  name="trash"></ion-icon> 
       </ion-button>
     </ion-item>
 </ion-list>
+</ion-content> -->
 
-
+<ion-content>
+  <ion-card *ngFor="let item of grocery">
+ {{item.ingredient}}
+  </ion-card>
 </ion-content>
+
+<ion-content padding *ngIf="!selectedItems.length">
+    <div text-center class="font">
+      No grocery list 
+    </div>
+  </ion-content>

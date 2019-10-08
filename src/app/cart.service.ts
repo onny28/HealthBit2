@@ -6,34 +6,35 @@ import { Idea } from './services/idea.service';
   providedIn: 'root'
 })
 export class CartService {
-  
-  items = [];
-
+ 
   idea: Idea = {
     name: '',
     notes: '',
     steps:'',
     ingredients: [{
       name: '',
-      price: undefined
+      price: undefined,
     }]
     };
 
     private cart = [];
+    cartCount: number;
+    
 
-  constructor() {}
-
-  addToCart(ingredient){
-    this.items.push(ingredient);
+  constructor() {
+   this.cartCount = 0;
+  }
+ 
+  getIngredients(){
+    return this.idea.ingredients;
   }
 
-  getItems(){
-    return this.items;
+  addCart(ingredient) {
+    this.cart.push(ingredient);
   }
 
-  clearCart(){
-    this.items = [];
-    return this.items;
+  getCart(){
+    return this.cart;
   }
 
  

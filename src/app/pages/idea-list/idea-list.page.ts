@@ -11,7 +11,17 @@ import { AngularFirestore } from '@angular/fire/firestore'
 export class IdeaListPage implements OnInit {
 
 private ideas: Observable<Idea[]>;
-
+public filterText: string;
+// idea: Idea ={
+//   name:'',
+//   notes: '',
+//   ingredients: [{
+//     name: '',
+//     price: null
+//   }],
+//   steps: ''
+// }
+idea: Idea[] = [];
  
   constructor(private ideaService: IdeaService, private firestore:AngularFirestore) { }
  
@@ -26,6 +36,26 @@ private ideas: Observable<Idea[]>;
   //     this.loadedIdeaList = ideaList;
   // });
   }
+
+  getItems(){
+    var val = this.filterText;
+  
+    if (val && val.trim() != ""){
+      this.ideaService.getIdeas().subscribe(p => {
+        this.idea = p.filter(idea => {
+          return idea.name.toLowerCase().indexOf(val.toLowerCase()) > -1;
+        });
+      });
+    } else {
+      this.ideaService.getIdeas().subscribe(p =>{
+        this.idea = p;
+      });
+    }
+  }
+
+  // filter(value: string): Observable<Idea[]> {
+  //   return this.idea.map( idea => )
+  // }
 
   // initializeItems(): void {
   //   this.ideaList = this.loadedIdeaList;

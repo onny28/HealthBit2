@@ -1,5 +1,7 @@
 {
   "name": "Ionic4GoogleMaps",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

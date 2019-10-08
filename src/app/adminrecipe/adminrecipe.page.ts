@@ -76,7 +76,7 @@ export class AdminrecipePage implements OnInit {
     this.showToast('added to cart!');
     // let ingredients = this.idea.ingredients;
     this.idea.ingredients = ingredient;
-    this.cartService.addToCart(ingredient);
+    this.cartService.addCart(ingredient);
   }
 
  
