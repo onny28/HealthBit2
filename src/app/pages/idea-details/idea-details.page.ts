@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IdeaService, Idea } from '../../services/idea.service';
 import { ToastController, IonSlides, NavController } from '@ionic/angular';
 import { CartService } from 'app/cart.service';
+import { FirebaseService } from 'app/firebase.service';
 
 
  
@@ -33,12 +34,22 @@ export class IdeaDetailsPage implements OnInit {
  @ViewChild('slides', {static: false}) slider: IonSlides;
      segment = 0;
      cart =[];
-
+     items = [];
+     cartCount:number=0;
  
-  constructor(private activatedRoute: ActivatedRoute, private ideaService: IdeaService,
-    private toastCtrl: ToastController, private router: Router, public navCtrl: NavController, private cartService: CartService) { }
+  constructor(
+    private activatedRoute: ActivatedRoute, 
+    private ideaService: IdeaService,
+    private toastCtrl: ToastController, 
+    private router: Router, 
+    public navCtrl: NavController, 
+    private cartService: CartService,
+    private firebaseService: FirebaseService,
+    ) { }
  
   ngOnInit() {
+    this.items=this.cartService.getIngredients();
+    this.cart = this.cartService.getCart();
     
    }
 
@@ -98,12 +109,15 @@ export class IdeaDetailsPage implements OnInit {
   addToCart(ingredient){
     this.showToast('added to cart!');
     // let ingredients = this.idea.ingredients;
-    this.idea.ingredients = ingredient;
-    this.cartService.addToCart(ingredient);
-  }
+    this.cartService.addCart(ingredient);
+    this.cartService.cartCount = this.cartService.cartCount+1;
+    this.cartCount = this.cartService.cartCount;
+    }
 
+    openCart(){
+      this.router.navigate(['grocerylist']);
+    }
   
-
   showToast(msg) {
     this.toastCtrl.create({
       message: msg,
@@ -118,5 +132,18 @@ export class IdeaDetailsPage implements OnInit {
 
   async slideChanged() {
     this.segment = await this.slider.getActiveIndex();
+  }
+
+  CreateGroceryList() {
+    let data = {};
+    data['ingredient'] = this.idea.ingredients;
+    this.firebaseService.create_grocerylist(data).then(resp => {
+      this.idea.ingredients = [];
+      console.log(resp);
+      // this.navCtrl.navigateBack('/gr')
+    })
+      .catch(error => {
+        console.dir(error);
+      });
   }
 }

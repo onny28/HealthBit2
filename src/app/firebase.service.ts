@@ -30,6 +30,14 @@ export class FirebaseService {
     return this.firestore.collection('users').add(record);
   }
 
+  create_grocerylist(data) {
+    return this.firestore.collection('grocerylist').add(data);
+  }
+
+  readGrocerylist(){
+    return this.firestore.collection('grocerylist').snapshotChanges();
+  }
+
   read_User() {
     var db = firebase.firestore();
     var user = firebase.auth().currentUser;

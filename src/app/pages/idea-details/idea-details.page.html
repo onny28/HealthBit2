@@ -1,8 +1,19 @@
-<ion-header>
+<ion-header *ngIf=!idea.id>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/idea-list"></ion-back-button>
     </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-header *ngIf=idea.id>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/idea-list"></ion-back-button>
+    </ion-buttons>
+  <ion-button slot="end" fill="clear" [routerLink]="['/tabs/tabs/grocerylist']">
+    <ion-icon name="cart"></ion-icon>
+  </ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -42,27 +53,27 @@
 
   <ion-slides #slides (ionSlideDidChange)="slideChanged()" scrollbar="true">
       <ion-slide>
-          <!-- <ion-item class="font">
-              <ion-button slot="end" fill="clear" [routerLink]="['/tabs/tabs/grocerylist']">
-                <ion-icon name="cart" ></ion-icon>
-              </ion-button> -->
-
               <ion-item>
-                <ion-list>
-                  <ion-item  *ngFor = "let ingredient of idea.ingredients; let i=index">
-                  <ion-input type="text" class="font" [(ngModel)]="ingredient.name" placeholder="Enter ingredients"> 
+                <ion-list *ngFor = "let ingredient of idea.ingredients; let i=index">
+                  
+                    {{ingredient.name}}      - ${{ingredient.price}}
+                  
+                  <!-- <ion-input type="text" class="font" [(ngModel)]="ingredient.name" placeholder="Enter ingredients"></ion-input> 
+                    </ion-item>
+                    <ion-item>
+                    <ion-input type="number" class="font" [(ngModel)]="ingredient.price" placeholder="Enter price"></ion-input>
+                    </ion-item> -->
+
                    <ion-button fill="clear" slot="end" (click)="delIngredient(i)">
                       <ion-icon name="trash"></ion-icon>
                    </ion-button>
-  
-                   <!-- <ion-button (click)="addToCart()" color="warning" class="font">Add to cart</ion-button> -->
-                   </ion-input>
-                   </ion-item>
+
+                   <ion-button (click)="addToCart(ingredient); CreateGroceryList()" color="warning" class="font">Add to cart</ion-button>
                 </ion-list>
 
-                <ion-button slot="end" (click)="addIngredient()">
+                <!-- <ion-button slot="end" (click)="addIngredient()">
                     <ion-icon name="add"></ion-icon>
-                  </ion-button> 
+                  </ion-button>  -->
                 <!-- <ion-input class="font" [(ngModel)]="ingredient.name" placeholder="Enter ingredients"> -->
                 <!-- <ion-input type="number" class="font" [(ngModel)]="ingredient.price" placeholder="Enter price"></ion-input> -->
                  
@@ -124,14 +135,20 @@
     <!-- <ion-input [(ngModel)]="idea.notes"></ion-input> -->
   </ion-item>
 
-  <ion-item *ngFor = "let ingredient of idea.ingredients; let i=index">
-    <ion-input class="font" [(ngModel)]="ingredient.name" placeholder="Enter ingredients"> 
-        <!-- <ion-input type="number" class="font" [(ngModel)]="ingredient.price" placeholder="Enter price"></ion-input> -->
-     <ion-button slot="end" (click)="delIngredient(i)">
-       <ion-icon name="trash"></ion-icon>
-     </ion-button>
-    </ion-input>
+  <ion-item >
+    <ion-list *ngFor = "let ingredient of idea.ingredients; let i=index">
+    <ion-item>
+    <ion-input class="font" [(ngModel)]="ingredient.name" placeholder="Enter ingredients"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="number" class="font" [(ngModel)]="ingredient.price" placeholder="Enter price"></ion-input>
+  </ion-item>
+  <ion-button slot="end" (click)="delIngredient(i)">
+  <ion-icon name="trash"></ion-icon></ion-button>
+    </ion-list>
+     
    
+  
     <ion-button slot="end" (click)="addIngredient()">
         <ion-icon name="add"></ion-icon>
       </ion-button>

@@ -46,7 +46,7 @@ export class AdminpagePage implements OnInit {
     var user = firebase.auth().currentUser;
     if (user) {
       // User is signed in.
-      this.loadingFunction('Loading...')
+      // this.loadingFunction('Loading...')
       this.userID = this.firebaseService.userDetails().uid;
       this.userEmail = this.firebaseService.userDetails().email;
 
@@ -63,7 +63,7 @@ export class AdminpagePage implements OnInit {
               height: e.payload.doc.data()['height'],
             };
           })
-          this.loaderDismiss();
+          // this.loaderDismiss();
           console.log(this.users);
         });
 

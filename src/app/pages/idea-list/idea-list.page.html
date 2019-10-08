@@ -9,15 +9,13 @@
  
 <ion-content>
 
-    <ion-button color="warning"  class="font" button [routerLink]="['/try']">VIEW TRYPAGE</ion-button>
-
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
         <ion-fab-button routerLink="/idea">
           <ion-icon name="add"></ion-icon>
         </ion-fab-button>
       </ion-fab>
 
-  <ion-searchbar showcancelbutton="" (ioninput)="filterList($event)"></ion-searchbar>
+  <ion-searchbar showcancelbutton="" [(ngModel)]="filterText" (ioninput)="getItems()"></ion-searchbar>
   <!-- <ion-list>
     <ion-item *ngfor="let idea of ideaList">
       <ion-label>{{ idea.name }}</ion-label>
