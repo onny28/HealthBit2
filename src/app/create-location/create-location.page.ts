@@ -22,14 +22,7 @@ export class CreateLocationPage implements OnInit {
     private navCtrl: NavController,
     private formBuilder: FormBuilder,
   ) { 
-    // this.locationForm = this.formBuilder.group({
-    //   locationName: new FormControl('' , Validators.compose([
-    //     Validators.required,
-    //   ])),
-    //   address: new FormControl('', Validators.compose([
-    //     Validators.required,
-    //   ])),
-    // })
+  
   }
 
   ngOnInit() {

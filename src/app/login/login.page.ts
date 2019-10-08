@@ -11,6 +11,7 @@ import 'firebase/auth';
 import 'firebase/firestore';
 
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 
 @Component({
@@ -42,6 +43,8 @@ export class LoginPage implements OnInit {
   }
   loader: HTMLIonLoadingElement;
   loading: boolean;
+  
+  
 
   constructor(
     public afAuth: AngularFireAuth, 
@@ -49,8 +52,13 @@ export class LoginPage implements OnInit {
     private toastController: ToastController,
     private formBuilder: FormBuilder,
     public loadingCtrl: LoadingController,
-    public alertController: AlertController
+    public alertController: AlertController,
+    public firestore: AngularFirestore,
     ) { 
+
+      // var currentuser = firebase.auth().currentUser;
+      // var authID = currentuser.uid;
+      // var sama = this.firestore.collection('users', ref => ref.where("authid", "==", authID))
       
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {

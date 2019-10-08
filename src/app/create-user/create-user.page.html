@@ -1,0 +1,139 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="start" [routerLink]="['/adminpage']" clear>
+      Cancel
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h4 style="text-align: center">CREATE USER</h4>
+    
+  <form [formGroup]="createForm">
+    <div padding>
+
+      <ion-item>
+        <ion-label class="font" position="floating">Email</ion-label>
+        <ion-input class="font" type="email" [(ngModel)]="email" formControlName="email" required></ion-input>
+      </ion-item>
+
+      <div class="error-messages">
+        <ng-container *ngFor="let error of error_messages.email">
+          <div class="error-messages"
+            *ngIf="createForm.get('email').hasError(error.type) && (createForm.get('email').dirty || createForm.get('email').touched)">
+            {{error.message}}
+          </div>
+        </ng-container>
+      </div>
+
+      <ion-item>
+        <ion-label class="font" position="floating">Password</ion-label>
+        <ion-input class="font" [type]="getType()" [(ngModel)]="password" formControlName="password" required>
+        </ion-input>
+        <ion-icon name="eye" (click)="toggleTextPassword()" slot="end"></ion-icon>
+      </ion-item>
+
+      <div class="error-messages">
+        <ng-container *ngFor="let error of error_messages.password">
+          <div class="error-messages"
+            *ngIf="createForm.get('password').hasError(error.type) && (createForm.get('password').dirty || createForm.get('password').touched)">
+            {{error.message}}
+          </div>
+        </ng-container>
+      </div>
+
+      <ion-item>
+        <ion-label class="font" position="floating">Confirm Password</ion-label>
+        <ion-input class="font" [type]="getType()" [(ngModel)]="cpassword" formControlName="cpassword" required>
+        </ion-input>
+        <ion-icon name="eye" (click)="toggleTextPassword()" slot="end"></ion-icon>
+      </ion-item>
+
+      <div class="error-messages">
+        <ng-container *ngFor="let error of error_messages.cpassword">
+          <div class="error-messages"
+            *ngIf="createForm.get('cpassword').hasError(error.type) && (createForm.get('cpassword').dirty || createForm.get('cpassword').touched)">
+            {{error.message}}
+          </div>
+        </ng-container>
+      </div>
+
+      <ion-item>
+        <ion-label class="font" position="floating">Role</ion-label>
+        <ion-select class="font" [(ngModel)]="role" formControlName="role">
+            <ion-select-option value="admin">Admin</ion-select-option>
+            <ion-select-option value="user">User</ion-select-option>
+          </ion-select>	
+      </ion-item>
+      <div class="error-messages">
+        <ng-container *ngFor="let error of error_messages.role">
+          <div class="error-messages"
+            *ngIf="createForm.get('role').hasError(error.type) && (createForm.get('role').dirty || createForm.get('role').touched)">
+            {{error.message}}
+          </div>
+        </ng-container>
+      </div>
+
+    <ion-item>
+      <ion-label class="font" position="floating">Gender</ion-label>
+      <ion-select placeholder="Select One" class="font" [(ngModel)]="gender" formControlName="gender" required>
+        <ion-select-option value="Female">Female</ion-select-option>
+        <ion-select-option value="Male">Male</ion-select-option>
+      </ion-select>	
+    </ion-item>
+    <div class="error-messages">
+      <ng-container *ngFor="let error of error_messages.gender">
+        <div class="error-messages"
+          *ngIf="createForm.get('gender').hasError(error.type) && (createForm.get('gender').dirty || createForm.get('gender').touched)">
+          {{error.message}}
+        </div>
+      </ng-container>
+    </div>
+
+    <ion-item>
+      <ion-label class="font" position="floating">Age</ion-label>
+      <ion-input class="font"  type="number" [(ngModel)]="age" formControlName="age" required></ion-input>
+    </ion-item>
+    <div class="error-messages">
+      <ng-container *ngFor="let error of error_messages.age">
+        <div class="error-messages"
+          *ngIf="createForm.get('age').hasError(error.type) && (createForm.get('age').dirty || createForm.get('age').touched)">
+          {{error.message}}
+        </div>
+      </ng-container>
+    </div>
+
+    <ion-item>
+      <ion-label class="font" position="floating">Weight</ion-label>
+      <ion-input class="font" type="number" [(ngModel)]="weight" formControlName="weight"  required></ion-input>
+    </ion-item>
+    <div class="error-messages">
+      <ng-container *ngFor="let error of error_messages.weight">
+        <div class="error-messages"
+          *ngIf="createForm.get('weight').hasError(error.type) && (createForm.get('weight').dirty || createForm.get('weight').touched)">
+          {{error.message}}
+        </div>
+      </ng-container>
+    </div>
+
+    <ion-item>
+      <ion-label class="font" position="floating">Height</ion-label>
+      <ion-input class="font" type="number" [(ngModel)]="height" formControlName="height"  required></ion-input>
+    </ion-item>
+    <div class="error-messages">
+      <ng-container *ngFor="let error of error_messages.height">
+        <div class="error-messages"
+          *ngIf="createForm.get('height').hasError(error.type) && (createForm.get('height').dirty || createForm.get('height').touched)">
+          {{error.message}}
+        </div>
+      </ng-container>
+    </div>
+
+    </div>
+  </form>
+
+  <div padding>
+    <ion-button class="font" size="large" expand="block" type="submit" [disabled]="!createForm.valid"
+      (click)="CreateRecord()">Create</ion-button>
+  </div>
+</ion-content>

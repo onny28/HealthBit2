@@ -7,6 +7,7 @@ import 'firebase/firestore';
 import { Observable } from 'rxjs';
 import { Idea, IdeaService } from 'app/services/idea.service';
 
+
 @Component({
   selector: 'app-adminpage',
   templateUrl: './adminpage.page.html',
@@ -39,7 +40,8 @@ export class AdminpagePage implements OnInit {
     private ideaService: IdeaService,
     private firebaseService: FirebaseService,
     private navCtrl: NavController,
-    public loadingCtrl: LoadingController,) { }
+    public loadingCtrl: LoadingController,
+  ) { }
  
   ngOnInit() {
     this.ideas = this.ideaService.getIdeas();
@@ -47,7 +49,7 @@ export class AdminpagePage implements OnInit {
     if (user) {
       // User is signed in.
       this.loadingFunction('Loading...')
-      this.userID = this.firebaseService.userDetails().uid;
+      // this.userID = this.firebaseService.userDetails().uid;
       this.userEmail = this.firebaseService.userDetails().email;
 
         this.firebaseService.listUsers().subscribe(data => {
@@ -56,6 +58,8 @@ export class AdminpagePage implements OnInit {
             return {
               id: e.payload.doc.id,
               isEdit: false,
+              email: e.payload.doc.data()['email'],
+              authid: e.payload.doc.data()['authid'],
               role: e.payload.doc.data()['role'],
               gender: e.payload.doc.data()['gender'],
               age: e.payload.doc.data()['age'],
@@ -110,33 +114,6 @@ async loaderDismiss(){
 
   //user
 
-  CreateRecord() {
-    let record = {};
-    record['authid'] = this.userID;
-    record['email'] = this.userEmail;
-    record['role'] = this.role;
-    record['gender'] = this.gender;
-    // record['dob'] = this.dob;
-    record['age'] = this.age;
-    record['weight'] = this.weight;
-    record['height'] = this.height;
-    this.firebaseService.create_NewUser(record).then(resp => {
-      this.userID;
-      this.userEmail;
-      this.role;
-      this.gender = "";
-      // this.dob = undefined;
-      this.age = undefined;
-      this.weight = undefined;
-      this.height = undefined;
-      console.log(resp);
-      // this.navCtrl.navigateForward('/tabs/tabs/home')
-    })
-      .catch(error => {
-        console.dir(error);
-      });
-  }
-
   EditRecord(record) {
     record.isEdit = true;
     record.EditRole = record.role;
@@ -159,9 +136,9 @@ async loaderDismiss(){
     recordRow.isEdit = false;
   }
 
-  RemoveRecord(rowID) {
-    this.firebaseService.delete_User(rowID);
-  }
+  // RemoveRecord(rowID) {
+  //   this.firebaseService.delete_User(rowID);
+  // }
 
   //location
 

@@ -40,8 +40,8 @@
           <ion-card *ngFor="let item of users">
               <span *ngIf="!item.isEdit; else elseBlock">
                 <ion-card-header>
-                  <ion-card-title>{{userEmail}}</ion-card-title>
-                  <ion-card-subtitle>AuthID: {{userID}}</ion-card-subtitle>
+                  <ion-card-title>{{item.email}}</ion-card-title>
+                  <ion-card-subtitle>AuthID: {{item.authid}}</ion-card-subtitle>
                   <ion-card-subtitle>UserID: {{item.id}}</ion-card-subtitle>
                 </ion-card-header>
                 <ion-card-content>
@@ -50,10 +50,10 @@
                     <ion-icon size="small" slot="icon-only" name="create"></ion-icon>
            
                   </ion-button>
-                  <ion-button shape="round" color="danger" size="small" (click)="RemoveRecord(item.id)">
+                  <!-- <ion-button shape="round" color="danger" size="small" (click)="RemoveRecord(item.id)">
                     <ion-icon size="small" slot="icon-only" name="trash"></ion-icon>
            
-                  </ion-button>
+                  </ion-button> -->
                 </ion-card-content>
               </span>
               <ng-template #elseBlock>
@@ -125,7 +125,7 @@
           </ion-list>
           <ion-footer>
               <ion-fab vertical="bottom" horizontal="end" position="fixed">
-                  <ion-fab-button routerLink="/details">
+                  <ion-fab-button routerLink="/create-user">
                     <ion-icon name="add"></ion-icon>
                   </ion-fab-button>
                 </ion-fab>
@@ -246,6 +246,12 @@
                           <ion-label><strong>Address:</strong></ion-label>
                           <ion-input type="text" [(ngModel)]="item.EditAddress"></ion-input>
                         </ion-item>
+
+                        <div>
+                          <ion-button>
+                            <ion-icon size="small" slot="icon-only" name="map"></ion-icon>
+                          </ion-button>
+                        </div>
                     </ion-card-content>
                   </ng-template>
                 </ion-card>

@@ -68,11 +68,8 @@ export class FirebaseService {
   }
 
 
-  delete_User(record_id) {
-    this.firestore.doc('users/' + record_id).delete();
-    let uid = firebase.auth()
-    let id =  this.firestore.collection('users', ref => ref.where("authid", "==", uid))
-    
+  delete_userData(record_id) {
+    this.firestore.doc('users/' + record_id).delete();  
     
   }
 
@@ -93,21 +90,21 @@ export class FirebaseService {
   userDetails() {
     return firebase.auth().currentUser;
   }
-  create_newRecipe(recipe) {
-    return this.firestore.collection('recipeN').add(recipe);
-  }
+  // create_newRecipe(recipe) {
+  //   return this.firestore.collection('recipeN').add(recipe);
+  // }
 
-  listRecipe(){
-    return this.firestore.collection('recipeN').snapshotChanges();
-  }
+  // listRecipe(){
+  //   return this.firestore.collection('recipeN').snapshotChanges();
+  // }
 
-  update_recipe(recipeID, recipe) {
-    this.firestore.doc('recipeN/' + recipeID).update(recipe);
-  }
+  // update_recipe(recipeID, recipe) {
+  //   this.firestore.doc('recipeN/' + recipeID).update(recipe);
+  // }
 
-  delete_recipe(recipe_id) {
-    this.firestore.doc('recipeN/' + recipe_id).delete();
-  }
+  // delete_recipe(recipe_id) {
+  //   this.firestore.doc('recipeN/' + recipe_id).delete();
+  // }
 
   create_location(location) {
     return this.firestore.collection('locationN').add(location);
