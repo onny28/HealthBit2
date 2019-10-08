@@ -105,13 +105,9 @@ export class HomePage {
     })
   }
 
-  removeData(rowID){
-  
-  }
-
-  deleteAcc(rowID){
-    this.firebaseService.delete_userData(rowID);
-    console.log("user data was successfully deleted");
+  deleteAcc(){
+    // this.firebaseService.delete_userData(rowID);
+    // console.log("user data was successfully deleted");
     var user = firebase.auth().currentUser;
 
     user.delete().then(function() {
@@ -140,7 +136,7 @@ export class HomePage {
         role: 'delete',
         icon: 'trash',
         handler: () => {
-          this.deleteAcc(rowID);
+          this.deleteAcc();
           console.log('Account deleted');
         }
       },{
