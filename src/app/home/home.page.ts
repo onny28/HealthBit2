@@ -41,7 +41,6 @@ export class HomePage {
       // No user is signed in.
       this.navCtrl.navigateBack('/login');
     }
-    
   }
 
   // loadMap() {

@@ -17,6 +17,8 @@ const routes: Routes = [
   { path: 'idea', loadChildren: './pages/idea-details/idea-details.module#IdeaDetailsPageModule' },
   { path: 'idea/:id', loadChildren: './pages/idea-details/idea-details.module#IdeaDetailsPageModule' },
   { path: 'adminpage', loadChildren: './adminpage/adminpage.module#AdminpagePageModule' },
+  { path: 'idea2', loadChildren: './adminrecipe/adminrecipe.module#AdminrecipePageModule' },
+  { path: 'idea2/:id', loadChildren: './adminrecipe/adminrecipe.module#AdminrecipePageModule' },
   { path: 'adminrecipe', loadChildren: './adminrecipe/adminrecipe.module#AdminrecipePageModule' },
   { path: 'create-location', loadChildren: './create-location/create-location.module#CreateLocationPageModule' },
   { path: 'map', loadChildren: './pages/map/map.module#MapPageModule' },
