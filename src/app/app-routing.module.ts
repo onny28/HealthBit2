@@ -1,4 +1,3 @@
-
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
@@ -22,7 +21,7 @@ const routes: Routes = [
   { path: 'create-location', loadChildren: './create-location/create-location.module#CreateLocationPageModule' },
   { path: 'locationdetail', loadChildren: './locationdetail/locationdetail.module#LocationdetailPageModule' },
   { path: 'create-user', loadChildren: './create-user/create-user.module#CreateUserPageModule' },
-  { path: 'map', loadChildren: './pages/map/map.module#MapPageModule' },
+  // { path: 'map', loadChildren: './pages/map/map.module#MapPageModule' },
  
 ];
 
