@@ -80,13 +80,11 @@
                 </ion-card-header>
                 <ion-card-content>
                     <ion-item>
-                        <ion-label><strong>UserID:</strong></ion-label>
-                        <ion-input>{{item.id}}</ion-input>
+                        <ion-label><strong>UserID:</strong>{{item.id}}</ion-label>
                     </ion-item>
 
                     <ion-item>
-                        <ion-label><strong>Email:</strong></ion-label>
-                        <ion-input>{{userEmail}}</ion-input>
+                        <ion-label><strong>Email:</strong>{{userEmail}}</ion-label>
                     </ion-item>
             
                     <ion-item>
@@ -98,26 +96,26 @@
                     </ion-item>
             
                     <ion-item>
-                      <ion-label><strong>Gender:</strong></ion-label>
-                      <ion-select placeholder="Select One" [(ngModel)]="item.EditGender">
+                      <ion-label><strong>Gender:</strong>{{item.gender}}</ion-label>
+                      <!-- <ion-select placeholder="Select One" [(ngModel)]="item.EditGender">
                         <ion-select-option value="Female">Female</ion-select-option>
                         <ion-select-option value="Male">Male</ion-select-option>
-                      </ion-select>
+                      </ion-select> -->
                     </ion-item>
             
                     <ion-item>
-                      <ion-label><strong>Age:</strong></ion-label>
-                      <ion-input type="number" [(ngModel)]="item.EditAge"></ion-input>
+                      <ion-label><strong>Age:</strong>{{item.age}}</ion-label>
+                      <!-- <ion-input type="number" [(ngModel)]="item.EditAge"></ion-input> -->
                     </ion-item>
             
                     <ion-item>
-                      <ion-label><strong>Weight:</strong></ion-label>
-                      <ion-input type="number" [(ngModel)]="item.EditWeight"></ion-input>
+                      <ion-label><strong>Weight:</strong>{{item.weight}}</ion-label>
+                      <!-- <ion-input type="number" [(ngModel)]="item.EditWeight"></ion-input> -->
                     </ion-item>
             
                     <ion-item>
-                      <ion-label><strong>Height:</strong></ion-label>
-                      <ion-input type="number" [(ngModel)]="item.EditHeight"></ion-input>
+                      <ion-label><strong>Height:</strong>{{item.height}}</ion-label>
+                      <!-- <ion-input type="number" [(ngModel)]="item.EditHeight"></ion-input> -->
                     </ion-item>
                 </ion-card-content>
               </ng-template>

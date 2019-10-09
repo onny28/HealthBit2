@@ -119,6 +119,8 @@ async loaderDismiss(){
 
   async signup(): Promise<any>{
    
+   
+   try{
     const { email, password, cpassword } = this
     if (password != cpassword) {
       console.error("Password did not match")
@@ -128,8 +130,7 @@ async loaderDismiss(){
       });
       toast.present();
     }
-    this.loadingFunction('Loading...')
-    try {
+    else {
     //   return firebase
     //   .auth()
     //   .createUserWithEmailAndPassword(email, password)
@@ -146,6 +147,7 @@ async loaderDismiss(){
     //   });
     //   toast.present();
     // })
+     this.loadingFunction('Loading...');
       await this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       // .then (async (newUserCredential: firebase.auth.UserCredential) => {
       //     firebase
@@ -161,7 +163,8 @@ async loaderDismiss(){
         duration: 2000
       });
       toast.present();
-    } catch (error) {
+    } 
+    }catch (error) {
       this.loaderDismiss();
       console.dir(error)
       if (error.code == "auth/email-already-in-use") {

@@ -64,6 +64,8 @@ export class RecordPage implements OnInit {
             return {
               id: e.payload.doc.id,
               isEdit: false,
+              email: e.payload.doc.data()['email'],
+              authid: e.payload.doc.data()['authid'],
               role: e.payload.doc.data()['role'],
               gender: e.payload.doc.data()['gender'],
               age: e.payload.doc.data()['age'],

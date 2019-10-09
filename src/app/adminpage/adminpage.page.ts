@@ -136,9 +136,9 @@ async loaderDismiss(){
     recordRow.isEdit = false;
   }
 
-  // RemoveRecord(rowID) {
-  //   this.firebaseService.delete_User(rowID);
-  // }
+  RemoveRecord(rowID) {
+    this.firebaseService.delete_userData(rowID);
+  }
 
   //location
 
