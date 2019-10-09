@@ -1,6 +1,7 @@
 import { Component, Injectable } from '@angular/core';
 import { FCM } from '@ionic-native/fcm/ngx';
 import { Platform } from '@ionic/angular';
+import { SettingsService } from 'app/settings.service';
 
 @Injectable ({
   providedIn: 'root'
@@ -13,7 +14,7 @@ import { Platform } from '@ionic/angular';
 })
 export class SettingPage {
   pushes: any = [];
-  constructor(private fcm: FCM, public plt: Platform) {
+  constructor(private fcm: FCM, public plt: Platform, private theme: SettingsService) {
     this.plt.ready()
       .then(() => {
         this.fcm.onNotification().subscribe(data => {
@@ -41,5 +42,13 @@ export class SettingPage {
   }
   unsubscribeFromTopic() {
     this.fcm.unsubscribeFromTopic('enappd');
+  }
+
+  enableDark(){
+    this.theme.enableDark();
+  }
+
+  enableLight(){
+    this.theme.enableLight();
   }
 }

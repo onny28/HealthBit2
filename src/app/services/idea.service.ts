@@ -9,6 +9,7 @@ export interface Idea {
   notes: string,
   steps: string,
   ingredients: Array<Ingredient>
+  calories: number;
 }
 
 interface Ingredient{
@@ -57,7 +58,7 @@ export class IdeaService {
   }
  
   updateIdea(idea: Idea): Promise<void> {
-    return this.ideaCollection.doc(idea.id).update({ name: idea.name, notes: idea.notes, steps: idea.steps, ingredients: idea.ingredients});
+    return this.ideaCollection.doc(idea.id).update({ name: idea.name, notes: idea.notes, steps: idea.steps, ingredients: idea.ingredients, calories: idea.calories,});
   }
  
   deleteIdea(id: string): Promise<void> {

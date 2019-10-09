@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="/tabs/tabs/grocerylist"></ion-back-button>
+        </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div padding>
+
+        <ion-item>
+          <ion-label class="font" position="floating">Name</ion-label>
+          <ion-input class="font"  type="text" placeholder="Enter ingredients" [(ngModel)]="name" required></ion-input>
+        </ion-item>
+
+
+        <ion-item>
+          <ion-label class="font" position="floating">Price</ion-label>
+          <ion-input class="font" type="number" placeholder="Enter price" [(ngModel)]="price" required></ion-input>
+        </ion-item>
+        </div>
+  
+
+    <div padding>
+      <ion-button (click)="CreateGroceryList()">
+        ADD TO GROCERY LIST
+      </ion-button>
+    </div>
+</ion-content>

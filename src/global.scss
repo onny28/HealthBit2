@@ -24,3 +24,18 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+:root {
+    .dark-theme{
+        --ion-color-primary: #eb4b58;
+        --ion-color-primary-rgb: 235, 75, 88;
+        --ion-color-primary-contract: #ffffff;
+        --ion-color-primary-contrast-rgb: 255,255,255;
+        --ion-color-primary-shade: #cf424d;
+        --ion-color-primary-tint: #ed5d69;
+
+        ion-content {
+            --background: #2c4b84;
+        }
+    }
+}

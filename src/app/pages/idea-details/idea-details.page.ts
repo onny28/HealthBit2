@@ -6,6 +6,7 @@ import { CartService } from 'app/cart.service';
 import { FirebaseService } from 'app/firebase.service';
 
 
+
  
 @Component({
   selector: 'app-idea-details',
@@ -19,9 +20,10 @@ export class IdeaDetailsPage implements OnInit {
     notes: '',
     steps:'',
     ingredients: [ {
-      "name" : "testing",
+      "name" : "",
       "price" : null, }
-    ]
+    ],
+    calories: null,
     };
 
     // ingredients: {
@@ -35,7 +37,9 @@ export class IdeaDetailsPage implements OnInit {
      segment = 0;
      cart =[];
      items = [];
-     cartCount:number=0;
+  
+   
+     
  
   constructor(
     private activatedRoute: ActivatedRoute, 
@@ -110,15 +114,24 @@ export class IdeaDetailsPage implements OnInit {
     this.showToast('added to cart!');
     // let ingredients = this.idea.ingredients;
     this.cartService.addCart(ingredient);
+
     let data={};
     data = ingredient;
-    data['name'] = this.idea.ingredients[0].name;
-    data['price'] = this.idea.ingredients[0].price;
+  
+    for(var i=0; i < data; i++){
+    data['name'] = this.idea.ingredients[i].name;
+    data['price'] = this.idea.ingredients[i].price;
+   
+    }
+  
+
     this.firebaseService.create_grocerylist(data).then(resp => {
       ingredient = [{
         name: '',
         price: undefined
       }];
+      
+      
       console.log(resp);
       // this.navCtrl.navigateBack('/gr')
     })

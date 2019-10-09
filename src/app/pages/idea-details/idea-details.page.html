@@ -18,6 +18,12 @@
 </ion-header>
 
 <ion-content padding *ngIf="idea.id">
+
+    <ion-item>
+        <ion-label class="font" position="stacked">CALORIES</ion-label>
+        <ion-input class="font" [(ngModel)]="idea.calories"></ion-input>
+      </ion-item>
+
   <ion-item>
     <ion-label class="font" position="stacked">NAME</ion-label>
     <ion-input class="font" [(ngModel)]="idea.name"></ion-input>
@@ -56,7 +62,7 @@
               <ion-item>
                 <ion-list *ngFor = "let ingredient of idea.ingredients; let i=index">
                   
-                    {{ingredient.name}}      - ${{ingredient.price}}
+                    {{ingredient.name}} - ${{ingredient.price}}
                   
                   <!-- <ion-input type="text" class="font" [(ngModel)]="ingredient.name" placeholder="Enter ingredients"></ion-input> 
                     </ion-item>
@@ -121,6 +127,12 @@
 
 
 <ion-content padding *ngIf="!idea.id">
+
+    <ion-item>
+        <ion-label class="font" position="stacked">CALORIES</ion-label>
+        <ion-input class="font" [(ngModel)]="idea.calories"></ion-input>
+      </ion-item>
+      
   <ion-item>
     <ion-label class="font" position="stacked">NAME</ion-label>
     <ion-input class="font" [(ngModel)]="idea.name"></ion-input>
