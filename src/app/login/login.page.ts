@@ -12,6 +12,7 @@ import 'firebase/firestore';
 
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { FirebaseService } from 'app/firebase.service';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class LoginPage implements OnInit {
   email: string = ""
   password: string = ""
   errorMessage: string = '';
+  role;
 
   isActiveToggleTextPassword: Boolean = true;
 
@@ -54,6 +56,7 @@ export class LoginPage implements OnInit {
     public loadingCtrl: LoadingController,
     public alertController: AlertController,
     public firestore: AngularFirestore,
+    private firebaseService: FirebaseService,
     ) { 
 
       // var currentuser = firebase.auth().currentUser;
@@ -63,6 +66,7 @@ export class LoginPage implements OnInit {
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           // User is signed in.
+          
           console.log('logged in');
           return navCtrl.navigateForward('/tabs/tabs/home')
         } else {
@@ -90,7 +94,22 @@ export class LoginPage implements OnInit {
 
   async ngOnInit() {
 
-    
+    this.firebaseService.read_User().subscribe(data =>{
+      this.role = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          isEdit: false,
+          email: e.payload.doc.data()['email'],
+          authid: e.payload.doc.data()['authid'],
+          role: e.payload.doc.data()['role'],
+          gender: e.payload.doc.data()['gender'],
+          age: e.payload.doc.data()['age'],
+          weight: e.payload.doc.data()['weight'],
+          height: e.payload.doc.data()['height'],
+        };
+      })
+    })
+    console.log(this.role);
     
   }
   async loadingFunction(loadmsg) {
@@ -145,6 +164,15 @@ async loaderDismiss(){
       //   toast.present();
       // })
         const res = await this.afAuth.auth.signInWithEmailAndPassword(email, password)
+
+        // let role = this.role["0"].role
+
+        // if( role == "admin"){
+        //   this.navCtrl.navigateForward('/adminpage')
+        // }
+        // if( role == "user"){
+        //   this.navCtrl.navigateForward('/tabs/tabs/home')
+        // }
         
         this.loaderDismiss();
         console.log("You have successfully login")

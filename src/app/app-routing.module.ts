@@ -20,7 +20,8 @@ const routes: Routes = [
   { path: 'adminrecipe', loadChildren: './adminrecipe/adminrecipe.module#AdminrecipePageModule' },
   { path: 'create-location', loadChildren: './create-location/create-location.module#CreateLocationPageModule' },
   { path: 'locationdetail', loadChildren: './locationdetail/locationdetail.module#LocationdetailPageModule' },
-  { path: 'create-user', loadChildren: './create-user/create-user.module#CreateUserPageModule' },  { path: 'addgrocerylist', loadChildren: './addgrocerylist/addgrocerylist.module#AddgrocerylistPageModule' },
+  // { path: 'create-user', loadChildren: './create-user/create-user.module#CreateUserPageModule' },
+  { path: 'addgrocerylist', loadChildren: './addgrocerylist/addgrocerylist.module#AddgrocerylistPageModule' },
   { path: 'favourite', loadChildren: './favourite/favourite.module#FavouritePageModule' },
   { path: 'favouritedetails', loadChildren: './favouritedetails/favouritedetails.module#FavouritedetailsPageModule' },
 

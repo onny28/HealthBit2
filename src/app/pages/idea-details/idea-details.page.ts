@@ -25,6 +25,11 @@ export class IdeaDetailsPage implements OnInit {
     ],
     calories: null,
     };
+    comment: string;
+    userEmail: string;
+    userID: string;
+    chat;
+    recipeName: string;
 
     // ingredients: {
     //   "title" : "testing title",
@@ -54,6 +59,23 @@ export class IdeaDetailsPage implements OnInit {
   ngOnInit() {
     this.items=this.cartService.getIngredients();
     this.cart = this.cartService.getCart();
+    this.userEmail = this.firebaseService.userDetails().email;
+    this.userID = this.firebaseService.userDetails().uid;
+    this.recipeName  = this.idea.name;
+
+    this.firebaseService. readComment().subscribe(data =>{
+      this.chat = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          // isEdit: false,
+          email: e.payload.doc.data()['email'],
+          authid: e.payload.doc.data()['authid'],
+          comment: e.payload.doc.data()['comment'],
+          recipeName: e.payload.doc.data()['recipeName'],
+        };
+      })
+      console.log(this.chat);
+    })
     
    }
 
@@ -163,18 +185,21 @@ export class IdeaDetailsPage implements OnInit {
     this.segment = await this.slider.getActiveIndex();
   }
 
- 
-
-//   CreateGroceryList() {
-//     let data = {};
-//     data['ingredient'] = this.idea.ingredients;
-//     this.firebaseService.create_grocerylist(data).then(resp => {
-//       this.idea.ingredients = [];
-//       console.log(resp);
-//       // this.navCtrl.navigateBack('/gr')
-//     })
-//       .catch(error => {
-//         console.dir(error);
-//       });
-//   }
+  CreateComment() {
+    let record = {};
+    record['comment'] = this.comment;
+    record['email'] = this.userEmail;
+    record['authid'] = this.userID;
+    record['recipeName'] = this.recipeName;
+    this.firebaseService.create_comment(record).then(resp => {
+      this.userID;
+      this.userEmail;
+      this.comment;
+      this.recipeName;
+      console.log(resp);
+    })
+      .catch(error => {
+        console.dir(error);
+      });
+  }
  }
