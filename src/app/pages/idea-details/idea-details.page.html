@@ -100,6 +100,18 @@
     </ion-slides>
 
     <ion-button color="warning" class="font">VIDEO</ion-button>
+    <div>
+      <ion-label><strong>Comments:</strong></ion-label>
+      <div *ngFor="let item of chat">
+          <ion-input>{{item.comment}}</ion-input>
+      </div>
+      
+      <ion-input class="font" type="text" [(ngModel)]="comment" placeholder="Add Comments..."></ion-input>
+      <ion-button (click)="CreateComment()">
+        <ion-icon size="small" name="add"></ion-icon>
+        Add</ion-button>
+    </div>
+   
   </ion-content>
 
 <!-- <ion-footer *ngIf="idea.id">

@@ -34,6 +34,14 @@ export class FirebaseService {
     return this.firestore.collection('grocerylist').add(data);
   }
 
+  create_comment(data) {
+    return this.firestore.collection('comment').add(data);
+  }
+
+  readComment(){
+    return this.firestore.collection('comment').snapshotChanges();
+  }
+
   readGrocerylist(){
     return this.firestore.collection('grocerylist').snapshotChanges();
   }
