@@ -28,8 +28,10 @@ export class IdeaDetailsPage implements OnInit {
     comment: string;
     userEmail: string;
     userID: string;
+    calories: number;
     chat;
     recipeName: string;
+    
 
     // ingredients: {
     //   "title" : "testing title",
@@ -61,6 +63,7 @@ export class IdeaDetailsPage implements OnInit {
     this.cart = this.cartService.getCart();
     this.userEmail = this.firebaseService.userDetails().email;
     this.userID = this.firebaseService.userDetails().uid;
+    this.calories = this.idea.calories;
     this.recipeName  = this.idea.name;
 
     this.firebaseService. readComment().subscribe(data =>{
@@ -196,6 +199,22 @@ export class IdeaDetailsPage implements OnInit {
       this.userEmail;
       this.comment;
       this.recipeName;
+      console.log(resp);
+    })
+      .catch(error => {
+        console.dir(error);
+      });
+  }
+
+  CreateCalories() {
+    let data = {};
+    data['calories'] = this.calories;
+    data['email'] = this.userEmail;
+    data['authid'] = this.userID;
+    this.firebaseService.create_calories(data).then(resp => {
+      this.userID;
+      this.userEmail;
+      this.calories;
       console.log(resp);
     })
       .catch(error => {

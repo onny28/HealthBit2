@@ -30,6 +30,16 @@ export class FirebaseService {
     return this.firestore.collection('users').add(record);
   }
 
+  create_calories(data) {
+    return this.firestore.collection('calories').add(data);
+  }
+
+  read_calories() {
+    var user = firebase.auth().currentUser;
+    var authID = user.uid;
+    return this.firestore.collection('calories', ref => ref.where("authid", "==", authID)).snapshotChanges();
+  }
+
   create_grocerylist(data) {
     return this.firestore.collection('grocerylist').add(data);
   }
@@ -41,7 +51,7 @@ export class FirebaseService {
   readComment(){
     return this.firestore.collection('comment').snapshotChanges();
   }
-  
+
   create_favourite(data) {
     return this.firestore.collection('favourite').add(data);
   }

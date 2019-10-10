@@ -32,6 +32,8 @@ export class RecordPage implements OnInit {
   loading: boolean;
   bmiValue: number;
   bmiMessage: string;
+  level;
+  totalCalories = 0;
 
   constructor(
     public toastCtrl: ToastController,
@@ -76,6 +78,25 @@ export class RecordPage implements OnInit {
           this.loaderDismiss();
           console.log(this.user);
         })
+
+        this.firebaseService.read_calories().subscribe(data =>{
+          this.level = data.map(e => {
+            return {
+              id: e.payload.doc.id,
+              isEdit: false,
+              email: e.payload.doc.data()['email'],
+              authid: e.payload.doc.data()['authid'],
+              calories: e.payload.doc.data()['calories'],
+            };
+          })
+          console.log(this.level);
+          let total = 0;
+          for(var i=0; i < this.level.length; i++){
+             total += this.level[i].calories;
+             this.totalCalories = total;
+           }
+           return this.totalCalories;
+        })
       }catch{
 
       }
@@ -115,6 +136,11 @@ async loaderDismiss(){
     record.EditAge = record.age;
     record.EditWeight = record.weight;
     record.EditHeight = record.height;
+  }
+
+  EditCalories(data) {
+    data.isEdit = true;
+    data.EditCalories = data.calories;
   }
 
  
@@ -157,6 +183,8 @@ async loaderDismiss(){
       this.bmiMessage = "Obese"
     }
   }
+
+  
 
 }
  

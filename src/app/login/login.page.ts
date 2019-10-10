@@ -94,22 +94,22 @@ export class LoginPage implements OnInit {
 
   async ngOnInit() {
 
-    this.firebaseService.read_User().subscribe(data =>{
-      this.role = data.map(e => {
-        return {
-          id: e.payload.doc.id,
-          isEdit: false,
-          email: e.payload.doc.data()['email'],
-          authid: e.payload.doc.data()['authid'],
-          role: e.payload.doc.data()['role'],
-          gender: e.payload.doc.data()['gender'],
-          age: e.payload.doc.data()['age'],
-          weight: e.payload.doc.data()['weight'],
-          height: e.payload.doc.data()['height'],
-        };
-      })
-    })
-    console.log(this.role);
+    // this.firebaseService.read_User().subscribe(data =>{
+    //   this.role = data.map(e => {
+    //     return {
+    //       id: e.payload.doc.id,
+    //       isEdit: false,
+    //       email: e.payload.doc.data()['email'],
+    //       authid: e.payload.doc.data()['authid'],
+    //       role: e.payload.doc.data()['role'],
+    //       gender: e.payload.doc.data()['gender'],
+    //       age: e.payload.doc.data()['age'],
+    //       weight: e.payload.doc.data()['weight'],
+    //       height: e.payload.doc.data()['height'],
+    //     };
+    //   })
+    // })
+    // console.log(this.role);
     
   }
   async loadingFunction(loadmsg) {
