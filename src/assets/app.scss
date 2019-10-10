@@ -1,0 +1,28 @@
+:root {
+    .dark-theme{
+        --ion-color-primary: #F24649;
+        --ion-color-primary-rgb: 235, 75, 88;
+        --ion-color-primary-contract: #ffffff;
+        --ion-color-primary-contrast-rgb: 255,255,255;
+        --ion-color-primary-shade: #cf424d;
+        --ion-color-primary-tint: #ed5d69;
+
+        ion-content {
+            --background: #001414;
+            --color: #ffffff;
+        }
+
+        ion-list {
+            --background: #001414;
+            --color: #ffffff;
+        }
+        
+        ion-item {
+            --background: #001414;
+            --color: #ffffff;
+        }
+
+       
+
+    }
+}

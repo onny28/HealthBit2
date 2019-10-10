@@ -15,8 +15,9 @@
     <ion-item >
         <ion-label class="font">Theme</ion-label>
         <ion-select value="light" okText="Yes" cancelText="Cancel" class="font">
-          <ion-select-option value="light" class="font">Light</ion-select-option>
-          <ion-select-option value="dark" class="font">Dark</ion-select-option>
+          <ion-select-option value="light" class="font"
+          (click)="enableLight()">Light</ion-select-option>
+          <ion-select-option value="dark" class="font" (click)="enableDark()">Dark</ion-select-option>
         </ion-select>
       </ion-item>
       <ion-item *ngFor="let item of user">
@@ -25,6 +26,8 @@
             DELETE ACCOUNT
           </ion-button>
         </ion-item>
+        <ion-button (click)="enableDark()">Dark Mode</ion-button>
+        <ion-button (click)="enableLight()">Light Mode</ion-button>
   </ion-list>
 <ion-content>
 </ion-content>

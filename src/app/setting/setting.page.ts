@@ -1,5 +1,6 @@
 import { Component, Injectable } from '@angular/core';
 import { FCM } from '@ionic-native/fcm/ngx';
+import { SettingsService } from 'app/settings.service';
 import { Platform, NavController } from '@ionic/angular';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
@@ -17,12 +18,9 @@ import { FirebaseService } from 'app/firebase.service';
 export class SettingPage {
   pushes: any = [];
   user;
-  constructor(
-    private fcm: FCM,
-    public plt: Platform,
-    private firebaseService: FirebaseService,
-    private navCtrl: NavController,
-    ) {
+  constructor(private fcm: FCM, public plt: Platform, private theme: SettingsService, private firebaseService: FirebaseService,
+    private navCtrl: NavController,) {
+  
     this.plt.ready()
       .then(() => {
         this.fcm.onNotification().subscribe(data => {
@@ -78,6 +76,14 @@ export class SettingPage {
   }
   unsubscribeFromTopic() {
     this.fcm.unsubscribeFromTopic('enappd');
+  }
+
+  enableDark(){
+    this.theme.enableDark();
+  }
+
+  enableLight(){
+    this.theme.enableLight();
   }
 
   removeData(rowID){

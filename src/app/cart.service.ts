@@ -18,10 +18,12 @@ export class CartService {
     ingredients: [{
       name: '',
       price: undefined,
-    }]
+    }],
+    calories: null,
     };
 
     private cart = [];
+    private favourite = [];
     cartCount: number;
     
 
@@ -29,6 +31,7 @@ export class CartService {
    this.cartCount = 0;
   }
  
+  //addtocart
   getIngredients(){
     return this.idea.ingredients;
   }
@@ -41,6 +44,19 @@ export class CartService {
   getCart(){
     return this.cart;
   }
+  
+  //addtofavourite
+  addToFavourite(idea){
+   this.favourite.push(idea);
+   return this.firestore.collection('favourite').add(idea);     
+  }
 
+  getFavourite(){
+    return this.idea;
+  }
+
+  getFavCart(){
+    return this.favourite;
+  }
  
 }

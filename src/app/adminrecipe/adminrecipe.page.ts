@@ -17,6 +17,7 @@ export class AdminrecipePage implements OnInit {
     notes: '',
     steps:'',
     ingredients: [],
+    calories: null,
     };
 
     ingredients =[];
@@ -65,11 +66,9 @@ export class AdminrecipePage implements OnInit {
   }
 
   addIngredient(){
-  if (this.idea.ingredients.length > 0) {
-    let task = this.idea.ingredients;
-    this.ingredients.push(task);
-    // this.idea.ingredients = [];
-    }
+    this.idea.ingredients.push({name: "" , price: null});
+    // "name" : '' , 
+    // "price": null});
   }
 
   addToCart(ingredient){

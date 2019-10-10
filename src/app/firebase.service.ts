@@ -41,9 +41,17 @@ export class FirebaseService {
   readComment(){
     return this.firestore.collection('comment').snapshotChanges();
   }
+  
+  create_favourite(data) {
+    return this.firestore.collection('favourite').add(data);
+  }
 
   readGrocerylist(){
     return this.firestore.collection('grocerylist').snapshotChanges();
+  }
+
+  readFavourite(){
+    return this.firestore.collection('favourite').snapshotChanges();
   }
 
   read_User() {
@@ -139,7 +147,11 @@ export class FirebaseService {
   }
 
   delete_grocery(grocery_id) {
-    this.firestore.doc('locationN/' + grocery_id).delete();
+    this.firestore.doc('grocerylist/' + grocery_id).delete();
+  }
+
+  delete_favourite(fav_id) {
+    this.firestore.doc('favourite/' + fav_id).delete();
   }
 
 
