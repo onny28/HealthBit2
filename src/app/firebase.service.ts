@@ -52,6 +52,10 @@ export class FirebaseService {
     return this.firestore.collection('comment').snapshotChanges();
   }
 
+  delete_comment(comment_id) {
+    this.firestore.doc('comment/' + comment_id).delete();
+  }
+
   create_favourite(data) {
     return this.firestore.collection('favourite').add(data);
   }
@@ -65,7 +69,7 @@ export class FirebaseService {
   }
 
   read_User() {
-    var db = firebase.firestore();
+    // var db = firebase.firestore();
     var user = firebase.auth().currentUser;
     var authID = user.uid;
     // this.Info = db.collection("users").where("authid", "==", authID)

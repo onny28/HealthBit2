@@ -161,4 +161,15 @@ async loaderDismiss(){
     this.firebaseService.delete_location(rowID);
   }
 
+  logout(){
+    this.firebaseService.logoutUser()
+    .then(res => {
+      console.log(res);
+      this.navCtrl.navigateBack('');
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  }
+
 }
