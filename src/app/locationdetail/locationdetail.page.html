@@ -3,7 +3,7 @@
       <ion-buttons slot="start">
           <ion-back-button defaultHref="/tabs/tabs/home"></ion-back-button>
         </ion-buttons>
-    <ion-title>Location Details</ion-title>
+    <ion-title class="font">Location Details</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,12 +11,12 @@
     <ion-card *ngFor="let item of location">
       <span *ngIf="!item.isEdit; else elseBlock">
         <ion-card-header>
-          <ion-card-title>{{item.locationName}}</ion-card-title>
+          <ion-card-title class="font">{{item.locationName}}</ion-card-title>
         </ion-card-header>
         <ion-card-content>
    
           <ion-button shape="round" color="secondary" size="small" (click)="EditLocation(item)">
-            <ion-icon size="small" slot="icon-only" name="create"></ion-icon>
+            <ion-icon size="small" class="font" slot="icon-only" name="create"></ion-icon>
             view more
           </ion-button>
         </ion-card-content>

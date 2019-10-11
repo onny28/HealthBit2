@@ -11,9 +11,8 @@
       <ion-label class="font">Notification</ion-label>
       <ion-toggle slot="end"></ion-toggle>
     </ion-item>
-    <ion-item class="font">THEME</ion-item>
-    <ion-button (click)="enableDark()">Dark Mode</ion-button>
-    <ion-button (click)="enableLight()">Light Mode</ion-button>
+    
+ 
     <!-- <ion-item >
         <ion-label class="font">Theme</ion-label>
         <ion-select value="light" okText="Yes" cancelText="Cancel" class="font">
@@ -32,3 +31,15 @@
   </ion-list>
 <ion-content>
 </ion-content>
+
+<ion-footer>
+    <ion-row>
+        <ion-col>
+          <div class="ion-text-center">
+            <ion-label class="font">Theme</ion-label>
+        <p><ion-button (click)="enableDark()">Dark Mode</ion-button>
+        <ion-button (click)="enableLight()">Light Mode</ion-button></p>
+      </div>
+      </ion-col>
+      </ion-row>
+</ion-footer>

@@ -3,7 +3,6 @@
       <ion-buttons slot="start">
           <ion-back-button defaultHref="/tabs"></ion-back-button>
         </ion-buttons>
-    <ion-title>ADMIN</ion-title>
     <ion-button slot="end">Logout</ion-button>
   </ion-toolbar>
 </ion-header>
@@ -15,7 +14,7 @@
 
 <ion-content>
 <ion-toolbar color="light">
-    <ion-segment (ionChange)="segmentChanged()" [(ngModel)]="segment" color="warning">
+    <ion-segment (ionChange)="segmentChanged()" [(ngModel)]="segment">
       <ion-segment-button value="0" class="font">
         USER
         <ion-icon name="person" ></ion-icon>

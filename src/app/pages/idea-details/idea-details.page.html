@@ -22,10 +22,11 @@
     <ion-item>
         <ion-label class="font" position="stacked">CALORIES</ion-label>
         <ion-input type="number" class="font" [(ngModel)]="idea.calories"></ion-input>
-      </ion-item>
-      <ion-button shape="circle"  (click)="CreateCalories()">
-          <ion-icon size="small" name="add"></ion-icon>
+        <ion-button shape="circle"  (click)="CreateCalories()">
+            <ion-icon size="small" name="add"></ion-icon>
         </ion-button>
+      </ion-item>
+ 
 
   <ion-item>
     <ion-label class="font" position="stacked">NAME</ion-label>
@@ -46,7 +47,7 @@
 </ion-item> -->
 
 <ion-toolbar color="light">
-    <ion-segment (ionChange)="segmentChanged()" [(ngModel)]="segment" color="warning">
+    <ion-segment (ionChange)="segmentChanged()" [(ngModel)]="segment">
       <ion-segment-button value="0" class="font">
         INGREDIENTS
         <ion-icon name="restaurant" ></ion-icon>
@@ -77,7 +78,7 @@
                       <ion-icon name="trash"></ion-icon>
                    </ion-button>
 
-                   <ion-button (click)="addToCart(ingredient)" color="warning" class="font">Add to cart</ion-button>
+                   <ion-button (click)="addToCart(ingredient)" class="font">Add to cart</ion-button>
                 </ion-list>
 
                 <!-- <ion-button slot="end" (click)="addIngredient()">
@@ -108,7 +109,7 @@
       </ion-slide>
     </ion-slides>
 
-    <ion-button color="warning" class="font">VIDEO</ion-button>
+    <ion-button class="font">VIDEO</ion-button>
     <div>
       <ion-label><strong>Comments:</strong></ion-label>
       <div *ngFor="let item of chat">
@@ -197,7 +198,7 @@
 </ion-content> 
 
 <ion-footer *ngIf="!idea.id">
-    <ion-toolbar color="success">
+    <ion-toolbar color="primary">
         <ion-button class="font" expand="full" fill="clear" color="light" (click)="addIdea()"  [disabled]="!idea.name || !idea.notes || !idea.steps || !idea.ingredients">
           <ion-icon name="checkmark" slot="start"></ion-icon>
           ADD RECIPE
@@ -214,7 +215,7 @@
               </ion-button>
             </ion-col>
             <ion-col size="6">
-              <ion-button class="font" expand="block" fill="solid" color="success" (click)="updateIdea()">
+              <ion-button class="font" expand="block" fill="solid" color="primary" (click)="updateIdea()">
                 <ion-icon name="save" slot="start"></ion-icon>
                 EDIT
               </ion-button>

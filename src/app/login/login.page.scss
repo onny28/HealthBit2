@@ -36,6 +36,10 @@ img{
     text-align: center;
     }
 
+    ion-toolbar{
+        // --ion-background-color: palevioletred;
+        --background:url(../../assets//icon/toolbar.png);
+    }
 // @media (min-width: 240px) and (max-width: 768px) {
 //     ion-grid {
 //         // background: $white-color;

@@ -1,12 +1,9 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar>
       <ion-buttons slot="start">
           <ion-back-button defaultHref="/tabs"></ion-back-button>
         </ion-buttons>
     <ion-title class="font">MY RECIPE LISTS</ion-title>
-    <ion-button fill="clear" slot="end" [routerLink]="['/favourite']">
-      <ion-icon name="bookmark"></ion-icon>
-  </ion-button>
   </ion-toolbar>
 </ion-header>
  
@@ -34,13 +31,9 @@
 
    <ion-card-content>
      <span>
-        <ion-button color="warning"  class="font" button [routerLink]="['/idea', idea.id]">VIEW RECIPE</ion-button>
+        <ion-button class="font" button [routerLink]="['/idea', idea.id]">VIEW RECIPE</ion-button>
      </span>
-     <span>
-        <ion-button fill="clear" (click)="addToFavourite(idea)">
-            <ion-icon name="bookmark"></ion-icon>
-         </ion-button>
-     </span>
+
    </ion-card-content>
   
   </ion-card>
