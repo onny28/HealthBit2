@@ -25,7 +25,7 @@ export class LoginPage implements OnInit {
   email: string = ""
   password: string = ""
   errorMessage: string = '';
-  role;
+ currentuser;
 
   isActiveToggleTextPassword: Boolean = true;
 
@@ -66,9 +66,8 @@ export class LoginPage implements OnInit {
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           // User is signed in.
-          
           console.log('logged in');
-          return navCtrl.navigateForward('/tabs/tabs/home')
+          return navCtrl.navigateForward('/record')
         } else {
           // No user is signed in.
           return navCtrl.navigateForward('/login')
@@ -94,8 +93,10 @@ export class LoginPage implements OnInit {
 
   async ngOnInit() {
 
+    this.currentuser = firebase.auth().currentUser;
+
     // this.firebaseService.read_User().subscribe(data =>{
-    //   this.role = data.map(e => {
+    //   this.record= data.map(e => {
     //     return {
     //       id: e.payload.doc.id,
     //       isEdit: false,
@@ -108,8 +109,9 @@ export class LoginPage implements OnInit {
     //       height: e.payload.doc.data()['height'],
     //     };
     //   })
+    //   console.log(this.record);
     // })
-    // console.log(this.role);
+   
     
   }
   async loadingFunction(loadmsg) {
@@ -176,7 +178,7 @@ async loaderDismiss(){
         
         this.loaderDismiss();
         console.log("You have successfully login")
-        this.navCtrl.navigateForward('/tabs/tabs/home')
+        this.navCtrl.navigateForward('/record')
         const toast = await this.toastController.create({
           message: 'Successful',
           duration: 2000

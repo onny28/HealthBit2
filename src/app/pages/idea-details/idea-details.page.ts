@@ -7,6 +7,7 @@ import { FirebaseService } from 'app/firebase.service';
 
 
 
+
  
 @Component({
   selector: 'app-idea-details',
@@ -23,7 +24,7 @@ export class IdeaDetailsPage implements OnInit {
       "name" : "",
       "price" : null, }
     ],
-    calories: null,
+    calories: undefined,
     };
     comment: string;
     userEmail: string;
@@ -31,6 +32,7 @@ export class IdeaDetailsPage implements OnInit {
     calories: number;
     chat;
     recipeName: string;
+    data;
     
 
     // ingredients: {
@@ -63,8 +65,9 @@ export class IdeaDetailsPage implements OnInit {
     this.cart = this.cartService.getCart();
     this.userEmail = this.firebaseService.userDetails().email;
     this.userID = this.firebaseService.userDetails().uid;
-    this.calories = this.idea.calories;
+    this.calories =this.idea.calories;
     this.recipeName  = this.idea.name;
+
 
     this.firebaseService. readComment().subscribe(data =>{
       this.chat = data.map(e => {
@@ -206,15 +209,21 @@ export class IdeaDetailsPage implements OnInit {
       });
   }
 
+  RemoveComment(rowID) {
+    this.firebaseService.delete_comment(rowID);
+  }
+
   CreateCalories() {
     let data = {};
     data['calories'] = this.calories;
     data['email'] = this.userEmail;
     data['authid'] = this.userID;
+    data['recipeName'] = this.recipeName;
     this.firebaseService.create_calories(data).then(resp => {
       this.userID;
       this.userEmail;
       this.calories;
+      this.recipeName;
       console.log(resp);
     })
       .catch(error => {

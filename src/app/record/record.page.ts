@@ -184,6 +184,18 @@ async loaderDismiss(){
     }
   }
 
+  next(){
+    let data = this.user["0"];
+    if(data.role != "admin"){
+      return this.navCtrl.navigateForward("/tabs/tabs/home")
+    }
+    else if(data.role != "user"){
+      return this.navCtrl.navigateForward("/adminpage")
+    }else{
+      
+    }
+  }
+
   
 
 }
