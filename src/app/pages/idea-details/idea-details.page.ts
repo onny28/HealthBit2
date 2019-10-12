@@ -4,7 +4,9 @@ import { IdeaService, Idea } from '../../services/idea.service';
 import { ToastController, IonSlides, NavController } from '@ionic/angular';
 import { CartService } from 'app/cart.service';
 import { FirebaseService } from 'app/firebase.service';
-
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
 
 
 
@@ -33,6 +35,7 @@ export class IdeaDetailsPage implements OnInit {
     chat;
     recipeName: string;
     data;
+    remove;
     
 
     // ingredients: {
@@ -65,11 +68,14 @@ export class IdeaDetailsPage implements OnInit {
     this.cart = this.cartService.getCart();
     this.userEmail = this.firebaseService.userDetails().email;
     this.userID = this.firebaseService.userDetails().uid;
-    this.calories =this.idea.calories;
-    this.recipeName  = this.idea.name;
+    let id = this.activatedRoute.snapshot.paramMap.get('id');
+    this.data = this.ideaService.getIdea(id).subscribe(data =>{
+      this.recipeName = data.name;
+      this.calories = data.calories;
+    });
 
 
-    this.firebaseService. readComment().subscribe(data =>{
+    this.firebaseService. readListComment().subscribe(data =>{
       this.chat = data.map(e => {
         return {
           id: e.payload.doc.id,
@@ -81,6 +87,20 @@ export class IdeaDetailsPage implements OnInit {
         };
       })
       console.log(this.chat);
+    })
+
+    this.firebaseService. readComment().subscribe(data =>{
+      this.remove = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          // isEdit: false,
+          email: e.payload.doc.data()['email'],
+          authid: e.payload.doc.data()['authid'],
+          comment: e.payload.doc.data()['comment'],
+          recipeName: e.payload.doc.data()['recipeName'],
+        };
+      })
+      console.log(this.remove);
     })
     
    }
@@ -145,7 +165,9 @@ export class IdeaDetailsPage implements OnInit {
 
     let data={};
     data = ingredient;
-  
+    data['authid'] = this.userID;
+    data['email'] = this.userEmail;
+
     for(var i=0; i < data; i++){
     data['name'] = this.idea.ingredients[i].name;
     data['price'] = this.idea.ingredients[i].price;
@@ -158,6 +180,8 @@ export class IdeaDetailsPage implements OnInit {
         name: '',
         price: undefined
       }];
+      this.userID;
+      this.userEmail;
       
       
       console.log(resp);
@@ -192,6 +216,7 @@ export class IdeaDetailsPage implements OnInit {
   }
 
   CreateComment() {
+    //save the comments data inside the firebase
     let record = {};
     record['comment'] = this.comment;
     record['email'] = this.userEmail;
@@ -204,6 +229,7 @@ export class IdeaDetailsPage implements OnInit {
       this.recipeName;
       console.log(resp);
     })
+    
       .catch(error => {
         console.dir(error);
       });
@@ -230,4 +256,5 @@ export class IdeaDetailsPage implements OnInit {
         console.dir(error);
       });
   }
+
  }

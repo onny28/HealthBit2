@@ -38,7 +38,7 @@ export class CartService {
 
   addCart(ingredient) {
     this.cart.push(ingredient);
-    return this.firestore.collection('grocerylist').add(ingredient);
+    // return this.firestore.collection('grocerylist').add(ingredient);
   }
 
   getCart(){

@@ -50,7 +50,7 @@ export class GrocerylistPage implements OnInit {
     var user = firebase.auth().currentUser;
     if (user) {
       // User is signed in.
-      // this.loadingFunction('Loading...')
+      this.loadingFunction('Loading...')
       try{  
         // const items = this.cartService.getCart();
 
@@ -72,13 +72,14 @@ export class GrocerylistPage implements OnInit {
               isEdit: false,
               name: e.payload.doc.data()['name'],
               price: e.payload.doc.data()['price'],
-              // qty: e.payload.doc.data()['qty']
+              email: e.payload.doc.data()['email'],
+              authid: e.payload.doc.data()['authid'],
             
             };
          
           })   
         
-          // this.loaderDismiss();
+          this.loaderDismiss();
           console.log(this.grocery);
           let total = 0;
           for(var i=0; i < this.grocery.length; i++){

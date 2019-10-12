@@ -6,12 +6,13 @@ import { FirebaseService } from 'app/firebase.service';
 import { CartService } from 'app/cart.service';
 import { ToastController } from '@ionic/angular';
 
+
 @Component({
   selector: 'app-idea-list',
   templateUrl: './idea-list.page.html',
   styleUrls: ['./idea-list.page.scss'],
 })
-export class IdeaListPage implements OnInit {
+export class IdeaListPage implements OnInit{
 
 private ideas: Observable<Idea[]>;
 private items: Observable<Idea[]>;
@@ -29,6 +30,7 @@ idea: Idea ={
 
 
 cart = [];
+
 
  
   constructor(private ideaService: IdeaService,
@@ -91,6 +93,10 @@ cart = [];
       }
     
     }
+
+   
+    
+    
   
 
   // getItems(){

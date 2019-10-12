@@ -30,6 +30,11 @@
           LOCATION
           <ion-icon name="pin"></ion-icon>
         </ion-segment-button>
+
+        <ion-segment-button value="3" class="font">
+            COMMENTS
+            <ion-icon name="contacts"></ion-icon>
+          </ion-segment-button>
     </ion-segment>
 </ion-toolbar>
 
@@ -84,7 +89,7 @@
                     </ion-item>
 
                     <ion-item>
-                        <ion-label><strong>Email:</strong>{{userEmail}}</ion-label>
+                        <ion-label><strong>Email:</strong>{{item.email}}</ion-label>
                     </ion-item>
             
                     <ion-item>
@@ -126,7 +131,7 @@
 
       <ion-slide>
           <ion-item>
-            <ion-button slot="end" fill="clear" [routerLink]="['/idea2']">
+            <ion-button slot="end"  [routerLink]="['/idea2']">
               <ion-icon name="add"></ion-icon>
             </ion-button>
 
@@ -253,6 +258,28 @@
                     <ion-icon name="add"></ion-icon>
                   </ion-fab-button>
                 </ion-fab>
+      </ion-slide>
+
+      <ion-slide>
+          <ion-item>
+              <ion-list>
+              <ion-card *ngFor="let item of chat">
+                    <ion-card-header>
+                      <ion-card-title>Email: {{item.email}}</ion-card-title>
+                      <ion-card-subtitle>AuthID: {{item.authid}}</ion-card-subtitle>
+                      <ion-card-subtitle>Recipe Name: {{item.recipeName}}</ion-card-subtitle>
+                      <ion-card-subtitle>Comments: {{item.comment}}</ion-card-subtitle>
+                    </ion-card-header>
+                    <ion-card-content>
+               
+                      <ion-button shape="round" color="danger" size="small" (click)="RemoveComment(item.id)">
+                        <ion-icon size="small" slot="icon-only" name="trash"></ion-icon>
+               
+                      </ion-button>
+                    </ion-card-content>
+                </ion-card>
+              </ion-list>
+              </ion-item>
       </ion-slide>
 
     </ion-slides>
