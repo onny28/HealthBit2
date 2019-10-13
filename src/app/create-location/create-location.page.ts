@@ -15,6 +15,7 @@ export class CreateLocationPage implements OnInit {
 
   locationName: string;
   address: string;
+  map: Location;
   locationForm: FormGroup;
 
   constructor(
