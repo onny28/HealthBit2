@@ -25,6 +25,7 @@
       <ion-button slot="end" (click)="CreateCalories()">
           <ion-icon size="small" name="add"></ion-icon>
         </ion-button>
+    </ion-item>
  
 
   <ion-item>
@@ -189,11 +190,11 @@
   </ion-card> -->
    
   <ion-item>
-      <ion-label class="font" position="stacked">VIDEOS</ion-label>
+      <ion-label class="font" position="stacked"><strong>VIDEOS</strong></ion-label>
       <ion-input class="font" [(ngModel)]="idea.video" placeholder="Copy URL here...">
     </ion-input>
-    <ion-button class="font" href="{{idea.video}}">VIDEO</ion-button>
   </ion-item>
+  <ion-button class="font" href="{{idea.video}}">VIDEO</ion-button>
 
 
     <!-- <ion-button class="font">VIDEO</ion-button> -->
