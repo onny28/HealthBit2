@@ -27,6 +27,7 @@ export class AdminpagePage implements OnInit {
   locationName: string;
   address: string;
   location: any;
+  chat;
  
   @ViewChild('slides', {static: false}) slider: IonSlides;
   segment = 0;
@@ -84,6 +85,21 @@ export class AdminpagePage implements OnInit {
           this.loaderDismiss();
           console.log(this.location);
         });
+
+        this.firebaseService. readListComment().subscribe(data =>{
+          this.chat = data.map(e => {
+            return {
+              id: e.payload.doc.id,
+              // isEdit: false,
+              email: e.payload.doc.data()['email'],
+              authid: e.payload.doc.data()['authid'],
+              comment: e.payload.doc.data()['comment'],
+              recipeName: e.payload.doc.data()['recipeName'],
+            };
+          })
+          this.loaderDismiss();
+          console.log(this.chat);
+        })
       
     } else {
       // No user is signed in.
@@ -159,6 +175,10 @@ async loaderDismiss(){
 
   RemoveLocation(rowID) {
     this.firebaseService.delete_location(rowID);
+  }
+
+  RemoveComment(rowID) {
+    this.firebaseService.delete_comment(rowID);
   }
 
   logout(){

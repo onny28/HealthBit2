@@ -87,6 +87,7 @@ export class RecordPage implements OnInit {
               email: e.payload.doc.data()['email'],
               authid: e.payload.doc.data()['authid'],
               calories: e.payload.doc.data()['calories'],
+              recipeName: e.payload.doc.data()['recipeName'],
             };
           })
           console.log(this.level);
@@ -191,12 +192,11 @@ async loaderDismiss(){
     }
     else if(data.role != "user"){
       return this.navCtrl.navigateForward("/adminpage")
-    }else{
-      
     }
   }
 
-  
+  RemoveCalories(rowID) {
+    this.firebaseService.delete_calories(rowID);}
 
 }
  

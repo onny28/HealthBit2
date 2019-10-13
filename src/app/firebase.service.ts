@@ -1,14 +1,8 @@
 import { Injectable, NgModule } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import { map, take } from 'rxjs/operators';
-import firebaseConfig from './firebase';
-
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AdminpagePage } from './adminpage/adminpage.page';
 
 
 @Injectable({
@@ -40,6 +34,10 @@ export class FirebaseService {
     return this.firestore.collection('calories', ref => ref.where("authid", "==", authID)).snapshotChanges();
   }
 
+  delete_calories(data_id) {
+    this.firestore.doc('calories/' + data_id).delete();
+  }
+
   create_grocerylist(data) {
     return this.firestore.collection('grocerylist').add(data);
   }
@@ -49,6 +47,12 @@ export class FirebaseService {
   }
 
   readComment(){
+    var user = firebase.auth().currentUser;
+    var authID = user.uid;
+    return this.firestore.collection('comment', ref => ref.where("authid", "==", authID)).snapshotChanges();
+  }
+
+  readListComment(){
     return this.firestore.collection('comment').snapshotChanges();
   }
 
@@ -61,7 +65,9 @@ export class FirebaseService {
   }
 
   readGrocerylist(){
-    return this.firestore.collection('grocerylist').snapshotChanges();
+    var user = firebase.auth().currentUser;
+    var authID = user.uid;
+    return this.firestore.collection('grocerylist', ref => ref.where("authid", "==", authID)).snapshotChanges();
   }
 
   readFavourite(){
@@ -69,31 +75,8 @@ export class FirebaseService {
   }
 
   read_User() {
-    // var db = firebase.firestore();
     var user = firebase.auth().currentUser;
     var authID = user.uid;
-    // this.Info = db.collection("users").where("authid", "==", authID)
-    //   .get()
-    //   .then(function (querySnapshot) {
-    //     querySnapshot.forEach(function (doc) {
-    //       console.log(doc.id, " => ", doc.data());
-    //       let data = doc.data();
-    //       return {
-    //         id: doc.id,
-    //         isEdit: false,
-    //         gender: doc.data()['gender'],
-    //         age: doc.data()['age'],
-    //         weight: doc.data()['weight'],
-    //         height: doc.data()['height'],
-    //       }
-         
-    //     });
-
-    //   })
-    // return this.Info;
-    // catch(function (error) {
-    //   console.log("Error getting documents: ", error);
-    // });
     return this.firestore.collection('users', ref => ref.where("authid", "==", authID)).snapshotChanges();
   }
 
@@ -128,22 +111,7 @@ export class FirebaseService {
   userDetails() {
     return firebase.auth().currentUser;
   }
-  // create_newRecipe(recipe) {
-  //   return this.firestore.collection('recipeN').add(recipe);
-  // }
-
-  // listRecipe(){
-  //   return this.firestore.collection('recipeN').snapshotChanges();
-  // }
-
-  // update_recipe(recipeID, recipe) {
-  //   this.firestore.doc('recipeN/' + recipeID).update(recipe);
-  // }
-
-  // delete_recipe(recipe_id) {
-  //   this.firestore.doc('recipeN/' + recipe_id).delete();
-  // }
-
+  
   create_location(location) {
     return this.firestore.collection('locationN').add(location);
   }
