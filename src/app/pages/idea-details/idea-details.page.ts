@@ -4,11 +4,12 @@ import { IdeaService, Idea } from '../../services/idea.service';
 import { ToastController, IonSlides, NavController } from '@ionic/angular';
 import { CartService } from 'app/cart.service';
 import { FirebaseService } from 'app/firebase.service';
+import { AngularFireUploadTask, AngularFireStorage } from '@angular/fire/storage';
+import { Observable } from 'rxjs';
+import { finalize, tap } from 'rxjs/operators';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 
-
-
- 
 @Component({
   selector: 'app-idea-details',
   templateUrl: './idea-details.page.html',
@@ -25,6 +26,12 @@ export class IdeaDetailsPage implements OnInit {
       "price" : null, }
     ],
     calories: undefined,
+    videos: [{
+      name: "",
+      filepath: "",
+      size: null,
+    }],
+    video: '',
     };
     comment: string;
     userEmail: string;
@@ -46,8 +53,20 @@ export class IdeaDetailsPage implements OnInit {
      segment = 0;
      cart =[];
      items = [];
+     caloriescart = [];
+     caloriesitem = undefined;
   
-   
+      //upload task
+  task: AngularFireUploadTask;
+  percentage: Observable<number>;
+  snapshot: Observable<any>;
+  UploadedFileURL: Observable<string>;
+  fileName:string;
+  fileSize: number;
+  isUploading: boolean;
+  isUploaded: boolean;
+  downloadURL;
+ 
      
  
   constructor(
@@ -58,11 +77,16 @@ export class IdeaDetailsPage implements OnInit {
     public navCtrl: NavController, 
     private cartService: CartService,
     private firebaseService: FirebaseService,
+    private storage: AngularFireStorage,
+    private db: AngularFirestore
     ) { }
  
   ngOnInit() {
     this.items=this.cartService.getIngredients();
     this.cart = this.cartService.getCart();
+    this.caloriesitem = this.cartService.getCalories();
+    this.caloriescart = this.cartService.getCaloriesCart();
+
     this.userEmail = this.firebaseService.userDetails().email;
     this.userID = this.firebaseService.userDetails().uid;
     this.calories =this.idea.calories;
@@ -152,7 +176,6 @@ export class IdeaDetailsPage implements OnInit {
    
     }
   
-
     this.firebaseService.create_grocerylist(data).then(resp => {
       ingredient = [{
         name: '',
@@ -174,6 +197,45 @@ export class IdeaDetailsPage implements OnInit {
     openCart(){
       this.router.navigate(['grocerylist']);
     }
+
+    //uploadvideos
+    uploadFile(event: FileList){
+      const file=event.item(0)
+      if(file.type.split('/')[0] !=='video'){
+        this.showToast('unsupported files!');
+        console.error('unsupported file type')
+        return;
+      }
+      this.isUploading = true;
+      this.isUploaded = false;
+      this.fileName = file.name;
+
+      const path = `healthbitStorage/${new Date().getTime()}_${file.name}`;
+      const customMetadata = { app: 'Healthbit upload demo'}
+      const fileRef= this.storage.ref(path);
+      this.task = this.storage.upload(path,file,{ customMetadata})
+      this.percentage = this.task.percentageChanges();
+      this.snapshot = this.task.snapshotChanges().pipe(
+        finalize(() => {
+          this.UploadedFileURL = fileRef.getDownloadURL();
+          this.db.collection('videos').add( {videos: this.UploadedFileURL});
+          // this.UploadedFileURL.subscribe(resp => {
+            // this.idea.videos.push({name: file.name, filepath:resp, size:this.fileSize})
+            this.isUploading=false;
+            this.isUploaded = true;
+        }),
+          tap(snap =>{
+            this.fileSize = snap.totalBytes;
+          })
+      )
+    // }
+          }
+
+    // addVideostoDB(idea: Idea){
+    //   this.ideaService.addVideotoDB(this.idea);
+    // }
+
+   
   
   showToast(msg) {
     this.toastCtrl.create({
@@ -196,7 +258,7 @@ export class IdeaDetailsPage implements OnInit {
     record['comment'] = this.comment;
     record['email'] = this.userEmail;
     record['authid'] = this.userID;
-    record['recipeName'] = this.recipeName;
+    record['recipeName'] = this.idea.name;
     this.firebaseService.create_comment(record).then(resp => {
       this.userID;
       this.userEmail;
@@ -212,17 +274,20 @@ export class IdeaDetailsPage implements OnInit {
   RemoveComment(rowID) {
     this.firebaseService.delete_comment(rowID);
   }
-
+  
+  addToCalories(){
+  
+  }
   CreateCalories() {
     let data = {};
-    data['calories'] = this.calories;
+    data['calories'] = this.idea.calories;
     data['email'] = this.userEmail;
     data['authid'] = this.userID;
     data['recipeName'] = this.recipeName;
     this.firebaseService.create_calories(data).then(resp => {
       this.userID;
       this.userEmail;
-      this.calories;
+      this.idea.calories;
       this.recipeName;
       console.log(resp);
     })
