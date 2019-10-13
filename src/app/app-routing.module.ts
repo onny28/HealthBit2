@@ -24,8 +24,6 @@ const routes: Routes = [
   { path: 'locationdetail', loadChildren: './locationdetail/locationdetail.module#LocationdetailPageModule' },
   // { path: 'create-user', loadChildren: './create-user/create-user.module#CreateUserPageModule' },
   { path: 'addgrocerylist', loadChildren: './addgrocerylist/addgrocerylist.module#AddgrocerylistPageModule' },
-  { path: 'favourite', loadChildren: './favourite/favourite.module#FavouritePageModule' },
-  { path: 'favouritedetails', loadChildren: './favouritedetails/favouritedetails.module#FavouritedetailsPageModule' },
 
   // { path: 'map', loadChildren: './pages/map/map.module#MapPageModule' },
  

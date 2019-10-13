@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "849730357483",
+    "firebase_url": "https://healthbit-b9fa8.firebaseio.com",
+    "project_id": "healthbit-b9fa8",
+    "storage_bucket": "healthbit-b9fa8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:849730357483:android:13afd3a9062aebd5d056ae",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "849730357483-dpe1rdtkehdoq0bp7t94snvg4mrcf26b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7O-hFqKgrUgocvxLaReXu9YgtvuI5U5Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "849730357483-dpe1rdtkehdoq0bp7t94snvg4mrcf26b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

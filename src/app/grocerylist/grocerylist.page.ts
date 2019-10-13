@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { IdeaService, Idea } from 'app/services/idea.service';
 import { CartService } from 'app/cart.service';
-import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+// import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
@@ -31,14 +31,20 @@ export class GrocerylistPage implements OnInit {
       "name" : "testing",
       "price" : null, }
     ],
+    videos: [{
+      name: "",
+      filepath: "",
+      size: null,
+    }],
     calories: null,
+    video: '',
     };
    
 
   selectedItems = [];
   totalPrice = 0;
   constructor(private cartService: CartService, 
-    private socialSharing: SocialSharing,
+    // private socialSharing: SocialSharing,
     private navCtrl: NavController,
     private firebaseService: FirebaseService,
     public loadingCtrl: LoadingController,
@@ -144,14 +150,14 @@ export class GrocerylistPage implements OnInit {
 //   return (msgTotal);
 // }
   }
-  shareWhatsapp() {
-    this.socialSharing.shareViaWhatsApp(this.grocery)
-      .then(() => {
+  // shareWhatsapp() {
+  //   this.socialSharing.shareViaWhatsApp(this.grocery)
+  //     .then(() => {
 
-      }).catch(() => {
+  //     }).catch(() => {
 
-      });
-  }
+  //     });
+  // }
 
   async loadingFunction(loadmsg) {
     this.loader = await this.loadingCtrl.create({

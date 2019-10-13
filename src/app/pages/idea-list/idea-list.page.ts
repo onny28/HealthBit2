@@ -25,7 +25,13 @@ idea: Idea ={
     price: null
   }],
   steps: '',
+  videos: [{
+    name: "",
+    filepath: "",
+    size: null,
+  }],
   calories: null,
+  video: '',
 }
 
 
@@ -52,6 +58,8 @@ cart = [];
   //     this.loadedIdeaList = ideaList;
   // });
   }
+
+  
 
   addToFavourite(idea){
     this.showToast('added to cart!');

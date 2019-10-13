@@ -19,11 +19,18 @@ export class CartService {
       name: '',
       price: undefined,
     }],
+    videos: [{
+      name: "",
+      filepath: "",
+      size: null,
+    }],
     calories: null,
+    video: '',
     };
 
     private cart = [];
     private favourite = [];
+    private caloriesitem = [];
     cartCount: number;
     
 
@@ -45,19 +52,33 @@ export class CartService {
     return this.cart;
   }
   
+  //adding calories to record
+  addCalories(calories){
+   this.caloriesitem.push(calories);
+   
+  }
+
+  getCalories(){
+    return this.idea.calories;
+  }
+
+  getCaloriesCart(){
+    return this.caloriesitem;
+  }
+
   //addtofavourite
   addToFavourite(idea){
-   this.favourite.push(idea);
-   return this.firestore.collection('favourite').add(idea);     
-  }
-
-  getFavourite(){
-    return this.idea;
-  }
-
-  getFavCart(){
-    return this.favourite;
-  }
+    this.favourite.push(idea);
+    return this.firestore.collection('favourite').add(idea);     
+   }
+ 
+   getFavourite(){
+     return this.idea;
+   }
+ 
+   getFavCart(){
+     return this.favourite;
+   }
 
  
  

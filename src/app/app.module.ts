@@ -21,8 +21,8 @@ import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/fi
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { FirebaseService } from './firebase.service';
 import { FCM } from '@ionic-native/fcm/ngx';
-import { SocialSharing } from '@ionic-native/social-sharing/ngx';
-
+// import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { Firebase } from '@ionic-native/firebase/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -51,12 +51,13 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
     SplashScreen,
     FirebaseService,
     FCM,
+    Firebase,
     //Geolocation,
     //NativeGeocoder,
     
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
     ,{ provide: FirestoreSettingsToken, useValue: {} }
-    , SocialSharing ,
+     ,
     
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
     , { provide: FirestoreSettingsToken, useValue: {} }
