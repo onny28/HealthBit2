@@ -36,7 +36,7 @@ export class IdeaListPage implements OnInit{
   //   });
   // }
 
-private ideas: Observable<Idea[]>;
+public ideas: Observable<Idea[]>;
 private items: Observable<Idea[]>;
 public filterText: string;
 idea: Idea ={

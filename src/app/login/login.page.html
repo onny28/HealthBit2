@@ -13,7 +13,7 @@
       </div>
 
       
-      <div padding [formGroup]="validations_form"  (ngSubmit)="loginUser(validations_form.value)">
+      <div padding [formGroup]="validations_form">
         <ion-item>
           <ion-label class="font" position="floating">Email</ion-label>
           <ion-input class="font" type="email" [(ngModel)]="email" formControlName="email" required></ion-input>
