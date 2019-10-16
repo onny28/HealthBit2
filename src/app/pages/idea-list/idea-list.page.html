@@ -14,16 +14,9 @@
           <ion-icon name="add"></ion-icon>
         </ion-fab-button>
       </ion-fab>
-    <div>
-   <input type="text"
-   [(ngModel)]="searchterm" (keydown)="search($event)" id="search" placeholder="Search by name">
-    </div>
+   
+      <!-- <ion-searchbar showcancelbutton="" [(ngModel)]="filterText" (ioninput)="getLocationName()"></ion-searchbar> -->
  
-  <!-- <ion-list>
-    <ion-item *ngfor="let idea of ideaList">
-      <ion-label>{{ idea.name }}</ion-label>
-    </ion-item>
-  </ion-list> -->
 
   <ion-card class="font" *ngFor="let idea of (ideas | async)">
    

@@ -139,8 +139,5 @@ export class FirebaseService {
     this.firestore.doc('favourite/' + fav_id).delete();
   }
 
-  getLocationName(start, end): Observable<any> {
-    return this.db.list('/locationN', ref => ref.orderByChild('locationName')).valueChanges();
-    };
-
+  
 }

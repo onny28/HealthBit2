@@ -243,11 +243,21 @@
                           <ion-input type="text" [(ngModel)]="item.EditAddress"></ion-input>
                         </ion-item>
 
-                        <div>
+                        <ion-item>
+                          <ion-label><strong>Latitude:</strong></ion-label>
+                          <ion-input type="number" [(ngModel)]="item.EditLatitude"></ion-input>
+                        </ion-item>
+
+                        <ion-item>
+                          <ion-label><strong>Longitude:</strong></ion-label>
+                          <ion-input type="number" [(ngModel)]="item.EditLongitude"></ion-input>
+                        </ion-item>
+
+                        <!-- <div>
                           <ion-button>
                             <ion-icon size="small" slot="icon-only" name="map"></ion-icon>
                           </ion-button>
-                        </div>
+                        </div> -->
                     </ion-card-content>
                   </ng-template>
                 </ion-card>

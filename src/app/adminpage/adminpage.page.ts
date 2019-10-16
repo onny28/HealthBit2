@@ -82,6 +82,8 @@ export class AdminpagePage implements OnInit {
               isEdit: false,
               locationName: e.payload.doc.data()['locationName'],
               address: e.payload.doc.data()['address'],
+              latitude: e.payload.doc.data()['latitude'],
+              longitude: e.payload.doc.data()['longitude'],
             };
           })
           this.loaderDismiss();
@@ -164,6 +166,8 @@ async loaderDismiss(){
     data.isEdit = true;
     data.EditLocationName = data.locationName;
     data.EditAddress = data.address;
+    data.EditLatitude = data.latitude;
+    data.EditLongitude = data.longitude;
   }
 
  
@@ -171,6 +175,8 @@ async loaderDismiss(){
     let data = {};
     data['locationName'] = dataRow.EditLocationName;
     data['address'] = dataRow.EditAddress;
+    data['latitude'] = dataRow.EditLatitude;
+    data['longitude'] = dataRow.EditLongitude;
     this.firebaseService.update_location(dataRow.id, data);
     dataRow.isEdit = false;
   }

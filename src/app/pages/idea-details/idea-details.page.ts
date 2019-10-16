@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IdeaService, Idea } from '../../services/idea.service';
-import { ToastController, IonSlides, NavController } from '@ionic/angular';
+import { ToastController, IonSlides, NavController, LoadingController } from '@ionic/angular';
 import { CartService } from 'app/cart.service';
 import { FirebaseService } from 'app/firebase.service';
 import { AngularFireUploadTask, AngularFireStorage } from '@angular/fire/storage';
@@ -65,6 +65,8 @@ export class IdeaDetailsPage implements OnInit {
   isUploading: boolean;
   isUploaded: boolean;
   downloadURL;
+  loader: HTMLIonLoadingElement;
+  loading: boolean;
  
      
  
@@ -77,11 +79,17 @@ export class IdeaDetailsPage implements OnInit {
     private cartService: CartService,
     private firebaseService: FirebaseService,
     private storage: AngularFireStorage,
-    private db: AngularFirestore
+    private db: AngularFirestore,
+    public loadingCtrl: LoadingController,
     ) { }
  
   ngOnInit() {
-    this.items=this.cartService.getIngredients();
+    var user = firebase.auth().currentUser;
+
+    if (user) {
+      // User is signed in.
+      this.loadingFunction('Loading...')
+      this.items=this.cartService.getIngredients();
     this.cart = this.cartService.getCart();
     this.caloriesitem = this.cartService.getCalories();
     this.caloriescart = this.cartService.getCaloriesCart();
@@ -106,6 +114,7 @@ export class IdeaDetailsPage implements OnInit {
           recipeName: e.payload.doc.data()['recipeName'],
         };
       })
+      this.loaderDismiss();
       console.log(this.chat);
     })
 
@@ -120,10 +129,28 @@ export class IdeaDetailsPage implements OnInit {
           recipeName: e.payload.doc.data()['recipeName'],
         };
       })
+      this.loaderDismiss();
       console.log(this.remove);
     })
+      
+    } else {
+      // No user is signed in.
+      this.navCtrl.navigateBack('/login');
+    }
+    
     
    }
+
+   async loadingFunction(loadmsg) {
+    this.loader = await this.loadingCtrl.create({
+      message: loadmsg
+    })
+    await this.loader.present();
+ }
+
+async loaderDismiss(){
+   this.loading = await this.loadingCtrl.dismiss();
+}
 
   ionViewWillEnter() {
     let id = this.activatedRoute.snapshot.paramMap.get('id');

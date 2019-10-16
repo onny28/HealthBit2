@@ -23,9 +23,14 @@
           </ion-item>
 
           <ion-item>
-            <ion-label>Map Location</ion-label>
-            
-          </ion-item>
+              <ion-label class="font" position="floating">Latitude</ion-label>
+              <ion-input class="font" type="number" [(ngModel)]="latitude" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label class="font" position="floating">Longitude</ion-label>
+                <ion-input class="font" type="number" [(ngModel)]="longitude" required></ion-input>
+              </ion-item>
           </div>
     
 

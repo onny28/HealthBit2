@@ -4,8 +4,11 @@ import { Observable, Subject } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore'
 import { FirebaseService } from 'app/firebase.service';
 import { CartService } from 'app/cart.service';
-import { ToastController } from '@ionic/angular';
+import { ToastController, NavController, LoadingController } from '@ionic/angular';
 import { Pipe, PipeTransform } from '@angular/core';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
 
 @Pipe({
   name: 'filter'
@@ -49,6 +52,8 @@ idea: Idea ={
 }
 
 cart = [];
+  loader: HTMLIonLoadingElement;
+  loading: boolean;
 
 
  
@@ -56,12 +61,24 @@ cart = [];
      private firestore:AngularFirestore,
      private firebaseService: FirebaseService,
      private cartService: CartService,
-     private toastCtrl: ToastController,) { }
+     private toastCtrl: ToastController,
+     private navCtrl: NavController,
+     public loadingCtrl: LoadingController,) { }
  
   ngOnInit() {
-    this.ideas = this.ideaService.getIdeas();
-    this.idea =this.cartService.getFavourite();
-    this.cart = this.cartService.getFavCart();
+    var user = firebase.auth().currentUser;
+
+    if (user) {
+      // User is signed in.
+      this.ideas = this.ideaService.getIdeas();
+      this.idea =this.cartService.getFavourite();
+      this.cart = this.cartService.getFavCart();
+
+    } else {
+      // No user is signed in.
+      this.navCtrl.navigateBack('/login');
+    }
+   
 
    
    
@@ -72,6 +89,8 @@ cart = [];
   //     this.loadedIdeaList = ideaList;
   // });
   }
+
+
    
   search($event){
     let q = $event.target.value;

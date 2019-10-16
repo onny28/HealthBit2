@@ -4,6 +4,8 @@ import 'firebase/auth';
 import 'firebase/firestore';
 import { FirebaseService } from 'app/firebase.service';
 import { NavController, LoadingController } from '@ionic/angular';
+import { Subject, Observable, combineLatest } from 'rxjs';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 
 
@@ -13,7 +15,7 @@ import { NavController, LoadingController } from '@ionic/angular';
   styleUrls: ['./locationdetail.page.scss'],
 })
 export class LocationdetailPage implements OnInit {
-  filterText;
+  filterText: string;
   location;
   loader: HTMLIonLoadingElement;
   loading: boolean;
@@ -22,7 +24,7 @@ export class LocationdetailPage implements OnInit {
     private firebaseService: FirebaseService,
     private navCtrl: NavController,
     public loadingCtrl: LoadingController,
-   
+    public firestore: AngularFirestore,
   ) { }
 
   ngOnInit() {
@@ -39,20 +41,20 @@ export class LocationdetailPage implements OnInit {
               isEdit: false,
               locationName: e.payload.doc.data()['locationName'],
               address: e.payload.doc.data()['address'],
+              latitude: e.payload.doc.data()['latitude'],
+              longitude: e.payload.doc.data()['longitude'],
             };
           })
           this.loaderDismiss();
           console.log(this.location);
-        });
-      
+        }); 
+        
     } else {
       // No user is signed in.
       this.navCtrl.navigateBack('/login');
     }
-    
+ 
 }
-
-
 
 
 async loadingFunction(loadmsg) {
@@ -71,4 +73,10 @@ EditLocation(data) {
   data.EditLocationName = data.locationName;
   data.EditAddress = data.address;
 }
+
+getLocationName() {
+  var filterText;
+  return this.firestore.collection('/locationN', ref => ref.where("locationName", "==", filterText )).valueChanges();
+  };
+
 }

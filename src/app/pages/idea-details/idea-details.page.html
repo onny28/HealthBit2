@@ -26,10 +26,7 @@
           <ion-icon size="small" name="add"></ion-icon>
         </ion-button>
     </ion-item>
-<<<<<<< HEAD
-=======
  
->>>>>>> d676abb3e33d86ee9da947911821a5fe483c0172
 
   <ion-item>
     <ion-label class="font" position="stacked">NAME</ion-label>
@@ -68,7 +65,9 @@
       <ion-slide>
                 <ion-list>
                   <ion-item *ngFor = "let ingredient of idea.ingredients; let i=index">
+                      <ion-label class="font" position="float">INGREDIENTS</ion-label>
                       <ion-input class="font" [(ngModel)]="ingredient.name" placeholder="ingredients"></ion-input>
+                      <ion-label class="font" position="float">PRICE</ion-label>
                       <ion-input type="number" class="font" [(ngModel)]="ingredient.price" placeholder="price"></ion-input>
                       <ion-button fill="clear" slot="end" (click)="delIngredient(i)">
                       <ion-icon name="trash"></ion-icon>
@@ -76,6 +75,9 @@
                    <ion-button (click)="addToCart(ingredient)" class="font">Add to cart</ion-button>
               </ion-item>
           </ion-list>
+          <ion-button slot="end" (click)="addIngredient()">
+              <ion-icon name="add"></ion-icon>
+            </ion-button>
       </ion-slide>
 
       <ion-slide>

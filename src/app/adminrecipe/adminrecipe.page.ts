@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { IdeaService, Idea } from 'app/services/idea.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastController, NavController } from '@ionic/angular';
+import { ToastController, NavController, LoadingController } from '@ionic/angular';
 import { CartService } from 'app/cart.service';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
 
 @Component({
   selector: 'app-adminrecipe',
@@ -25,21 +28,41 @@ export class AdminrecipePage implements OnInit {
     };
 
     ingredients =[];
+  loader: HTMLIonLoadingElement;
+  loading: boolean;
+  
 
-  constructor(private activatedRoute: ActivatedRoute, private ideaService: IdeaService,
-    private toastCtrl: ToastController, private router: Router, public navCtrl: NavController, private cartService: CartService ) { }
+  constructor(
+    private activatedRoute: ActivatedRoute, 
+    private ideaService: IdeaService,
+    private toastCtrl: ToastController, 
+    private router: Router, 
+    public navCtrl: NavController, 
+    private cartService: CartService,
+    public loadingCtrl: LoadingController,) { }
    
     ngOnInit(){
+      var user = firebase.auth().currentUser;
+      if(user){
+          // User is signed in.
+         
+      }else {
+        // No user is signed in.
+        this.navCtrl.navigateBack('/login');
+      }
     
     }
+    
   
   ionViewWillEnter() {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
     if (id) {
       this.ideaService.getIdea(id).subscribe(idea => {
         this.idea = idea;
-        this.idea.ingredients = this.ingredients;
+        // this.idea.ingredients = this.ingredients;
+
       });
+      
     }
   }
  

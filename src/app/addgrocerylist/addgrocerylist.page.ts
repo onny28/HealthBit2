@@ -25,13 +25,17 @@ export class AddgrocerylistPage implements OnInit {
     public loadingCtrl: LoadingController,) { }
 
   ngOnInit() {
-    // var user = firebase.auth().currentUser;
-    // if (user) {
-    //   // User is signed in.
-    //   this.loadingFunction('Loading...')
-    //   try{  
-    this.userEmail = this.firebaseService.userDetails().email;
-    this.userID = this.firebaseService.userDetails().uid;
+    var user = firebase.auth().currentUser;
+    if(user){
+        // User is signed in.
+        this.userEmail = this.firebaseService.userDetails().email;
+        this.userID = this.firebaseService.userDetails().uid;
+    }else {
+      // No user is signed in.
+      this.navCtrl.navigateBack('/login');
+    }
+   
+   
   }
 
   CreateGroceryList(){
