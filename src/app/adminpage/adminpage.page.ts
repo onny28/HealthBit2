@@ -37,7 +37,7 @@ export class AdminpagePage implements OnInit {
   loader: HTMLIonLoadingElement;
   loading: boolean;
 
-  private ideas: Observable<Idea[]>;
+  public ideas: Observable<Idea[]>;
  
   constructor(
     public ideaService: IdeaService,
