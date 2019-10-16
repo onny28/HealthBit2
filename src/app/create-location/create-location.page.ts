@@ -15,6 +15,8 @@ export class CreateLocationPage implements OnInit {
 
   locationName: string;
   address: string;
+  latitude: number;
+  longitude: number;
   locationForm: FormGroup;
 
   constructor(
@@ -40,9 +42,13 @@ export class CreateLocationPage implements OnInit {
     let data = {};
     data['locationName'] = this.locationName;
     data['address'] = this.address;
+    data['latitude'] = this.latitude;
+    data['longitude'] = this.longitude;
     this.firebaseService.create_location(data).then(resp => {
       this.locationName = "";
       this.address = "";
+      this.latitude = undefined;
+      this.longitude = undefined;
       console.log(resp);
       this.navCtrl.navigateBack('/adminpage')
     })

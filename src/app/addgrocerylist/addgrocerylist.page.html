@@ -20,11 +20,15 @@
           <ion-input class="font" type="number" placeholder="Enter price" [(ngModel)]="price" required></ion-input>
         </ion-item>
         </div>
-  
 
-    <div padding>
-      <ion-button (click)="CreateGroceryList()">
-        ADD TO GROCERY LIST
-      </ion-button>
-    </div>
 </ion-content>
+
+<ion-footer>
+    <ion-toolbar color="primary">
+        <ion-button class="font" expand="full" fill="clear" color="light" (click)="CreateGroceryList()">
+          <ion-icon name="checkmark" slot="start"></ion-icon>
+          ADD TO GROCERY LIST
+        </ion-button>
+      </ion-toolbar>
+</ion-footer>
+

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from 'app/firebase.service';
 import { NavController } from '@ionic/angular';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-addgrocerylist',
@@ -12,11 +16,20 @@ export class AddgrocerylistPage implements OnInit {
    price: number;
    userEmail: string;
    userID: string;
+   loader: HTMLIonLoadingElement;
+   loading: boolean;
+
   constructor(
     private firebaseService: FirebaseService,
-    private navCtrl: NavController,) { }
+    private navCtrl: NavController,
+    public loadingCtrl: LoadingController,) { }
 
   ngOnInit() {
+    // var user = firebase.auth().currentUser;
+    // if (user) {
+    //   // User is signed in.
+    //   this.loadingFunction('Loading...')
+    //   try{  
     this.userEmail = this.firebaseService.userDetails().email;
     this.userID = this.firebaseService.userDetails().uid;
   }
@@ -39,6 +52,30 @@ export class AddgrocerylistPage implements OnInit {
         console.dir(error);
       });
   }
-    
+   
+  async loadingFunction(loadmsg) {
+    this.loader = await this.loadingCtrl.create({
+      message: loadmsg
+    })
+    await this.loader.present();
+ }
+
+async loaderDismiss(){
+   this.loading = await this.loadingCtrl.dismiss();
+}
+  
+  logout(){
+    this.firebaseService.logoutUser()
+    .then(res => {
+      console.log(res);
+      this.navCtrl.navigateBack('');
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  }
+
 
 }
+
+

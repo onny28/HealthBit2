@@ -19,11 +19,6 @@ export class CartService {
       name: '',
       price: undefined,
     }],
-    videos: [{
-      name: "",
-      filepath: "",
-      size: null,
-    }],
     calories: null,
     video: '',
     };

@@ -6,7 +6,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding *ngIf="!idea.id">
+
+<ion-content padding *ngIf=!idea.id>
   <ion-item>
     <ion-label class="font" position="stacked">NAME</ion-label>
     <ion-input class="font" [(ngModel)]="idea.name"></ion-input>
@@ -22,16 +23,14 @@
   </ion-item>
 
   <ion-item>
-    <ion-list *ngFor="let ingredient of idea.ingredients; let i=index">
-      <ion-item>
-        <ion-input class="font" [(ngModel)]="ingredient.name" placeholder="Enter ingredients"></ion-input>
-      </ion-item>
-      <ion-item>
+    <ion-list>
+      <ion-item *ngFor="let ingredient of idea.ingredients; let i=index">
+        <ion-input class="font" [(ngModel)]="ingredient.name" placeholder="ingredients"></ion-input>
         <ion-input type="number" class="font" [(ngModel)]="ingredient.price" placeholder="Enter price"></ion-input>
+        <ion-button slot="end" (click)="delIngredient(i)">
+            <ion-icon name="trash"></ion-icon>
+          </ion-button>
       </ion-item>
-      <ion-button slot="end" (click)="delIngredient(i)">
-        <ion-icon name="trash"></ion-icon>
-      </ion-button>
     </ion-list>
     <ion-button slot="end" (click)="addIngredient()">
       <ion-icon name="add"></ion-icon>
@@ -45,53 +44,61 @@
 
   <ion-item>
       <ion-label class="font" position="stacked">CALORIES</ion-label>
-      <ion-input class="font" [(ngModel)]="idea.calories"></ion-input>
+      <ion-input type="number" class="font" [(ngModel)]="idea.calories"></ion-input>
     </ion-item>
+
+    <ion-item>
+        <ion-label class="font" position="stacked">VIDEO URL</ion-label>
+        <ion-input class="font" [(ngModel)]="idea.video" placeholder="Copy Video URL here.."></ion-input>
+      </ion-item>
 </ion-content>
 
-<ion-content padding *ngIf="idea.id">
-  <ion-item>
-    <ion-label class="font" position="stacked">NAME</ion-label>
-    <ion-input class="font" [(ngModel)]="idea.name"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label class="font" position="stacked">CATEGORY</ion-label>
-    <ion-select placeholder="Select Category" class="font" [(ngModel)]="idea.notes">
-      <ion-select-option value="vegetarian">vegetarian</ion-select-option>
-      <ion-select-option value="non-vegetarian">non-vegetarian</ion-select-option>
-    </ion-select>
-    <!-- <ion-input [(ngModel)]="idea.notes"></ion-input> -->
-  </ion-item>
-
-  <ion-item>
-    <ion-list *ngFor="let ingredient of idea.ingredients; let i=index">
-     {{ingredient.name}}   - ${{ingredient.price}}
-      <ion-item>
-        <ion-input class="font" [(ngModel)]="ingredient.name" placeholder="Enter ingredients"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input type="number" class="font" [(ngModel)]="ingredient.price" placeholder="Enter price"></ion-input>
-      </ion-item>
-      <ion-button slot="end" (click)="delIngredient(i)">
-        <ion-icon name="trash"></ion-icon>
+<ion-content padding *ngIf=idea.id>
+    <ion-item>
+      <ion-label class="font" position="stacked">NAME</ion-label>
+      <ion-input class="font" [(ngModel)]="idea.name"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label class="font" position="stacked">CATEGORY</ion-label>
+      <ion-select placeholder="Select Category" class="font" [(ngModel)]="idea.notes">
+        <ion-select-option value="vegetarian">vegetarian</ion-select-option>
+        <ion-select-option value="non-vegetarian">non-vegetarian</ion-select-option>
+      </ion-select>
+      <!-- <ion-input [(ngModel)]="idea.notes"></ion-input> -->
+    </ion-item>
+  
+    <ion-item>
+      <ion-list>
+        <ion-item *ngFor="let ingredient of idea.ingredients; let i=index">
+          {{ingredient.name}} - ${{ingredient.price}}
+          <ion-input class="font" [(ngModel)]="ingredient.name" placeholder="ingredients"></ion-input>
+          <ion-input type="number" class="font" [(ngModel)]="ingredient.price" placeholder="Enter price"></ion-input>
+          <ion-button slot="end" (click)="delIngredient(i)">
+              <ion-icon name="trash"></ion-icon>
+            </ion-button>
+        </ion-item>
+      </ion-list>
+      <ion-button slot="end" (click)="addIngredient()">
+        <ion-icon name="add"></ion-icon>
       </ion-button>
-    </ion-list>
-    <ion-button slot="end" (click)="addIngredient()">
-      <ion-icon name="add"></ion-icon>
-    </ion-button>
-  </ion-item>
-
-  <ion-item>
-    <ion-label class="font" position="stacked">STEPS</ion-label>
-    <ion-textarea [(ngModel)]="idea.steps" rows="8" class="font"></ion-textarea>
-  </ion-item>
-
-  <ion-item>
-      <ion-label class="font" position="stacked">CALORIES</ion-label>
-      <ion-input class="font" [(ngModel)]="idea.calories"></ion-input>
     </ion-item>
-</ion-content>
+  
+    <ion-item>
+      <ion-label class="font" position="stacked">STEPS</ion-label>
+      <ion-textarea [(ngModel)]="idea.steps" rows="8" class="font"></ion-textarea>
+    </ion-item>
+  
+    <ion-item>
+        <ion-label class="font" position="stacked">CALORIES</ion-label>
+        <ion-input type="number" class="font" [(ngModel)]="idea.calories"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+          <ion-label class="font" position="stacked">VIDEO URL</ion-label>
+          <ion-input class="font" [(ngModel)]="idea.video" placeholder="Copy Video URL here.."></ion-input>
+        </ion-item>
+  </ion-content>
 
 <ion-footer *ngIf="!idea.id">
   <ion-toolbar color="primary">

@@ -23,12 +23,7 @@
 <ion-content>
   <ion-list>
     <ion-item *ngFor="let item of grocery" class="font">
-        <!-- <ion-icon name="add-circle" (click)="incrementQty(i)" item-right></ion-icon>
-        <ion-input type="number" min="1" [value]="item.qty" [(ngModel)]="item.qty"></ion-input>
-        <ion-icon name="remove-circle" (click)="decrementQty(i)" item-right></ion-icon>
-    {{item.qty}}X {{item.name}}  - ${{item.price}}  
-    {{item.qty}} X ${{item.price}} = ${{item.qty*item.price}}
-  </ion-title> -->
+
 {{item.name}} - ${{item.price}}
  <ion-button fill="clear" slot="end" (click)="RemoveGroceryList(item.id)">
     <ion-icon name="trash"></ion-icon> 
@@ -36,6 +31,7 @@
 </ion-item>
   </ion-list>
 </ion-content>
+
 
 <ion-footer>
   <ion-row>

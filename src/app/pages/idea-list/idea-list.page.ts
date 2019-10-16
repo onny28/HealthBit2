@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IdeaService, Idea } from '../../services/idea.service';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore'
 import { FirebaseService } from 'app/firebase.service';
 import { CartService } from 'app/cart.service';
@@ -25,15 +25,9 @@ idea: Idea ={
     price: null
   }],
   steps: '',
-  videos: [{
-    name: "",
-    filepath: "",
-    size: null,
-  }],
   calories: null,
   video: '',
 }
-
 
 cart = [];
 
@@ -51,6 +45,7 @@ cart = [];
     this.cart = this.cartService.getFavCart();
 
    
+   
      
   //   this.firestore.collection('recipe').valueChanges()
   //   .subscribe(ideaList => {
@@ -58,7 +53,10 @@ cart = [];
   //     this.loadedIdeaList = ideaList;
   // });
   }
-
+   
+  search($event){
+    let q = $event.target.value;
+  }
   
 
   addToFavourite(idea){

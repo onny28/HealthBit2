@@ -23,10 +23,16 @@ import { FirebaseService } from './firebase.service';
 import { FCM } from '@ionic-native/fcm/ngx';
 // import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { Firebase } from '@ionic-native/firebase/ngx';
-
+import { AgmCoreModule } from '@agm/core';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { NativeGeocoder } from '@ionic-native/native-geocoder';
+import { NO_ERRORS_SCHEMA} from '@angular/core';
 @NgModule({
   declarations: [AppComponent],
+  // Schema: [NO_ERRORS_SCHEMA],
+
   entryComponents: [],
+  schemas: [NO_ERRORS_SCHEMA],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule, IonicModule.forRoot(), 
     AppRoutingModule, AngularFireModule.initializeApp(firebaseConfig),
@@ -36,6 +42,9 @@ import { Firebase } from '@ionic-native/firebase/ngx';
     FormsModule,
     ReactiveFormsModule,
     IonicModule.forRoot(), 
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAMV9-prim4tPhS_fKyWy3SC1owNWc-hh4'
+    }),
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireModule.initializeApp(environment.firebase),
@@ -52,6 +61,8 @@ import { Firebase } from '@ionic-native/firebase/ngx';
     FirebaseService,
     FCM,
     Firebase,
+    Geolocation,
+    // NativeGeocoder,
     //Geolocation,
     //NativeGeocoder,
     

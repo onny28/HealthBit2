@@ -31,11 +31,6 @@ export class GrocerylistPage implements OnInit {
       "name" : "testing",
       "price" : null, }
     ],
-    videos: [{
-      name: "",
-      filepath: "",
-      size: null,
-    }],
     calories: null,
     video: '',
     };
@@ -58,19 +53,7 @@ export class GrocerylistPage implements OnInit {
       // User is signed in.
       this.loadingFunction('Loading...')
       try{  
-        // const items = this.cartService.getCart();
-
-      // const selected = {};
-      // for (const obj of items) {
-      //   if (selected[obj.id]) {
-      //     selected[obj.id].count++;
-      //   } else {
-      //     selected[obj.id] = { ...obj, count: 1 };
-      //   }
-      // }
-      // this.selectedItems = Object.keys(selected).map(key => selected[key])
-      // this.total = this.selectedItems.reduce((a, b) => a + (b.count * b.price), 0);
-
+        
         this.firebaseService. readGrocerylist().subscribe(data =>{
           this.grocery = data.map(e => {
             return {
@@ -99,7 +82,6 @@ export class GrocerylistPage implements OnInit {
 
       }
       
-      
 
     } else {
       // No user is signed in.
@@ -114,42 +96,8 @@ export class GrocerylistPage implements OnInit {
     this.firebaseService.delete_grocery(rowID);
   }
 
-  //  incrementQty(index: number){
-  //    this.grocery[index].qty += 1;
-  //    console.log(this.grocery[index].qty);
-  //  }
-
-  //  decrementQty(index: number){
-  //   if(this.grocery[index].qty -1 < 1){
-  //     this.grocery[index].qty = 1;
-  //   }
-  //   else {
-  //    this.grocery[index].qty -=1;
-  //  }
-  // }
-  
-  getTotal(){
- 
   
 
-  // getTotal(){
-  //   let totalPrice = 0;
-  //   for(let item of this.grocery){
-  //     totalPrice += item.price;
-  //   }
-  //   return totalPrice;
-  //   console.log(total)
-  // }
- 
-//   totalAmount(){
-//     var msgTotal = this.grocery.reduce(function(prev, cur){
-//       return prev + (cur.price); }, 0);
-    
-//   // this.grocery.reduce((a, b)) => a + (b.price),0)
-//   }
-//   return (msgTotal);
-// }
-  }
   // shareWhatsapp() {
   //   this.socialSharing.shareViaWhatsApp(this.grocery)
   //     .then(() => {

@@ -8,12 +8,14 @@ import { Observable } from 'rxjs';
 import { Idea, IdeaService } from 'app/services/idea.service';
 
 
+
 @Component({
   selector: 'app-adminpage',
   templateUrl: './adminpage.page.html',
   styleUrls: ['./adminpage.page.scss'],
 })
 export class AdminpagePage implements OnInit {
+
 
   users:any;
   gender: string;

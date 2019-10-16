@@ -24,6 +24,8 @@ const routes: Routes = [
   { path: 'locationdetail', loadChildren: './locationdetail/locationdetail.module#LocationdetailPageModule' },
   // { path: 'create-user', loadChildren: './create-user/create-user.module#CreateUserPageModule' },
   { path: 'addgrocerylist', loadChildren: './addgrocerylist/addgrocerylist.module#AddgrocerylistPageModule' },
+  { path: 'map', loadChildren: './map/map.module#MapPageModule' },
+
 
   // { path: 'map', loadChildren: './pages/map/map.module#MapPageModule' },
  
