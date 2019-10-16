@@ -26,6 +26,10 @@
           <ion-icon size="small" name="add"></ion-icon>
         </ion-button>
     </ion-item>
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> d676abb3e33d86ee9da947911821a5fe483c0172
 
   <ion-item>
     <ion-label class="font" position="stacked">NAME</ion-label>
@@ -81,14 +85,22 @@
       </ion-slide>
     </ion-slides>
 
-
+<!-- 
     <ion-item>
         <ion-label class="font" position="stacked">Watch</ion-label>
         <ion-input class="font" [(ngModel)]="idea.video" placeholder="Copy URL here...">
       </ion-input>
     </ion-item>
+     -->
+   
+  <ion-item>
+      <ion-label class="font" position="stacked"><strong>VIDEOS</strong></ion-label>
+      <ion-input class="font" [(ngModel)]="idea.video" placeholder="Copy URL here...">
+    </ion-input>
+  </ion-item>
+  <ion-button class="font" href="{{idea.video}}">VIDEO</ion-button>
 
-    <ion-button href={{idea.video}}>VIDEOS</ion-button>
+
 
     <div>
       <ion-label><strong>Comments:</strong></ion-label>
