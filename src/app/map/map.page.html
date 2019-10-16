@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="/locationdetail"></ion-back-button>
+        </ion-buttons>
+    <ion-title class="font">MAP</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <agm-map
+    [style.height.px]="height"
+    [latitude]="lat"
+    [longitude]="lng">
+      <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+      </agm-map>
+<!-- <agm-map
+[latitude]="lat"
+[longitude]="lng"
+[zoom]="zoom"
+[disableDefaultUI]="false"
+(mapReady)="mapReady($event)"
+[styles]="style">
+
+<agm-marker
+[latitude]="lat"
+[longitude]="lng"
+[markerDraggable]=true
+[iconURL]="markerUrl"
+(dragEnd)="markerDragEnd($event)">
+</agm-marker>
+
+<agm-circle
+    [latitude]="lat"
+    [longitude]="lng"
+    [radius]="2000" 
+    [fillColor]="'DFC033'"
+    [circleDraggable]="false"
+    [editable]="false">
+</agm-circle>
+
+<agm-map [latitude]="lat"
+[longitude]="lng"
+[zoom]="zoom"
+[disableDefaultUI]="false"
+(mapReady)="mapReady(true, $event)"
+[styles]="style"> -->
+<!-- <agm-direction [origin]="origin" *ngIf="userCard"></agm-direction> -->
+<!-- </agm-map>
+
+<agm-marker
+[latitude]="lat"
+[longitude]="lng"
+[markerDraggable]=true
+[iconURL]="markerUrl"
+(dragEnd)="markerDragEnd($event)">
+</agm-marker>
+
+<agm-circle
+    [latitude]="lat"
+    [longitude]="lng"
+    [radius]="2000" 
+    [fillColor]="'DFC033'"
+    [circleDraggable]="false"
+    [editable]="false">
+</agm-circle>
+</agm-map>
+
+<agm-map [latitude]="lat"
+[longitude]="lng"
+[zoom]="zoom"
+[disableDefaultUI]="false"
+(mapReady)="mapReady(true, $event)"
+[styles]="style"> -->
+<!-- <agm-direction [origin]="origin" *ngIf="userCard"></agm-direction> -->
+<!-- </agm-map> -->
+</ion-content>

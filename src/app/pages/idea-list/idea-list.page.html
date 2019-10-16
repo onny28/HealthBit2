@@ -14,8 +14,10 @@
           <ion-icon name="add"></ion-icon>
         </ion-fab-button>
       </ion-fab>
-
-  <ion-searchbar showcancelbutton="" [(ngModel)]="filterText" (ioninput)="getItems()"></ion-searchbar>
+    <div>
+   <input type="text"
+   [(ngModel)]="searchterm" (keydown)="search($event)" id="search" placeholder="Search by name">
+    </div>
  
   <!-- <ion-list>
     <ion-item *ngfor="let idea of ideaList">

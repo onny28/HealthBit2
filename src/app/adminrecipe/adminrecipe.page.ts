@@ -20,11 +20,6 @@ export class AdminrecipePage implements OnInit {
       name: '',
       price: null,
     }],
-    videos: [{
-      name: "",
-      filepath: "",
-      size: null,
-    }],
     calories: null,
     video: '',
     };

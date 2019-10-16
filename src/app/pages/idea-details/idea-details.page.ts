@@ -29,11 +29,6 @@ export class IdeaDetailsPage implements OnInit {
       "price" : null, }
     ],
     calories: undefined,
-    videos: [{
-      name: "",
-      filepath: "",
-      size: null,
-    }],
     video: '',
     };
     comment: string;
@@ -302,9 +297,7 @@ export class IdeaDetailsPage implements OnInit {
     this.firebaseService.delete_comment(rowID);
   }
   
-  addToCalories(){
   
-  }
   CreateCalories() {
     let data = {};
     data['calories'] = this.idea.calories;

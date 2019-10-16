@@ -10,7 +10,6 @@ export interface Idea {
   steps: string,
   ingredients: Array<Ingredient>
   video: string;
-  videos: Array<videos>
   calories: number;
 }
 
@@ -19,11 +18,6 @@ interface Ingredient{
   price: number,
 }
 
-interface videos{
-  name: string;
-  filepath: string;
-  size: number;
-}
 
 @Injectable({
   providedIn: 'root'
@@ -72,7 +66,7 @@ export class IdeaService {
   // }
  
   updateIdea(idea: Idea): Promise<void> {
-    return this.ideaCollection.doc(idea.id).update({ name: idea.name, notes: idea.notes, steps: idea.steps, ingredients: idea.ingredients, calories: idea.calories,video: idea.video, videos: idea.videos});
+    return this.ideaCollection.doc(idea.id).update({ name: idea.name, notes: idea.notes, steps: idea.steps, ingredients: idea.ingredients, calories: idea.calories,video: idea.video});
   }
  
   deleteIdea(id: string): Promise<void> {

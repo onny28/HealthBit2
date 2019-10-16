@@ -1,9 +1,9 @@
 <ion-header>
-  <ion-toolbar color="warning">
+  <ion-toolbar>
       <ion-buttons slot="start">
           <ion-back-button defaultHref="/tabs/tabs/home"></ion-back-button>
         </ion-buttons>
-    <ion-title class="font">Location Details</ion-title>
+    <ion-title class="font">LOCATION</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -16,7 +16,7 @@
         </ion-card-header>
         <ion-card-content>
    
-          <ion-button shape="round" color="secondary" size="small" (click)="EditLocation(item)">
+          <ion-button shape="round" size="small" (click)="EditLocation(item)">
             <ion-icon size="small" class="font" slot="icon-only" name="create"></ion-icon>
             view more
           </ion-button>
@@ -48,8 +48,8 @@
             </ion-item>
 
         <div>
-          <ion-button>
-            <ion-icon size="small" slot="icon-only" name="map"></ion-icon>
+          <ion-button [routerLink]="['/map']">
+            <ion-icon size="small" slot="icon-only" name="map" ></ion-icon>
           </ion-button>
         </div>
         </ion-card-content>
