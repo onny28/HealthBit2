@@ -5,14 +5,16 @@ import 'firebase/firestore';
 import { FirebaseService } from 'app/firebase.service';
 import { NavController, LoadingController } from '@ionic/angular';
 
+
+
 @Component({
   selector: 'app-locationdetail',
   templateUrl: './locationdetail.page.html',
   styleUrls: ['./locationdetail.page.scss'],
 })
 export class LocationdetailPage implements OnInit {
-
- location;
+  filterText;
+  location;
   loader: HTMLIonLoadingElement;
   loading: boolean;
 
@@ -20,6 +22,7 @@ export class LocationdetailPage implements OnInit {
     private firebaseService: FirebaseService,
     private navCtrl: NavController,
     public loadingCtrl: LoadingController,
+   
   ) { }
 
   ngOnInit() {
@@ -46,7 +49,11 @@ export class LocationdetailPage implements OnInit {
       // No user is signed in.
       this.navCtrl.navigateBack('/login');
     }
+    
 }
+
+
+
 
 async loadingFunction(loadmsg) {
   this.loader = await this.loadingCtrl.create({

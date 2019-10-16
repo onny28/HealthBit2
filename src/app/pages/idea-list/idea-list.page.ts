@@ -5,7 +5,11 @@ import { AngularFirestore } from '@angular/fire/firestore'
 import { FirebaseService } from 'app/firebase.service';
 import { CartService } from 'app/cart.service';
 import { ToastController } from '@ionic/angular';
+import { Pipe, PipeTransform } from '@angular/core';
 
+@Pipe({
+  name: 'filter'
+})
 
 @Component({
   selector: 'app-idea-list',
@@ -13,6 +17,21 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./idea-list.page.scss'],
 })
 export class IdeaListPage implements OnInit{
+
+  // transform(ideas: any[], filterText: string): any[] {
+
+  //   if (!ideas) {
+  //     return [];
+  //   }
+  //   if (!filterText) {
+  //     return ideas;
+  //   }
+  //   filterText = filterText.toLocaleLowerCase();
+
+  //   return ideas.filter(it => {
+  //     return it.toLocaleLowerCase().includes(filterText);
+  //   });
+  // }
 
 private ideas: Observable<Idea[]>;
 private items: Observable<Idea[]>;

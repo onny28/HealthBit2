@@ -1,8 +1,10 @@
 import { Injectable, NgModule } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 
 @Injectable({
@@ -17,6 +19,7 @@ export class FirebaseService {
 
   constructor(
     public firestore: AngularFirestore,
+    private db: AngularFireDatabase,
   ) { }
 
 
@@ -136,5 +139,8 @@ export class FirebaseService {
     this.firestore.doc('favourite/' + fav_id).delete();
   }
 
+  getLocationName(start, end): Observable<any> {
+    return this.db.list('/locationN', ref => ref.orderByChild('locationName')).valueChanges();
+    };
 
 }

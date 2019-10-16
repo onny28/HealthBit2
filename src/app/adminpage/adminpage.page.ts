@@ -38,8 +38,8 @@ export class AdminpagePage implements OnInit {
   private ideas: Observable<Idea[]>;
  
   constructor(
-    private ideaService: IdeaService,
-    private firebaseService: FirebaseService,
+    public ideaService: IdeaService,
+    public firebaseService: FirebaseService,
     private navCtrl: NavController,
     public loadingCtrl: LoadingController,
   ) { }

@@ -8,6 +8,7 @@
 </ion-header>
 
 <ion-content padding>
+    <ion-searchbar showcancelbutton="" [(ngModel)]="filterText" (ioninput)="getItems()"></ion-searchbar>
     <ion-card *ngFor="let item of location">
       <span *ngIf="!item.isEdit; else elseBlock">
         <ion-card-header>
@@ -53,6 +54,13 @@
         </div>
         </ion-card-content>
       </ng-template>
+
+      <div *ngIf="locationName?.length < 1">
+          <hr>
+          <p>
+            No results found :(
+          </p>
+      </div>
     </ion-card>
 </ion-content>
 
