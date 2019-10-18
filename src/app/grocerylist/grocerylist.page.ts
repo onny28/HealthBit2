@@ -6,7 +6,7 @@ import { CartService } from 'app/cart.service';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
-import { NavController, LoadingController } from '@ionic/angular';
+import { NavController, LoadingController, AlertController } from '@ionic/angular';
 import { FirebaseService } from '../firebase.service';
 import { summaryFileName } from '@angular/compiler/src/aot/util';
 
@@ -43,6 +43,7 @@ export class GrocerylistPage implements OnInit {
     private navCtrl: NavController,
     private firebaseService: FirebaseService,
     public loadingCtrl: LoadingController,
+    public alertController: AlertController,
     ) {
 
   }
@@ -96,6 +97,19 @@ export class GrocerylistPage implements OnInit {
   RemoveGroceryList(rowID) {
     this.firebaseService.delete_grocery(rowID);
   }
+
+  async addPersonalG(){
+    this.navCtrl.navigateForward('/addgrocerylist');
+    const alert = await this.alertController.create({
+      header: 'Reminder',
+      message: 'You should not insert food that not healthy or else you cannot reach your target weight and have a healthy body',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
+
 
   
 

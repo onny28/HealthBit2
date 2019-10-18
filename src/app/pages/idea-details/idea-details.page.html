@@ -64,14 +64,10 @@
   <ion-slides #slides (ionSlideDidChange)="slideChanged()" scrollbar="true">
       <ion-slide>
                 <ion-list>
-                  <ion-item>
-                    <ion-row *ngFor = "let ingredient of idea.ingredients; let i=index">
-                      <ion-col>
-                      <ion-label class="font" position="float">INGREDIENTS</ion-label>
+                  <ion-item *ngFor = "let ingredient of idea.ingredients; let i=index">
+                      <ion-label class="font" position="stacked">INGREDIENTS</ion-label>
                       <ion-input class="font" [(ngModel)]="ingredient.name" placeholder="ingredients"></ion-input>
-                    </ion-col>
-                    <ion-col>
-                      <ion-label class="font" position="float">PRICE</ion-label>
+                      <ion-label class="font" position="stacked">PRICE</ion-label>
                       <ion-input type="number" class="font" [(ngModel)]="ingredient.price" placeholder="price"></ion-input>
                     </ion-col>
                       <ion-button fill="clear" slot="end" (click)="delIngredient(i)">

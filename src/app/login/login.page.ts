@@ -59,9 +59,6 @@ export class LoginPage implements OnInit {
     private firebaseService: FirebaseService,
     ) { 
 
-      // var currentuser = firebase.auth().currentUser;
-      // var authID = currentuser.uid;
-      // var sama = this.firestore.collection('users', ref => ref.where("authid", "==", authID))
       
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
@@ -94,24 +91,6 @@ export class LoginPage implements OnInit {
   async ngOnInit() {
 
     this.currentuser = firebase.auth().currentUser;
-
-    // this.firebaseService.read_User().subscribe(data =>{
-    //   this.record= data.map(e => {
-    //     return {
-    //       id: e.payload.doc.id,
-    //       isEdit: false,
-    //       email: e.payload.doc.data()['email'],
-    //       authid: e.payload.doc.data()['authid'],
-    //       role: e.payload.doc.data()['role'],
-    //       gender: e.payload.doc.data()['gender'],
-    //       age: e.payload.doc.data()['age'],
-    //       weight: e.payload.doc.data()['weight'],
-    //       height: e.payload.doc.data()['height'],
-    //     };
-    //   })
-    //   console.log(this.record);
-    // })
-   
     
   }
   async loadingFunction(loadmsg) {

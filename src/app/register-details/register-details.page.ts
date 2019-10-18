@@ -26,6 +26,7 @@ export class RegisterDetailsPage implements OnInit {
   age: number;
   weight: number;
   height: number;
+  tweight:number;
   role: string;
   userEmail: string;
   userID: string;
@@ -61,6 +62,12 @@ export class RegisterDetailsPage implements OnInit {
       { type: 'required', message: 'Height is required' },
       { type: 'pattern', message: 'Height must be whole number between 30 and 300 only' },
       { type: 'pattern', message: 'Height must in Centimeter(cm) format' }
+    ],
+    'tweight': [
+      { type: 'required', message: 'Weight is required' },
+      { type: 'pattern', message: 'Weight must be between 30 and 300 only' },
+      { type: 'pattern', message: 'Weight can be in 1 decimal places' },
+      { type: 'pattern', message: 'Weight must in Kilogram(kg) format' }
     ],
   }
  
@@ -103,6 +110,10 @@ export class RegisterDetailsPage implements OnInit {
         Validators.required,
         Validators.pattern('([3-8][0-9]|9[0-9]|[12][0-9]{2}|300)')
       ])),
+      tweight: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('((([3-8][0-9]|9[0-9]|[12][0-9]{2}|299)+.[0-9])|([3-8][0-9]|9[0-9]|[12][0-9]{2}|300))')
+      ])),
     })
     
   }
@@ -143,6 +154,7 @@ export class RegisterDetailsPage implements OnInit {
     record['age'] = this.age;
     record['weight'] = this.weight;
     record['height'] = this.height;
+    record['target weight'] = this.tweight;
     this.firebaseService.create_NewUser(record).then(resp => {
       this.userID;
       this.userEmail;
@@ -152,8 +164,10 @@ export class RegisterDetailsPage implements OnInit {
       this.age = undefined;
       this.weight = undefined;
       this.height = undefined;
+      this.tweight = undefined;
       console.log(resp);
-      this.navCtrl.navigateForward('/tabs/tabs/home')
+      // this.navCtrl.navigateForward('/tabs/tabs/home')
+      this.navCtrl.navigateForward('/login')
     })
       .catch(error => {
         console.dir(error);

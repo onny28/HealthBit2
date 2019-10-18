@@ -92,7 +92,7 @@ export class IdeaDetailsPage implements OnInit {
 
     if (user) {
       // User is signed in.
-      this.loadingFunction('Loading...')
+     
       this.items=this.cartService.getIngredients();
     this.cart = this.cartService.getCart();
     this.caloriesitem = this.cartService.getCalories();
