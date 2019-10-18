@@ -26,7 +26,7 @@ import { Firebase } from '@ionic-native/firebase/ngx';
 import { AgmCoreModule } from '@agm/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
-import { VideoPlayer } from '@ionic-native/video-player/ngx';
+// import { VideoPlayer } from '@ionic-native/video-player/ngx';
 import { NO_ERRORS_SCHEMA} from '@angular/core';
 @NgModule({
   declarations: [AppComponent],
@@ -63,7 +63,6 @@ import { NO_ERRORS_SCHEMA} from '@angular/core';
     FCM,
     Firebase,
     Geolocation,
-    VideoPlayer,
     // NativeGeocoder,
     //Geolocation,
     //NativeGeocoder,

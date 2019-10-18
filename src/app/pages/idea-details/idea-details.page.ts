@@ -12,7 +12,6 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
-import { VideoPlayer } from '@ionic-native/video-player/ngx';
 import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
@@ -83,7 +82,7 @@ export class IdeaDetailsPage implements OnInit {
     private storage: AngularFireStorage,
     private db: AngularFirestore,
     public loadingCtrl: LoadingController,
-    private videoPlayer: VideoPlayer, public modalCtrl: ModalController,
+    public modalCtrl: ModalController,
     public  sanitizer:DomSanitizer
     ) { }
  
