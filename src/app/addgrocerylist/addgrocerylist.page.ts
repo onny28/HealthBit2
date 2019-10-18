@@ -37,10 +37,10 @@ export class AddgrocerylistPage implements OnInit {
    
    
   }
-
+  //to add grocerylist to database
   CreateGroceryList(){
     let data= {};
-    data['name'] = this.name;
+    data['name'] = this.name.toLowerCase();
     data['price'] = this.price;
     data['authid'] = this.userID;
     data['email'] = this.userEmail;

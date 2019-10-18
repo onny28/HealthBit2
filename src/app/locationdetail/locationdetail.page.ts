@@ -41,6 +41,8 @@ export class LocationdetailPage implements OnInit {
               isEdit: false,
               locationName: e.payload.doc.data()['locationName'],
               address: e.payload.doc.data()['address'],
+              description: e.payload.doc.data()['description'],
+              menu: e.payload.doc.data()['menu'],
               latitude: e.payload.doc.data()['latitude'],
               longitude: e.payload.doc.data()['longitude'],
             };

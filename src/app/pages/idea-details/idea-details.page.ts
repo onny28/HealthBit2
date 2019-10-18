@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IdeaService, Idea } from '../../services/idea.service';
-import { ToastController, IonSlides, NavController, LoadingController } from '@ionic/angular';
+import { ToastController, IonSlides, NavController, LoadingController, ModalController } from '@ionic/angular';
 import { CartService } from 'app/cart.service';
 import { FirebaseService } from 'app/firebase.service';
 import { AngularFireUploadTask, AngularFireStorage } from '@angular/fire/storage';
@@ -12,6 +12,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
+import { VideoPlayer } from '@ionic-native/video-player/ngx';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-idea-details',
@@ -81,6 +83,8 @@ export class IdeaDetailsPage implements OnInit {
     private storage: AngularFireStorage,
     private db: AngularFirestore,
     public loadingCtrl: LoadingController,
+    private videoPlayer: VideoPlayer, public modalCtrl: ModalController,
+    public  sanitizer:DomSanitizer
     ) { }
  
   ngOnInit() {
@@ -282,7 +286,6 @@ async loaderDismiss(){
     //   this.ideaService.addVideotoDB(this.idea);
     // }
 
-   
   
   showToast(msg) {
     this.toastCtrl.create({

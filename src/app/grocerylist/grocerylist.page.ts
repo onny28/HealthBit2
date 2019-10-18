@@ -17,8 +17,8 @@ import { summaryFileName } from '@angular/compiler/src/aot/util';
 })
 export class GrocerylistPage implements OnInit {
 
-  text = 'check this out'
-  url = 'https://'
+  // text = 'check this out'
+  // url = 'https://'
   items;
   grocery;
   loader: HTMLIonLoadingElement;
@@ -70,6 +70,7 @@ export class GrocerylistPage implements OnInit {
         
           this.loaderDismiss();
           console.log(this.grocery);
+          //to calculate user's total price
           let total = 0;
           for(var i=0; i < this.grocery.length; i++){
              total += this.grocery[i].price;

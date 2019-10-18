@@ -47,6 +47,18 @@
               <ion-input>{{item.address}}</ion-input>
             </ion-item>
 
+            
+            <ion-item>
+                <ion-label><strong>Description:</strong></ion-label>
+                <ion-input row="8">{{item.description}}</ion-input>
+              </ion-item>
+
+              
+            <ion-item>
+              <ion-label><strong>Menu:</strong></ion-label>
+              <ion-input row="8">{{item.menu}}</ion-input>
+            </ion-item>
+
         <div>
           <ion-button [routerLink]="['/map']">
             <ion-icon size="small" slot="icon-only" name="map" ></ion-icon>

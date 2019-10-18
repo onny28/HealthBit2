@@ -9,7 +9,87 @@
 <ion-content>
   <h4 style="text-align: center">ADD LOCATION</h4>
     
-        <div padding>
+        <!-- <div padding>
+
+            <ion-card text-center *ngIf="!isUploading && !isUploaded">
+                <ion-card-header>
+                  <ion-card-title>Choose Images to Upload</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                  <div class="fileUpload btn btn-primary">
+                    <span>Upload</span>
+                    <input
+                      id="uploadBtn"
+                      type="file"
+                      class="upload"
+                      (change)="uploadFile($event.target.files)"
+                    />
+                  </div>
+                </ion-card-content>
+              </ion-card>
+
+              <ion-card text-center *ngIf="isUploading && !isUploaded">
+                  <ion-card-header>
+                    <ion-card-title
+                      >Selected File:<b>{{ fileName }}</b></ion-card-title
+                    >
+                  </ion-card-header>
+               
+                  <ion-card-content>
+                    <div *ngIf="percentage | async as pct">
+                      Progress: {{ pct | number }}%
+                      <ion-progress-bar value="{{ pct / 100 }}"></ion-progress-bar>
+                    </div>
+                    <div *ngIf="snapshot | async as snap">
+                      File Size: {{ snap.totalBytes }} Transfered:
+                      {{ snap.bytesTransferred }}
+                      <div *ngIf="snapshot && snap.bytesTransferred != snap.totalBytes">
+                        <ion-button
+                          color="warning"
+                          size="small"
+                          (click)="task.pause()"
+                          class="button is-warning"
+                          >Pause</ion-button
+                        >
+                        <ion-button
+                          size="small"
+                          (click)="task.resume()"
+                          class="button is-info"
+                          >Resume</ion-button
+                        >
+                        <ion-button
+                          color="danger"
+                          size="small"
+                          (click)="task.cancel()"
+                          class="button is-danger"
+                          >Cancel</ion-button
+                        >
+                      </div>
+                    </div>
+                  </ion-card-content>
+                </ion-card>
+               
+                <ion-card text-center *ngIf="!isUploading && isUploaded">
+                    <ion-card-header>
+                      <ion-card-title>
+                        <b>{{ fileName }}</b> Uploaded!
+                      </ion-card-title>
+                    </ion-card-header>
+                 
+                    <ion-card-content>
+                      <div *ngIf="UploadedFileURL | async as url">
+                        <img [src]="url" />
+                        <a [href]="url" target="_blank" rel="noopener">Download</a>
+                      </div>
+                      File Size: {{ fileSize  }}
+                      <ion-button
+                        expand="full"
+                        color="success"
+                        (click)="isUploading = isUploaded = false"
+                        >Upload More</ion-button
+                      >
+                    </ion-card-content>
+                  </ion-card> -->
 
           <ion-item>
             <ion-label class="font" position="floating">Location Name</ion-label>
@@ -21,6 +101,16 @@
             <ion-label class="font" position="floating">Address</ion-label>
             <ion-input class="font" type="text" [(ngModel)]="address" required></ion-input>
           </ion-item>
+
+          <ion-item>
+              <ion-label class="font" position="floating">Description</ion-label>
+              <ion-input class="font" type="text" row="8" [(ngModel)]="description" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label class="font" position="floating">Menu included</ion-label>
+              <ion-input class="font" type="text" row="8" [(ngModel)]="menu" required></ion-input>
+            </ion-item>
 
           <ion-item>
               <ion-label class="font" position="floating">Latitude</ion-label>

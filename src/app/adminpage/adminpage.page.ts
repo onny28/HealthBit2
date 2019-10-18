@@ -8,7 +8,6 @@ import { Observable } from 'rxjs';
 import { Idea, IdeaService } from 'app/services/idea.service';
 
 
-
 @Component({
   selector: 'app-adminpage',
   templateUrl: './adminpage.page.html',
@@ -29,6 +28,9 @@ export class AdminpagePage implements OnInit {
   locationName: string;
   address: string;
   location: any;
+  
+
+
   chat;
  
   @ViewChild('slides', {static: false}) slider: IonSlides;
@@ -38,12 +40,17 @@ export class AdminpagePage implements OnInit {
   loading: boolean;
 
   public ideas: Observable<Idea[]>;
+  
+
  
+ 
+
   constructor(
     public ideaService: IdeaService,
     public firebaseService: FirebaseService,
     private navCtrl: NavController,
     public loadingCtrl: LoadingController,
+   
   ) { }
  
   ngOnInit() {
@@ -54,7 +61,7 @@ export class AdminpagePage implements OnInit {
       this.loadingFunction('Loading...')
       this.userID = this.firebaseService.userDetails().uid;
       this.userEmail = this.firebaseService.userDetails().email;
-
+     
         this.firebaseService.listUsers().subscribe(data => {
    
           this.users = data.map(e => {
@@ -82,6 +89,8 @@ export class AdminpagePage implements OnInit {
               isEdit: false,
               locationName: e.payload.doc.data()['locationName'],
               address: e.payload.doc.data()['address'],
+              description:  e.payload.doc.data()['description'],
+              menu:  e.payload.doc.data()['menu'],
               latitude: e.payload.doc.data()['latitude'],
               longitude: e.payload.doc.data()['longitude'],
             };
@@ -166,6 +175,8 @@ async loaderDismiss(){
     data.isEdit = true;
     data.EditLocationName = data.locationName;
     data.EditAddress = data.address;
+    data.EditDescription = data.description;
+    data.EditMenu = data.menu;
     data.EditLatitude = data.latitude;
     data.EditLongitude = data.longitude;
   }
@@ -175,6 +186,8 @@ async loaderDismiss(){
     let data = {};
     data['locationName'] = dataRow.EditLocationName;
     data['address'] = dataRow.EditAddress;
+    data['description'] = dataRow.EditDescription;
+    data['menu'] = dataRow.EditMenu;
     data['latitude'] = dataRow.EditLatitude;
     data['longitude'] = dataRow.EditLongitude;
     this.firebaseService.update_location(dataRow.id, data);
@@ -188,6 +201,8 @@ async loaderDismiss(){
   RemoveComment(rowID) {
     this.firebaseService.delete_comment(rowID);
   }
+
+ 
 
   logout(){
     this.firebaseService.logoutUser()

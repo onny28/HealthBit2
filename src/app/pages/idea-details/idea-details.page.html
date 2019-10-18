@@ -64,17 +64,24 @@
   <ion-slides #slides (ionSlideDidChange)="slideChanged()" scrollbar="true">
       <ion-slide>
                 <ion-list>
-                  <ion-item *ngFor = "let ingredient of idea.ingredients; let i=index">
+                  <ion-item>
+                    <ion-row *ngFor = "let ingredient of idea.ingredients; let i=index">
+                      <ion-col>
                       <ion-label class="font" position="float">INGREDIENTS</ion-label>
                       <ion-input class="font" [(ngModel)]="ingredient.name" placeholder="ingredients"></ion-input>
+                    </ion-col>
+                    <ion-col>
                       <ion-label class="font" position="float">PRICE</ion-label>
                       <ion-input type="number" class="font" [(ngModel)]="ingredient.price" placeholder="price"></ion-input>
+                    </ion-col>
                       <ion-button fill="clear" slot="end" (click)="delIngredient(i)">
                       <ion-icon name="trash"></ion-icon>
                    </ion-button>
                    <ion-button (click)="addToCart(ingredient)" class="font">Add to cart</ion-button>
+                  </ion-row>
               </ion-item>
           </ion-list>
+        
           <ion-button slot="end" (click)="addIngredient()">
               <ion-icon name="add"></ion-icon>
             </ion-button>
@@ -100,7 +107,9 @@
       <ion-input class="font" [(ngModel)]="idea.video" placeholder="Copy URL here...">
     </ion-input>
   </ion-item>
+  
   <ion-button class="font" href="{{idea.video}}">VIDEO</ion-button>
+ 
 
 
 

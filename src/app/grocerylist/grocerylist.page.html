@@ -24,7 +24,7 @@
   <ion-list>
     <ion-item *ngFor="let item of grocery" class="font">
 
-{{item.name}} - ${{item.price}}
+{{item.name}} - ${{item.price | currency: 'BND': 'symbol'}}
  <ion-button fill="clear" slot="end" (click)="RemoveGroceryList(item.id)">
     <ion-icon name="trash"></ion-icon> 
   </ion-button>
@@ -37,7 +37,7 @@
   <ion-row>
   <ion-col width-50>
     <div class="ion-text-end">
- <ion-label class="font">total: {{totalPrice}}</ion-label>
+ <ion-label class="font">total: {{totalPrice | currency: 'BND': 'symbol'}}</ion-label>
 </div>
 </ion-col>
 </ion-row>
