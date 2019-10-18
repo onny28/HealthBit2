@@ -73,6 +73,7 @@ export class RecordPage implements OnInit {
               age: e.payload.doc.data()['age'],
               weight: e.payload.doc.data()['weight'],
               height: e.payload.doc.data()['height'],
+              tweight: e.payload.doc.data()['target weight'],
             };
           })
           this.loaderDismiss();
@@ -136,6 +137,7 @@ async loaderDismiss(){
     record.EditGender = record.gender;
     record.EditAge = record.age;
     record.EditWeight = record.weight;
+    record.EditTWeight = record.tweight;
     record.EditHeight = record.height;
   }
 
@@ -149,9 +151,9 @@ async loaderDismiss(){
     let record = {};
     record['role'] = recordRow.EditRole;
     record['gender'] = recordRow.EditGender;
-    // record['dob'] = recordRow.EditDOB;
     record['age'] = recordRow.EditAge;
     record['weight'] = recordRow.EditWeight;
+    record['target weight'] = recordRow.EditTWeight;
     record['height'] = recordRow.EditHeight;
     this.firebaseService.update_User(recordRow.id, record);
     recordRow.isEdit = false;

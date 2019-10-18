@@ -20,11 +20,7 @@
             </ion-item>
 
             <ion-item>
-                <ion-label class="font" position="floating">Role</ion-label>
-                <ion-select class="font" [(ngModel)]="role" formControlName="role" value="user" disabled>
-                    <ion-select-option value="admin">Admin</ion-select-option>
-                    <ion-select-option value="user">User</ion-select-option>
-                  </ion-select>	
+              <ion-label class="font"><strong>Role:</strong> User</ion-label>
               </ion-item>
 
             <ion-item>
@@ -42,20 +38,6 @@
                 </div>
               </ng-container>
             </div>
-
-
-            <!-- <ion-item>
-              <ion-label class="font" position="floating">Date of Birth</ion-label>
-              <ion-input class="font"  type="Date" [(ngModel)]="dob" formControlName="dob" required></ion-input>
-            </ion-item>
-            <div class="error-messages">
-              <ng-container *ngFor="let error of error_messages.dob">
-                <div class="error-messages"
-                  *ngIf="registerForm.get('dob').hasError(error.type) && (registerForm.get('dob').dirty || registerForm.get('dob').touched)">
-                  {{error.message}}
-                </div>
-              </ng-container>
-            </div> -->
 
             <ion-item>
               <ion-label class="font" position="floating">Age</ion-label>
@@ -79,6 +61,19 @@
               <ng-container *ngFor="let error of error_messages.weight">
                 <div class="error-messages"
                   *ngIf="registerForm.get('weight').hasError(error.type) && (registerForm.get('weight').dirty || registerForm.get('weight').touched)">
+                  {{error.message}}
+                </div>
+              </ng-container>
+            </div>
+
+            <ion-item>
+              <ion-label class="font" position="floating">Target Weight</ion-label>
+              <ion-input class="font" type="number" [(ngModel)]="tweight" formControlName="tweight"  required></ion-input>
+            </ion-item>
+            <div class="error-messages">
+              <ng-container *ngFor="let error of error_messages.tweight">
+                <div class="error-messages"
+                  *ngIf="registerForm.get('tweight').hasError(error.type) && (registerForm.get('tweight').dirty || registerForm.get('tweight').touched)">
                   {{error.message}}
                 </div>
               </ng-container>
