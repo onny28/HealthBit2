@@ -35,6 +35,7 @@
     "@ionic/storage": "^2.2.0",
     "agm-direction": "^0.7.8",
     "angularfire2": "^5.2.1",
+    "cordova": "^9.0.0",
     "cordova-android": "^8.1.0",
     "cordova-plugin-firebase": "^2.0.5",
     "cordova-plugin-geolocation": "^4.0.2",
