@@ -4,7 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore'
 import { FirebaseService } from 'app/firebase.service';
 import { CartService } from 'app/cart.service';
-import { ToastController, NavController, LoadingController } from '@ionic/angular';
+import { ToastController, NavController, LoadingController, AlertController } from '@ionic/angular';
 import { Pipe, PipeTransform } from '@angular/core';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
@@ -63,7 +63,8 @@ cart = [];
      private cartService: CartService,
      private toastCtrl: ToastController,
      private navCtrl: NavController,
-     public loadingCtrl: LoadingController,) { }
+     public loadingCtrl: LoadingController,
+     public alertController: AlertController,) { }
  
   ngOnInit() {
     var user = firebase.auth().currentUser;
@@ -134,6 +135,17 @@ cart = [];
           message: msg,
           duration: 2000
         }).then(toast => toast.present());
+      }
+
+      async addNewRecipe(){
+        this.navCtrl.navigateForward('/idea');
+        const alert = await this.alertController.create({
+          header: 'Reminder',
+          message: 'You should not insert food that not healthy or else you cannot reach your target weight and have a healthy body',
+          buttons: ['OK']
+        });
+    
+        await alert.present();
       }
     
     }
